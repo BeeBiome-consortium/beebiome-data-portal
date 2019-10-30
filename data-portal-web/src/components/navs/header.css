@@ -1,0 +1,17 @@
+#beebiome-header {
+    background-color: #F5AC3A;
+}
+
+#beebiome-header span.beebiome-name {
+    margin-left: 10px;
+    line-height: 40px;
+}
+
+#beebiome-header a.navbar-brand {
+    padding: 0;
+}
+
+#beebiome-header a.navbar-brand img {
+    width: 40px;
+    height: 40px;
+}

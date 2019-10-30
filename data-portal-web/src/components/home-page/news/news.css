@@ -1,0 +1,5 @@
+.twitter-embed {
+    overflow-y: auto;
+    height: 35vh;
+    overflow-x: hidden;
+}

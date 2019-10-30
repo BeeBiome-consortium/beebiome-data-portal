@@ -1,0 +1,19 @@
+#beebiome-footer {
+    min-height: 30px;
+    width: 100%;
+    font-size: 0.8em;
+}
+
+#beebiome-footer a {
+    color: #f7f8fa;
+    text-decoration: none;
+    padding: 5px 15px 5px 0
+}
+
+#beebiome-footer a:hover {
+    text-decoration: underline
+}
+
+#beebiome-footer img {
+    padding-bottom: 2px
+}
