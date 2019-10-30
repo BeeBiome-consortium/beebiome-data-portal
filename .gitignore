@@ -1,5 +1,3 @@
-/target/
-
 ########################################################################
 # From https://github.com/github/gitignore/blob/master/Java.gitignore 
 ########################################################################
@@ -46,8 +44,12 @@ nbproject
 .~lock.*
 .buildpath
 .idea
-*.iml
 .project
 .settings
 .classpath
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
