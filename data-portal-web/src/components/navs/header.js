@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './header.css';
-import Logo from "../../assets/images/beebiome_logo.jpg";
+import Logo from "../../assets/images/beebiome_logo_light.png";
 
 function Header() {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import './hero.css';
-import logo from '../../../assets/images/beebiome_logo_complete.jpg';
+import logo from '../../../assets/images/beebiome_logo.png';
 
 function Hero() {
   return (
