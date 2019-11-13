@@ -1,7 +1,7 @@
 import React from 'react';
 import './hero.css';
 import logo from '../../../assets/images/beebiome_logo.png';
-import SearchBar from "../../search/search-bar";
+import SearchBar from "./search-bar";
 
 function Hero() {
   return (

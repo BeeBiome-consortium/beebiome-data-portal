@@ -1,31 +1,46 @@
-import React, { Component } from 'react';
-import DataTable from "./data-table/data-table";
-
+import React, {Component} from 'react';
+import Table from '../result/table';
 
 class Browse extends Component {
-
     constructor() {
         super();
-        this.state = { data: [] };
+        this.state = {
+            data: []
+        };
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/greeting/all")
+        this.setState({data: []});
+        console.log("Fetching data...");
+
+        fetch("http://localhost:8080/sample/all")
             .then(results => { return results.json()} )
             .then(data => {
                 this.setState({data: data});
-                console.log("state", this.state.data);
+                console.log("Fetch data: done", this.state.data);
             })
             .catch(function(error) {
-                console.log('Request failed', error)
+                // FIXME manage cathched error
+                console.log('Fetch data: failed', error)
+                // this.setState((state) => {
+                //     return {content: state.content, data: [], hasResult: false, isFetching: false}
+                // });
             });
     }
-    
+
     render() {
+        let result = "";
+        if (this.state.data.length > 0) {
+            result = <Table data={this.state.data}/>
+        }
         return (
-            <div className="beebiome-data">
-                <h1>Data</h1>
-                <DataTable data={this.state.data} />
+            <div>
+                <h1>Browse</h1>
+                <div className='row'>
+                    <div className='col-sm-10 offset-sm-1'>
+                        {result}
+                    </div>
+                </div>
             </div>
         );
     }

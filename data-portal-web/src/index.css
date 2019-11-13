@@ -1,17 +1,43 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 #beebiome-body {
   margin-top: 55px;
+  font-size: 0.9em;
+  margin-bottom: 40px;
+}
+
+#beebiome-body h1, #beebiome-body h2, #beebiome-body h3 {
+  font-weight: bold;
+}
+#beebiome-body h1 {
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+#beebiome-body h2 {
+  margin: 1em 0 1em 0;
+  font-size: 1.2em;
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 2px #F5AC3A solid; /* Set color for browsers that do not support gradients */
+  border-image: linear-gradient(to right, #F5AC3A 70%, rgba(146, 2, 9, 0));
+  border-image-slice: 1;
+}
+#beebiome-body h3 {
+  font-size: 1.1em;
+  margin: 2em 0 1em 0;
+}
+#beebiome-body h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 2em 0 1em 0;
+}
+#beebiome-body h5 {
+  font-size: 1em;
+  margin: 1em 0 1em 0;
 }

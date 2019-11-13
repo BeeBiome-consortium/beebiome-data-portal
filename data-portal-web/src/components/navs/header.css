@@ -15,3 +15,8 @@
     width: 40px;
     height: 40px;
 }
+
+/* to improve the contrast for accessibility */
+.navbar-light .navbar-nav .nav-link {
+    color: #000000 !important;
+}

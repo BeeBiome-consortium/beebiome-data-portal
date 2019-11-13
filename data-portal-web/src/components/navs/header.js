@@ -22,10 +22,7 @@ function Header() {
                             <Link to="/browse" className="nav-link">Browse</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/search" className="nav-link disabled">Search</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/map-search" className="nav-link disabled">Map search</Link>
+                            <Link to="/search" className="nav-link">Search</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/wiki" className="nav-link">Wiki</Link>

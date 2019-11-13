@@ -1,10 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import $ from 'jquery';
-// import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import HomePage from "./components/home-page/home-page";
@@ -12,7 +10,6 @@ import Browse from "./components/browse/browse";
 import Notfound from "./components/notfound"
 import Wiki from "./components/wiki/wiki";
 import Search from "./components/search/search";
-import MapSearch from "./components/search/map-search";
 import About from "./components/about/about";
 import Header from "./components/navs/header";
 import Footer from "./components/navs/footer";
@@ -27,7 +24,6 @@ const routing = (
             <Route exact path="/" component={HomePage} />
             <Route path="/browse" component={Browse} />
             <Route path="/search" component={Search} />
-            <Route path="/map" component={MapSearch} />
             <Route path="/wiki" component={Wiki} />
             <Route path="/about/data-portal" component={About} />
             <Route path="/about/consortium" component={Consortium} />

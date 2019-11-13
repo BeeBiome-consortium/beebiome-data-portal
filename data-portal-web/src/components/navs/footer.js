@@ -5,10 +5,11 @@ function Footer() {
     return (
         <footer id="beebiome-footer">
             <nav className="navbar navbar-expand navbar-dark bg-dark fixed-bottom">
-                <div className="collapse navbar-collapse" id="navbarCollapse">
+                <div className="collapse navbar-collapse">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a rel="license"
+                            {/*Using target="_blank" without rel="noopener noreferrer" is a security risk: see https://mathiasbynens.github.io/rel-noopener*/}
+                            <a rel="license noopener noreferrer"
                                href="https://creativecommons.org/publicdomain/zero/1.0/"
                                target="_blank">
                                 <img src="https://bgee.org/img/cc-zero.png" alt="CC0" />
