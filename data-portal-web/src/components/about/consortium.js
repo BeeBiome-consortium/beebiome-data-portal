@@ -1,7 +1,8 @@
 import React from 'react';
+import MarkdownPage from "../markdown/markdown";
 
 export default function Consortium() {
     return (
-        <h1>BeeBiome consortium</h1>
+        <MarkdownPage relativePath={'generalities/consortium'}/>
     );
 }

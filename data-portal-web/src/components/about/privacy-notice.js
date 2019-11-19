@@ -1,7 +1,8 @@
 import React from 'react';
+import MarkdownPage from "../markdown/markdown";
 
 export default function PrivacyNotice() {
     return (
-        <h1>Privacy notice</h1>
+        <MarkdownPage relativePath={'generalities/privacy_notice'}/>
     );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
+import MarkdownPage from "../markdown/markdown";
 
 export default function Citation() {
     return (
-        <h1>Citing BeeBiome</h1>
+        <MarkdownPage relativePath={'generalities/citing-us'}/>
     );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
+import MarkdownPage from "../markdown/markdown";
 
 export default function About() {
     return (
-        <h1>About BeeBiome data portal</h1>
+        <MarkdownPage relativePath={'generalities/about'}/>
     );
 }
