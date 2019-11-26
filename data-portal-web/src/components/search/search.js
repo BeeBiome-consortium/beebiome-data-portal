@@ -15,7 +15,7 @@ class Search extends Component {
         this.setState({data: []});
         console.log("Fetching data...");
 
-        fetch("http://localhost:8080/sample/" + sampleId)
+        fetch(process.env.REACT_APP_API_URL + "/sample/" + sampleId)
             .then(results => { return results.json()} )
             .then(data => {
                 this.setState({data: data});

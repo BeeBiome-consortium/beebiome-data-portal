@@ -27,8 +27,7 @@ public class GitHubController {
     @CrossOrigin
     @ResponseBody
     @GetMapping(value = "/contents/{folder}/{page}")
-    public String accessPage(@PathVariable("folder") String folder, @PathVariable("page") String page,
-                             @RequestParam(value = "branch", required = false) String branch) {
-        return githubService.getPage(branch, folder, page);
+    public String accessPage(@PathVariable("folder") String folder, @PathVariable("page") String page) {
+        return githubService.getPage(folder, page);
     }
 }

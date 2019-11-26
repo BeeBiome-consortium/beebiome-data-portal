@@ -11,11 +11,10 @@ export default class MarkdownPage extends Component {
     }
     
     componentDidMount() {
-        fetch("http://localhost:8080/contents/" + this.props.relativePath + "?branch=initial-devs")
+        fetch(process.env.REACT_APP_API_URL + "/contents/" + this.props.relativePath)
             .then(results => { return results.text()} )
             .then(text => {
                 this.setState({content: text});
-                console.log("Fetch text: done", this.state.content);
             })
             .catch(function(error) {
                 // FIXME manage catched error

@@ -13,7 +13,7 @@ class Browse extends Component {
         this.setState({data: []});
         console.log("Fetching data...");
 
-        fetch("http://localhost:8080/sample/all")
+        fetch(process.env.REACT_APP_API_URL + "/sample/all")
             .then(results => { return results.json()} )
             .then(data => {
                 this.setState({data: data});
