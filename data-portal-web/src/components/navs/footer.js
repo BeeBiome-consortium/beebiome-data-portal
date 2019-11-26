@@ -1,5 +1,6 @@
 import React from "react";
 import './footer.css';
+import cc0_logo from '../../assets/images/cc-zero_logo.png';
 
 function Footer() {
     return (
@@ -12,7 +13,7 @@ function Footer() {
                             <a rel="license noopener noreferrer"
                                href="https://creativecommons.org/publicdomain/zero/1.0/"
                                target="_blank">
-                                <img src="https://bgee.org/img/cc-zero.png" alt="CC0" />
+                                <img src={cc0_logo} alt="CC0" />
                             </a>
                         </li>
                     </ul>
