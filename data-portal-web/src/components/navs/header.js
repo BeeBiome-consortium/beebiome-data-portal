@@ -28,7 +28,7 @@ function Header() {
                             <Link to="/wiki" className="nav-link">Wiki</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
                                role="button" aria-haspopup="true" aria-expanded="false">About</a>
                             <div className="dropdown-menu">
                                 <Link to="/about/data-portal" className="dropdown-item">BeeBiome data portal</Link>
