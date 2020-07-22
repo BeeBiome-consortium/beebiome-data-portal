@@ -72,6 +72,7 @@ use LWP::UserAgent;
 use Net::FTP;
 use XML::Simple;
 use Storable 'dclone';
+use File::Slurp;
 
 my $delay = 0;
 my $maxdelay = 3;
@@ -79,26 +80,43 @@ my $base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 
 #*************************************************************
 #** SCRIPT MAIN BODY *****************************************
-my $taxonomy_level = "Apis mellifera";
-#my $taxonomy_level = "Apoidea";
+my $doSearch = $ARGV[1];
+my $nameBatch = 100;
+
+my $taxonomy_level = $ARGV[0];
 my $taxonomy_level_formatted = $taxonomy_level =~ s/\s/_/rg;
 
-my $taxonomy_filename = "data/" . $taxonomy_level_formatted . "_subtree.xml";
+my $taxonomy_filename = "data/" . $taxonomy_level_formatted . "_taxonomy.xml";
+my $sra_filename = "data/" . $taxonomy_level_formatted . "_sra.xml";
+my $nucleotide_filename = "data/" . $taxonomy_level_formatted . "_nucleotide.xml";
+my $bioproject_filename = "data/" . $taxonomy_level_formatted . "_bioproject.xml";
+my $biosample_filename = "data/" . $taxonomy_level_formatted . "_biosample.xml";
 
 $params_taxonomy{db} = "taxonomy";
 $params_taxonomy{term} = $taxonomy_level . "[subtree]";
-%params_taxonomy = esearch(%params_taxonomy);
+if ($doSearch) {
+    %params_taxonomy = esearch(%params_taxonomy);
+}
 
 $params_taxonomy{retmode} = "xml";
-$params_taxonomy{outfile} = $taxonomy_filename;
+$params_taxonomy{outfile} = $taxonomy_filename . ".tmp";
 $params_taxonomy{http} - "post";
-efetch_batch(%params_taxonomy);
 
+printWithTimestamp("Retrieve taxonomy subtree of $taxonomy_level...");
+if ($doSearch) {
+    efetch_batch(%params_taxonomy);
+}
+
+printWithTimestamp("Clean file '$taxonomy_filename.tmp'...");
+cleanFile($taxonomy_filename . ".tmp");
+
+printWithTimestamp("Read '$taxonomy_filename.tmp'...");
 my $parser = XML::Simple->new( KeepRoot => 1 );
 my $doc = $parser->XMLin($taxonomy_filename);
 
 my %all_names = ();
 
+printWithTimestamp("Parse '$taxonomy_filename.tmp'...");
 foreach my $taxon ( @{ $doc->{TaxaSet}->{Taxon} } ) {
     my $scientific_name = $taxon->{ScientificName};
     $all_names{$scientific_name}++;
@@ -137,70 +155,190 @@ foreach my $taxon ( @{ $doc->{TaxaSet}->{Taxon} } ) {
     }
 }
 $name_count = scalar keys %all_names;
-#print "Name count: " . $name_count . "\n";
+printWithTimestamp("Count of found names: " . $name_count);
 #printHash(%all_names);
 
-my $biosample_query = buildQuery(%all_names); 
-print "Query: $biosample_query\n";
+printWithTimestamp("Build the query...");
+my @biosample_queries = buildQueries(%all_names); 
 
-my $biosample_query = "host[Attribute Name]+AND+((Bombus+impatiens+NOT+Bombus+impatiens[Organism]))";
+printWithTimestamp("Run the query on Biosample...");
+my $queryCount = 0;
+foreach my $query (@biosample_queries) {
+    
+    $queryCount++;
 
-my %biosample_params = ();
-$biosample_params{db} = "biosample";
-$biosample_params{term} = $biosample_query;
-%biosample_search_result = esearch(%biosample_params);
+    my %biosample_params = ();
+    $biosample_params{db} = "biosample";
+    $biosample_params{term} = $query;
+    $biosample_params{http} = 'post';
+    if ($doSearch) {
+        %biosample_search_result = esearch(%biosample_params);
+    }
+    printWithTimestamp("Biosample search result:");
+    printHash(%biosample_search_result);
+    
+    ## Retrieve SRA file
+    printWithTimestamp("Retrieve SRA data...");
+    $biosample_search_result{linkname} = "biosample_sra";
+    if ($doSearch) {
+        %sra_search_result = elink_by_id_to('sra', %biosample_search_result);
+    }
+   
+    $sra_search_result{retmode} = "xml";
+    $sra_search_result{rettype} = "full";
+    $sra_search_result{outfile} = $sra_filename . $queryCount . ".tmp";
+    if ($doSearch) {
+        efetch_batch(%sra_search_result);
+    }
+   
+    ## Retrieve Nucleotide file
+    printWithTimestamp("Retrieve Nucleotide data...");
+    $biosample_search_result{linkname} = "biosample_nuccore";
+    if ($doSearch) {
+        %nucleotide_search_result = elink_by_id_to('nuccore', %biosample_search_result);
+    }
+   
+    $nucleotide_search_result{retmode} = "xml";
+    $nucleotide_search_result{rettype} = "full";
+    $nucleotide_search_result{outfile} = $nucleotide_filename . $queryCount . ".tmp";
+    if ($doSearch) {
+        efetch_batch(%nucleotide_search_result);
+    }
+   exit;
 
-## Retrieve SRA file
-$biosample_search_result{linkname} = "biosample_sra";
-%sra_search_result = elink_by_id_to('sra', %biosample_search_result);
+    ## Retrieve Bioproject file
+    printWithTimestamp("Retrieve Bioproject data...");
+    $biosample_search_result{linkname} = "biosample_bioproject";
+    if ($doSearch) {
+        %bioproject_search_result = elink_batch_to('bioproject', %biosample_search_result);
+    }
+   
+    $bioproject_search_result{outfile} = $bioproject_filename . $queryCount . ".tmp";
+    if ($doSearch) {
+        efetch_batch(%bioproject_search_result);
+    }
 
-$sra_search_result{retmode} = "xml";
-$sra_search_result{rettype} = "full";
-$sra_search_result{outfile} = "data/" . $taxonomy_level_formatted . "_sra.xml";
-efetch_batch(%sra_search_result);
+    ## Retrieve Biosample file
+    printWithTimestamp("Retrieve Biosample data...");
+    delete $biosample_search_result{linkname};
+    $biosample_search_result{retmode} = "xml";
+    $biosample_search_result{rettype} = "full";
+    $biosample_search_result{outfile} = $biosample_filename . $queryCount . ".tmp";
+    if ($doSearch) {
+        efetch_batch(%biosample_search_result);
+    }
+}
 
-## Retrieve Bioproject file
-$biosample_search_result{linkname} = "biosample_bioproject";
-%bioproject_search_result = elink_batch_to('bioproject', %biosample_search_result);
+printWithTimestamp("Merge files...");
+open (my $finalBioprojectFile, ">", $bioproject_filename . ".tmp" ) or die $!;
+open (my $finalBiosampleFile, ">", $biosample_filename . ".tmp" ) or die $!;
+open (my $finalSraFile, ">", $sra_filename . ".tmp" ) or die $!;
+for (my $i = 1; $i <= $queryCount; $i++) {
+    printWithTimestamp("Read " . $bioproject_filename . $i . ".tmp");
+    open TMP, '<', $bioproject_filename . $i . ".tmp" or die $!;
+    print $finalBioprojectFile <TMP>;
+    print $finalBioprojectFile "\n";
+    close (TMP);
+    
+    printWithTimestamp("Read " . $biosample_filename . $i . ".tmp");
+    open TMP, '<', $biosample_filename . $i . ".tmp" or die $!;
+    print $finalBiosampleFile <TMP>;
+    print $finalBiosampleFile "\n";
+    close (TMP);
 
-$bioproject_search_result{outfile} = "data/" . $taxonomy_level_formatted . "bioproject.xml";
-efetch_batch(%bioproject_search_result);
+    printWithTimestamp("Read " . $sra_filename . $i . ".tmp");
+    open TMP, '<', $sra_filename . $i . ".tmp" or die $!;
+    print $finalSraFile <TMP>;
+    print $finalSraFile "\n";
+    close (TMP);
 
-## Retrieve Biosample file
-delete $biosample_search_result{linkname};
-$biosample_search_result{retmode} = "xml";
-$biosample_search_result{rettype} = "full";
-$biosample_search_result{outfile} = "data/" . $taxonomy_level_formatted . "biosample.xml";
-efetch_batch(%biosample_search_result);
+}
+close ($finalFile);
+
+## Clean files removing incorrect tags due to batch import
+printWithTimestamp("Clean files...");
+cleanFile($bioproject_filename . ".tmp");
+cleanFile($biosample_filename . ".tmp");
+cleanFile($sra_filename . ".tmp");
+
+
+#************************************************************
+#** SCRIPT BeeBiome *****************************************
 
 sub printHash {
     my %hashToDisplay = @_;
-    
     while ( ($k,$v) = each %hashToDisplay ) {
         print "     ${k}: ${v}\n";
     }
     print "\n";
 }
 
-sub buildQuery {
+sub printWithTimestamp {
+    my ($toPrint) = @_;
+    ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+    print "$hour:$min:$sec - " . $toPrint . "\n";
+}
+
+sub buildQueries {
     my %seen = @_;
     my $biosample_subquery = "";
     my $isFirst = 1;
+    my $idx = 1;
+    my @queries = ();
     while ( ($k,$v) = each %seen ) {
+        if (($idx % $nameBatch) == 0 ) {
+            push @queries, "host[Attribute Name]+AND+(${biosample_subquery})";
+            $biosample_subquery = "";
+            $isFirst = 1;
+        }
         if (!$isFirst) {
             $biosample_subquery = "${biosample_subquery}+OR+";
         }
-        my $new = $k =~ s/\s/\+/rg;
+        
+        my $tmp = $k =~ s/[():,\.\/]//rg;
+        my $new = $tmp =~ s/\s/\+/rg;
         $biosample_subquery = "${biosample_subquery}(${new}+NOT+${new}\[Organism\])";
         $isFirst = 0;
+        $idx++;
     }
-    return "host[Attribute Name]+AND+(${biosample_subquery})";
-    #print $biosample_query . "\n";
+    push @queries, "host[Attribute Name]+AND+(${biosample_subquery})";
+    return @queries;
 }
-#** END SCRIPT MAIN BODY ************************************
+
+sub cleanFile {
+    my ($tmp_filename) = @_;
+    my $filename = $tmp_filename =~ s/\.tmp$//r;
+    print "Clean file $tmp_filename and write in $filename\n";
+
+    my $replacestring;
+    
+    if (index($tmp_filename, "taxonomy") != -1 ) {
+        $replacestring = '<\/TaxaSet><\?xml version="1\.0"\s+\?>\s*<\!DOCTYPE TaxaSet PUBLIC "-\/\/NLM\/\/DTD Taxon, 14th January 2002\/\/EN" "https:\/\/www\.ncbi\.nlm\.nih\.gov\/entrez\/query\/DTD\/taxon\.dtd">\s*<TaxaSet>';
+    } elsif (index($tmp_filename, "bioproject") != -1 ) {
+        $replacestring = '<\/RecordSet>\s*<\?xml version="1\.0"\s+\?>\s*<RecordSet>';
+    } elsif (index($tmp_filename, "biosample") != -1 ) {
+        $replacestring = '<\/BioSampleSet>\s*<\?xml version="1\.0"\s+\?>\s*<BioSampleSet>';
+    } elsif (index($tmp_filename, "sra") != -1 ) {
+        $replacestring = '<\/EXPERIMENT_PACKAGE_SET>\s*<\?xml version="1\.0"\s+\?>\s*<EXPERIMENT_PACKAGE_SET>';
+    } 
+        
+    my $file_content = read_file($tmp_filename);
+
+    my $tail = substr $file_content, -300;
+
+    my $file_content_size = length $file_content;
+    
+    $file_content =~ s/$replacestring//sg;
+    
+    $file_content_size = length $file_content;
+   
+    write_file($filename, $file_content);
+
+    # TODO Remove $infile
+}
+
 #************************************************************
 #** BEGIN NCBI_PowerScripting MODULE ROUTINES ***************
-#*************************************************************
 
 sub read_params {
 
