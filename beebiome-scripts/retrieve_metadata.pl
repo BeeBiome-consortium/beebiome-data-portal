@@ -204,7 +204,6 @@ foreach my $query (@biosample_queries) {
     if ($doSearch) {
         efetch_batch(%nucleotide_search_result);
     }
-   exit;
 
     ## Retrieve Bioproject file
     printWithTimestamp("Retrieve Bioproject data...");
