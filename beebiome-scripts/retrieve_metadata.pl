@@ -81,7 +81,7 @@ my $base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 #*************************************************************
 #** SCRIPT MAIN BODY *****************************************
 my $doSearch = $ARGV[1];
-my $nameBatch = 100;
+my $batchSize = 500;
 
 my $taxonomy_level = $ARGV[0];
 my $taxonomy_level_formatted = $taxonomy_level =~ s/\s/_/rg;
@@ -285,7 +285,7 @@ sub buildQueries {
     my $idx = 1;
     my @queries = ();
     while ( ($k,$v) = each %seen ) {
-        if (($idx % $nameBatch) == 0 ) {
+        if (($idx % $batchSize) == 0 ) {
             push @queries, "host[Attribute Name]+AND+(${biosample_subquery})";
             $biosample_subquery = "";
             $isFirst = 1;
