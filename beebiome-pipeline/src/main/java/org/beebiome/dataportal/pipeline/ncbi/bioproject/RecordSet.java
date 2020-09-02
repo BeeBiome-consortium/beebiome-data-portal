@@ -24,4 +24,8 @@ public class RecordSet {
         }
         return documentSummaries;
     }
+
+    public void setDocumentSummaries(List<DocumentSummary> documentSummaries) {
+        this.documentSummaries = documentSummaries == null? new ArrayList<>(): new ArrayList<>(documentSummaries);
+    }
 }

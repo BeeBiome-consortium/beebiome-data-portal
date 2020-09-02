@@ -9,17 +9,17 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * Value of the attribute.
- * 
- * <p>Classe Java pour typeAttribute complex type.
+ * <p>Classe Java pour AttributeType complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="typeAttribute">
+ * &lt;complexType name="AttributeType">
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
- *       &lt;attribute name="attribute_name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="attribute_name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="harmonized_name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="display_name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>
@@ -28,15 +28,19 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "typeAttribute", propOrder = {
+@XmlType(name = "AttributeType", propOrder = {
     "value"
 })
-public class TypeAttribute {
+public class AttributeType {
 
     @XmlValue
     protected String value;
-    @XmlAttribute(name = "attribute_name", required = true)
+    @XmlAttribute(name = "attribute_name")
     protected String attributeName;
+    @XmlAttribute(name = "harmonized_name")
+    protected String harmonizedName;
+    @XmlAttribute(name = "display_name")
+    protected String displayName;
 
     /**
      * Obtient la valeur de la propriété value.
@@ -84,6 +88,54 @@ public class TypeAttribute {
      */
     public void setAttributeName(String value) {
         this.attributeName = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété harmonizedName.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getHarmonizedName() {
+        return harmonizedName;
+    }
+
+    /**
+     * Définit la valeur de la propriété harmonizedName.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setHarmonizedName(String value) {
+        this.harmonizedName = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété displayName.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * Définit la valeur de la propriété displayName.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDisplayName(String value) {
+        this.displayName = value;
     }
 
 }

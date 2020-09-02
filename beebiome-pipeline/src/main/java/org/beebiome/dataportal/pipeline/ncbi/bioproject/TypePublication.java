@@ -55,7 +55,7 @@ public class TypePublication {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String dbType;
     @XmlAttribute(name = "id")
-    protected Integer id;
+    protected String id;
     @XmlAttribute(name = "date")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar date;
@@ -113,10 +113,10 @@ public class TypePublication {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -125,10 +125,10 @@ public class TypePublication {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setId(Integer value) {
+    public void setId(String value) {
         this.id = value;
     }
 

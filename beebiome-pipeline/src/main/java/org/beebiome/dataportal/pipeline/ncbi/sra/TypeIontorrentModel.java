@@ -34,6 +34,8 @@ public enum TypeIontorrentModel {
     ION_TORRENT_PROTON("Ion Torrent Proton"),
     @XmlEnumValue("Ion Torrent S5")
     ION_TORRENT_S_5("Ion Torrent S5"),
+    @XmlEnumValue("Ion S5")
+    ION_S_5("Ion Torrent S5"),
     @XmlEnumValue("Ion Torrent S5 XL")
     ION_TORRENT_S_5_XL("Ion Torrent S5 XL"),
     @XmlEnumValue("unspecified")

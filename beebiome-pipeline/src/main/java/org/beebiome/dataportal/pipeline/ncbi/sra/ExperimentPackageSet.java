@@ -24,4 +24,8 @@ public class ExperimentPackageSet {
         }
         return this.experimentPackages;
     }
+
+    public void setExperimentPackages(List<ExperimentPackageType> experimentPackages) {
+        this.experimentPackages = experimentPackages == null? new ArrayList<>(): new ArrayList<>(experimentPackages);
+    }
 }

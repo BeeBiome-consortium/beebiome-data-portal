@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
         "experimentType",
         "submissionType",
         "studyType",
-        "sampleSetType"
+        "sampleType"
 })
 public class ExperimentPackageType {
 
@@ -20,8 +20,8 @@ public class ExperimentPackageType {
     protected SubmissionType submissionType;
     @XmlElement(name = "STUDY")
     protected StudyType studyType;
-    @XmlElement(name = "SAMPLE_SET")
-    protected SampleSetType sampleSetType;
+    @XmlElement(name = "SAMPLE")
+    protected SampleType sampleType;
 
     public ExperimentType getExperimentType() {
         return experimentType;
@@ -35,7 +35,7 @@ public class ExperimentPackageType {
         return studyType;
     }
 
-    public SampleSetType getSampleSetType() {
-        return sampleSetType;
+    public SampleType getSampleType() {
+        return sampleType;
     }
 }

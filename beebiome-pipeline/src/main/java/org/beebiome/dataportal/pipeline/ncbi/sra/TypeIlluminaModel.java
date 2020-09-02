@@ -63,6 +63,8 @@ public enum TypeIlluminaModel {
     ILLUMINA_I_SEQ_100("Illumina iSeq 100"),
     @XmlEnumValue("HiSeq X Ten")
     HI_SEQ_X_TEN("HiSeq X Ten"),
+    @XmlEnumValue("Illumina HiSeq X Ten")
+    ILLUMINA_HI_SEQ_X_TEN("HiSeq X Ten"),
     @XmlEnumValue("NextSeq 500")
     NEXT_SEQ_500("NextSeq 500"),
     @XmlEnumValue("HiSeq X Five")
@@ -76,7 +78,10 @@ public enum TypeIlluminaModel {
     @XmlEnumValue("Illumina NovaSeq 6000")
     ILLUMINA_NOVA_SEQ_6000("Illumina NovaSeq 6000"),
     @XmlEnumValue("Illumina MiniSeq")
-    ILLUMINA_MINI_SEQ("Illumina MiniSeq");
+    ILLUMINA_MINI_SEQ("Illumina MiniSeq"),
+    @XmlEnumValue("unspecified")
+    UNSPECIFIED("Unspecified");
+    
     private final String value;
 
     TypeIlluminaModel(String v) {

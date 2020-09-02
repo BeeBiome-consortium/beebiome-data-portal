@@ -4,25 +4,21 @@ package org.beebiome.dataportal.pipeline.ncbi.biosample;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- *  Unique identifier in submitter context (Submitter Provided Unique
- *                 ID). 
- * 
- * <p>Classe Java pour typeSPUID complex type.
+ * <p>Classe Java pour StatusType complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="typeSPUID">
+ * &lt;complexType name="StatusType">
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
- *       &lt;attribute name="submitter_id" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="spuid_namespace" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="status" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="when" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>
@@ -31,20 +27,17 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "typeSPUID", namespace = "SP.common", propOrder = {
+@XmlType(name = "StatusType", propOrder = {
     "value"
 })
-@XmlSeeAlso({
-    org.beebiome.dataportal.pipeline.ncbi.biosample.TypeBioSampleIdentifier.SPUID.class
-})
-public class TypeSPUID {
+public class StatusType {
 
     @XmlValue
     protected String value;
-    @XmlAttribute(name = "submitter_id")
-    protected String submitterId;
-    @XmlAttribute(name = "spuid_namespace")
-    protected String spuidNamespace;
+    @XmlAttribute(name = "status")
+    protected String status;
+    @XmlAttribute(name = "when")
+    protected String when;
 
     /**
      * Obtient la valeur de la propriété value.
@@ -71,51 +64,51 @@ public class TypeSPUID {
     }
 
     /**
-     * Obtient la valeur de la propriété submitterId.
+     * Obtient la valeur de la propriété status.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSubmitterId() {
-        return submitterId;
+    public String getStatus() {
+        return status;
     }
 
     /**
-     * Définit la valeur de la propriété submitterId.
+     * Définit la valeur de la propriété status.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSubmitterId(String value) {
-        this.submitterId = value;
+    public void setStatus(String value) {
+        this.status = value;
     }
 
     /**
-     * Obtient la valeur de la propriété spuidNamespace.
+     * Obtient la valeur de la propriété when.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSpuidNamespace() {
-        return spuidNamespace;
+    public String getWhen() {
+        return when;
     }
 
     /**
-     * Définit la valeur de la propriété spuidNamespace.
+     * Définit la valeur de la propriété when.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSpuidNamespace(String value) {
-        this.spuidNamespace = value;
+    public void setWhen(String value) {
+        this.when = value;
     }
 
 }
