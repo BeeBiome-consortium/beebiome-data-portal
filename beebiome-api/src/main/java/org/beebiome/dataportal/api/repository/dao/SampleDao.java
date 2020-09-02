@@ -1,15 +1,9 @@
 package org.beebiome.dataportal.api.repository.dao;
 
-import org.beebiome.dataportal.api.core.model.Sample;
+import org.beebiome.dataportal.api.repository.dt.SampleTO;
 
-import java.util.List;
+public interface SampleDAO {
 
-public interface SampleDao {
-
-    List<Sample> findAll();
-
-    List<Sample> findByStudy(String id);
-
-    void insertSample(Sample g);
-
+    void insert(SampleTO sampleTO);
+    
 }
