@@ -325,11 +325,9 @@ sub cleanFile {
 
     my $tail = substr $file_content, -300;
 
-    my $file_content_size = length $file_content;
-    
     $file_content =~ s/$replacestring//sg;
     
-    $file_content_size = length $file_content;
+    $file_content =~ s/[^[:ascii:]]//g;
    
     write_file($filename, $file_content);
 
