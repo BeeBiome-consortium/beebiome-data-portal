@@ -86,12 +86,18 @@ my $batchSize = 500;
 my $taxonomy_level = $ARGV[0];
 my $taxonomy_level_formatted = $taxonomy_level =~ s/\s/_/rg;
 
-my $taxonomy_filename = "data/" . $taxonomy_level_formatted . "_taxonomy.xml";
-my $sra_filename = "data/" . $taxonomy_level_formatted . "_sra.xml";
-my $nucleotide_filename = "data/" . $taxonomy_level_formatted . "_nucleotide.xml";
-my $bioproject_filename = "data/" . $taxonomy_level_formatted . "_bioproject.xml";
-my $biosample_filename = "data/" . $taxonomy_level_formatted . "_biosample.xml";
+my $folder = "data/" . $taxonomy_level_formatted . "/";
+if (!-d $dir) {
+    printWithTimestamp("Creation of directory " . $folder);
+    mkdir $folder;
+}
+my $taxonomy_filename = $folder . $taxonomy_level_formatted . "_taxonomy";
+my $sra_filename = $folder . $taxonomy_level_formatted . "_sra";
+my $nucleotide_filename = $folder . $taxonomy_level_formatted . "_nucleotide";
+my $bioproject_filename = $folder . $taxonomy_level_formatted . "_bioproject";
+my $biosample_filename = $folder . $taxonomy_level_formatted . "_biosample";
 
+printWithTimestamp("Retrieve taxonomy subtree of $taxonomy_level...");
 $params_taxonomy{db} = "taxonomy";
 $params_taxonomy{term} = $taxonomy_level . "[subtree]";
 if ($doSearch) {
@@ -99,24 +105,23 @@ if ($doSearch) {
 }
 
 $params_taxonomy{retmode} = "xml";
-$params_taxonomy{outfile} = $taxonomy_filename . ".tmp";
+$params_taxonomy{outfile} = $taxonomy_filename . ".xml.tmp";
 $params_taxonomy{http} - "post";
-
-printWithTimestamp("Retrieve taxonomy subtree of $taxonomy_level...");
 if ($doSearch) {
     efetch_batch(%params_taxonomy);
 }
 
 printWithTimestamp("Clean file '$taxonomy_filename.tmp'...");
-cleanFile($taxonomy_filename . ".tmp");
+cleanFile($taxonomy_filename . ".xml.tmp");
 
 printWithTimestamp("Read '$taxonomy_filename.tmp'...");
 my $parser = XML::Simple->new( KeepRoot => 1 );
-my $doc = $parser->XMLin($taxonomy_filename);
+my $doc = $parser->XMLin($taxonomy_filename . ".xml");
 
 my %all_names = ();
 
-printWithTimestamp("Parse '$taxonomy_filename.tmp'...");
+printWithTimestamp("Parse '$taxonomy_filename.xml.tmp' to retrieve names...");
+
 foreach my $taxon ( @{ $doc->{TaxaSet}->{Taxon} } ) {
     my $scientific_name = $taxon->{ScientificName};
     $all_names{$scientific_name}++;
@@ -158,15 +163,15 @@ $name_count = scalar keys %all_names;
 printWithTimestamp("Count of found names: " . $name_count);
 #printHash(%all_names);
 
-printWithTimestamp("Build the query...");
+printWithTimestamp("Build BioSample queries...");
 my @biosample_queries = buildQueries(%all_names); 
 
-printWithTimestamp("Run the query on Biosample...");
 my $queryCount = 0;
 foreach my $query (@biosample_queries) {
     
     $queryCount++;
 
+    printWithTimestamp("Retrieve Biosample IDs...");
     my %biosample_params = ();
     $biosample_params{db} = "biosample";
     $biosample_params{term} = $query;
@@ -174,8 +179,6 @@ foreach my $query (@biosample_queries) {
     if ($doSearch) {
         %biosample_search_result = esearch(%biosample_params);
     }
-    printWithTimestamp("Biosample search result:");
-    printHash(%biosample_search_result);
     
     ## Retrieve SRA file
     printWithTimestamp("Retrieve SRA data...");
@@ -186,11 +189,12 @@ foreach my $query (@biosample_queries) {
    
     $sra_search_result{retmode} = "xml";
     $sra_search_result{rettype} = "full";
-    $sra_search_result{outfile} = $sra_filename . $queryCount . ".tmp";
+    $sra_search_result{outfile} = getTmpFileName($sra_filename, $queryCount);
     if ($doSearch) {
         efetch_batch(%sra_search_result);
     }
-   
+    cleanFile(getTmpFileName($sra_filename, $queryCount));
+
     ## Retrieve Nucleotide file
     printWithTimestamp("Retrieve Nucleotide data...");
     $biosample_search_result{linkname} = "biosample_nuccore";
@@ -200,7 +204,7 @@ foreach my $query (@biosample_queries) {
    
     $nucleotide_search_result{retmode} = "xml";
     $nucleotide_search_result{rettype} = "full";
-    $nucleotide_search_result{outfile} = $nucleotide_filename . $queryCount . ".tmp";
+    $nucleotide_search_result{outfile} = getTmpFileName($nucleotide_filename, $queryCount);
     if ($doSearch) {
         efetch_batch(%nucleotide_search_result);
     }
@@ -212,57 +216,31 @@ foreach my $query (@biosample_queries) {
         %bioproject_search_result = elink_batch_to('bioproject', %biosample_search_result);
     }
    
-    $bioproject_search_result{outfile} = $bioproject_filename . $queryCount . ".tmp";
+    $bioproject_search_result{outfile} = getTmpFileName($bioproject_filename, $queryCount);
     if ($doSearch) {
         efetch_batch(%bioproject_search_result);
     }
+    cleanFile(getTmpFileName($bioproject_filename, $queryCount));
 
     ## Retrieve Biosample file
     printWithTimestamp("Retrieve Biosample data...");
     delete $biosample_search_result{linkname};
     $biosample_search_result{retmode} = "xml";
     $biosample_search_result{rettype} = "full";
-    $biosample_search_result{outfile} = $biosample_filename . $queryCount . ".tmp";
+    $biosample_search_result{outfile} = getTmpFileName($biosample_filename, $queryCount);
     if ($doSearch) {
         efetch_batch(%biosample_search_result);
     }
+    cleanFile(getTmpFileName($biosample_filename, $queryCount));
 }
-
-printWithTimestamp("Merge files...");
-open (my $finalBioprojectFile, ">", $bioproject_filename . ".tmp" ) or die $!;
-open (my $finalBiosampleFile, ">", $biosample_filename . ".tmp" ) or die $!;
-open (my $finalSraFile, ">", $sra_filename . ".tmp" ) or die $!;
-for (my $i = 1; $i <= $queryCount; $i++) {
-    printWithTimestamp("Read " . $bioproject_filename . $i . ".tmp");
-    open TMP, '<', $bioproject_filename . $i . ".tmp" or die $!;
-    print $finalBioprojectFile <TMP>;
-    print $finalBioprojectFile "\n";
-    close (TMP);
-    
-    printWithTimestamp("Read " . $biosample_filename . $i . ".tmp");
-    open TMP, '<', $biosample_filename . $i . ".tmp" or die $!;
-    print $finalBiosampleFile <TMP>;
-    print $finalBiosampleFile "\n";
-    close (TMP);
-
-    printWithTimestamp("Read " . $sra_filename . $i . ".tmp");
-    open TMP, '<', $sra_filename . $i . ".tmp" or die $!;
-    print $finalSraFile <TMP>;
-    print $finalSraFile "\n";
-    close (TMP);
-
-}
-close ($finalFile);
-
-## Clean files removing incorrect tags due to batch import
-printWithTimestamp("Clean files...");
-cleanFile($bioproject_filename . ".tmp");
-cleanFile($biosample_filename . ".tmp");
-cleanFile($sra_filename . ".tmp");
-
 
 #************************************************************
 #** SCRIPT BeeBiome *****************************************
+
+sub getTmpFileName {
+    my ($filename, $queryCount) = @_;
+    return $filename . "." . $queryCount . ".xml.tmp";
+}
 
 sub printHash {
     my %hashToDisplay = @_;
@@ -307,7 +285,6 @@ sub buildQueries {
 sub cleanFile {
     my ($tmp_filename) = @_;
     my $filename = $tmp_filename =~ s/\.tmp$//r;
-    print "Clean file $tmp_filename and write in $filename\n";
 
     my $replacestring;
     
