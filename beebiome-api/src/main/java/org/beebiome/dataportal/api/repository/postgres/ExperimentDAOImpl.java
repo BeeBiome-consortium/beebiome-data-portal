@@ -5,14 +5,22 @@ import org.beebiome.dataportal.api.repository.dt.ExperimentTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Repository
 public class ExperimentDAOImpl implements ExperimentDAO {
 
     NamedParameterJdbcTemplate template;
+
+    private final String INSERTION_SQL = "insert into experiment(sraAcc, title, platform, " +
+            "libraryStrategy, libraryLayout, librarySource)" +
+            " values(:sraAcc, :title, :biosampleAcc, :platform," +
+            " :libraryStrategy, :libraryLayout, :librarySource)";
 
     public ExperimentDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
@@ -20,10 +28,6 @@ public class ExperimentDAOImpl implements ExperimentDAO {
 
     @Override
     public void insert(ExperimentTO to) {
-        final String sql = "insert into experiment(sraAcc, title, platform, " +
-                "libraryStrategy, libraryLayout, librarySource)" +
-                " values(:sraAcc, :title, :biosampleAcc, :platform," +
-                " :libraryStrategy, :libraryLayout, :librarySource)";
 
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -35,6 +39,15 @@ public class ExperimentDAOImpl implements ExperimentDAO {
                 .addValue("libraryLayout", to.getLibraryLayout())
                 .addValue("librarySource", to.getLibrarySource());
 
-        template.update(sql, param, holder);
+        template.update(INSERTION_SQL, param, holder);
     }
+
+    @Override
+    public void insertAll(Collection<ExperimentTO> tos) {
+
+        SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(tos.toArray());
+
+        template.batchUpdate(INSERTION_SQL, batch);
+    }
+
 }

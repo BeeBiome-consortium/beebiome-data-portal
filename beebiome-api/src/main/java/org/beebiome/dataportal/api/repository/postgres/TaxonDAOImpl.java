@@ -5,15 +5,20 @@ import org.beebiome.dataportal.api.repository.dt.TaxonTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Component
 public class TaxonDAOImpl implements TaxonDAO {
 
     NamedParameterJdbcTemplate template;
+
+    final String INSERTION_SQL = "insert into taxon(id, name)" +
+            " values(:id, :name)";
 
     public TaxonDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
@@ -21,8 +26,6 @@ public class TaxonDAOImpl implements TaxonDAO {
 
     @Override
     public void insert(TaxonTO to) {
-        final String sql = "insert into taxon(id, name)" +
-                " values(:id, :name)";
 
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -30,6 +33,14 @@ public class TaxonDAOImpl implements TaxonDAO {
                 .addValue("id", to.getId())
                 .addValue("name", to.getName());
 
-        template.update(sql, param, holder);
+        template.update(INSERTION_SQL, param, holder);
+    }
+
+    @Override
+    public void insertAll(Collection<TaxonTO> tos) {
+
+        SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(tos.toArray());
+
+        template.batchUpdate(INSERTION_SQL, batch);
     }
 }

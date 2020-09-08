@@ -5,14 +5,18 @@ import org.beebiome.dataportal.api.repository.dt.GeoLocationTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Repository
 public class GeoLocationDAOImpl implements GeoLocationDAO {
 
     NamedParameterJdbcTemplate template;
+
+    private final String INSERTION_SQL = "insert into location(id, latitude, longitude, name)" +
+            " values(:id, :latitude, :longitude, :name)";
 
     public GeoLocationDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
@@ -20,10 +24,6 @@ public class GeoLocationDAOImpl implements GeoLocationDAO {
 
     @Override
     public void insert(GeoLocationTO to) {
-        final String sql = "insert into location(id, latitude, longitude, name)" +
-                " values(:id, :latitude, :longitude, :name)";
-
-        KeyHolder holder = new GeneratedKeyHolder();
 
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id", to.getId())
@@ -31,6 +31,14 @@ public class GeoLocationDAOImpl implements GeoLocationDAO {
                 .addValue("longitude", to.getLongitude())
                 .addValue("name", to.getName());
 
-        template.update(sql,param,holder);
+        template.update(INSERTION_SQL, param);
+    }
+
+    @Override
+    public void insertAll(Collection<GeoLocationTO> tos) {
+
+        SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(tos.toArray());
+
+        template.batchUpdate(INSERTION_SQL, batch);
     }
 }

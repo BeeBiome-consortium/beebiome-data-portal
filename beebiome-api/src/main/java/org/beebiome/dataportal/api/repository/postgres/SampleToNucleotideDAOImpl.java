@@ -5,14 +5,20 @@ import org.beebiome.dataportal.api.repository.dt.SampleToNucleotideTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Repository
 public class SampleToNucleotideDAOImpl implements SampleToNucleotideDAO {
 
     NamedParameterJdbcTemplate template;
+
+    private final String INSERTION_SQL = "insert into sampleToNucleotide(biosampleAcc, nucleotideLink)" +
+            " values(:biosampleAcc, :nucleotideLink)";
 
     public SampleToNucleotideDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
@@ -20,8 +26,6 @@ public class SampleToNucleotideDAOImpl implements SampleToNucleotideDAO {
 
     @Override
     public void insert(SampleToNucleotideTO to) {
-        final String sql = "insert into sampleToNucleotide(biosampleAcc, nucleotideLink)" +
-                " values(:biosampleAcc, :nucleotideLink)";
 
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -29,6 +33,14 @@ public class SampleToNucleotideDAOImpl implements SampleToNucleotideDAO {
                 .addValue("biosampleAcc", to.getBiosampleAcc())
                 .addValue("nucleotideLink", to.getNucleotideLink());
 
-        template.update(sql, param, holder);
+        template.update(INSERTION_SQL, param, holder);
+    }
+
+    @Override
+    public void insertAll(Collection<SampleToNucleotideTO> tos) {
+
+        SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(tos.toArray());
+
+        template.batchUpdate(INSERTION_SQL, batch);
     }
 }

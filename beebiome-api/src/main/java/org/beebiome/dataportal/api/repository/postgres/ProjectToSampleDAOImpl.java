@@ -5,14 +5,20 @@ import org.beebiome.dataportal.api.repository.dt.ProjectToSampleTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Repository
 public class ProjectToSampleDAOImpl implements ProjectToSampleDAO {
     
     NamedParameterJdbcTemplate template;
+
+    private final String INSERTION_SQL = "insert into projectToSample(bioprojectAcc, biosampleAcc)" +
+            " values(:bioprojectAcc, :biosampleAcc)";
 
     public ProjectToSampleDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
@@ -20,8 +26,6 @@ public class ProjectToSampleDAOImpl implements ProjectToSampleDAO {
 
     @Override
     public void insert(ProjectToSampleTO to) {
-        final String sql = "insert into projectToSample(bioprojectAcc, biosampleAcc)" +
-                " values(:bioprojectAcc, :biosampleAcc)";
 
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -29,7 +33,15 @@ public class ProjectToSampleDAOImpl implements ProjectToSampleDAO {
                 .addValue("bioprojectAcc", to.getBioprojectAcc())
                 .addValue("biosampleAcc", to.getBiosampleAcc());
 
-        template.update(sql, param, holder);
+        template.update(INSERTION_SQL, param, holder);
+    }
+    
+    @Override
+    public void insertAll(Collection<ProjectToSampleTO> tos) {
+
+        SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(tos.toArray());
+
+        template.batchUpdate(INSERTION_SQL, batch);
     }
 
 }

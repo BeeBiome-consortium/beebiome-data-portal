@@ -5,14 +5,22 @@ import org.beebiome.dataportal.api.repository.dt.SampleTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 @Repository
 public class SampleDAOImpl implements SampleDAO {
 
     NamedParameterJdbcTemplate template;
+
+    private final String INSERTION_SQL = "insert into sample(biosampleAcc, biosamplePackageId, locationId, " +
+            "speciesId, hostSpeciesId, collectionDate) " +
+            "values(:biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
+            ":hostSpeciesId, :collectionDate)";
 
     public SampleDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
@@ -20,10 +28,6 @@ public class SampleDAOImpl implements SampleDAO {
 
     @Override
     public void insert(SampleTO to) {
-        final String sql = "insert into sample(biosampleAcc, biosamplePackageId, locationId, " +
-                "speciesId, hostSpeciesId, collectionDate) " +
-                "values(:biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
-                ":hostSpeciesId, :collectionDate)";
 
         KeyHolder holder = new GeneratedKeyHolder();
 
@@ -35,6 +39,14 @@ public class SampleDAOImpl implements SampleDAO {
                 .addValue("hostSpeciesId", to.getHostSpeciesId())
                 .addValue("collectionDate", to.getCollectionDate());
 
-        template.update(sql,param,holder);
+        template.update(INSERTION_SQL, param, holder);
+    }
+    
+    @Override
+    public void insertAll(Collection<SampleTO> tos) {
+
+        SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(tos.toArray());
+
+        template.batchUpdate(INSERTION_SQL, batch);
     }
 }
