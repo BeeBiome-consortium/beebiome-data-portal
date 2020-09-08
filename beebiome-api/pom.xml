@@ -11,7 +11,7 @@
 
 	<parent>
 		<groupId>org.beebiome</groupId>
-		<artifactId>beebiome-apps</artifactId>
+		<artifactId>beebiome-modules</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
