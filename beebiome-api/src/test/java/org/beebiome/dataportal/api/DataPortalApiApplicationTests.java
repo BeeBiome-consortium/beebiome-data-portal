@@ -1,4 +1,4 @@
-package org.beebiome.dataportal.api.api;
+package org.beebiome.dataportal.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
