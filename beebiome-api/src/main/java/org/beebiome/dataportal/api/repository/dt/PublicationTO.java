@@ -3,25 +3,30 @@ package org.beebiome.dataportal.api.repository.dt;
 import java.util.Objects;
 
 public class PublicationTO {
-    
+
+    // FIXME use PublicationSource
+    public enum PublicationSource {
+        PUBMED,
+        DOI
+    }
     private final String accession;
-    private final String publicationSource;
+    private final String source;
 
     public PublicationTO(String accession) {
         this(accession, null);
     }
 
-    public PublicationTO(String accession, String publicationSource) {
+    public PublicationTO(String accession, String source) {
         this.accession = accession;
-        this.publicationSource = publicationSource;
+        this.source = source;
     }
 
     public String getAccession() {
         return accession;
     }
 
-    public String getPublicationSource() {
-        return publicationSource;
+    public String getSource() {
+        return source;
     }
 
     @Override

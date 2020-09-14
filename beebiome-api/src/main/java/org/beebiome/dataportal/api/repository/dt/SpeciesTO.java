@@ -35,7 +35,7 @@ public class SpeciesTO {
         return parentSpeciesId;
     }
 
-    public Boolean isApoidea() {
+    public Boolean getIsApoidea() {
         return isApoidea;
     }
 

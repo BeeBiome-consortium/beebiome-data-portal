@@ -9,7 +9,7 @@ public class SampleTO {
     private final String locationId;
     private final Integer speciesId;
     private final Integer hostSpeciesId;
-    private final String collectionDate; // FIXME use LocalDate
+    private final String collectionDate;
 
     public SampleTO(String biosampleAcc, String biosamplePackageId, String locationId,
                     Integer speciesId, Integer hostSpeciesId, String collectionDate) {
