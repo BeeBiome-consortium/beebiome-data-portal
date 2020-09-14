@@ -1,13 +1,10 @@
 package org.beebiome.dataportal.api.web.controller;
 
-import org.apache.commons.lang3.StringUtils;
 import org.beebiome.dataportal.api.core.model.Entity;
 import org.beebiome.dataportal.api.core.service.EntityService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;

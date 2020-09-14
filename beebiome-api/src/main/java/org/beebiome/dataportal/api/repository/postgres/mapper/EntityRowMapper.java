@@ -19,7 +19,6 @@ public class EntityRowMapper implements RowMapper<Entity> {
     private final static String SEPARATOR = ",";
     
     public Entity mapRow(ResultSet rs, int i) throws SQLException {
-
         Set<LibraryStrategy> libraryStrategies =
                 Arrays.stream(rs.getString("libraryStrategies").split(SEPARATOR))
                         .map(LibraryStrategy::getEnumFromString)
@@ -45,8 +44,8 @@ public class EntityRowMapper implements RowMapper<Entity> {
                 new Species(rs.getInt("hostId"), rs.getString("hostScientificName")),
                 Arrays.stream(rs.getString("platforms").split(SEPARATOR)).collect(Collectors.toSet()),
                 rs.getString("geoLocName"),
-                rs.getString("collectionDate"), // FIXME rs.getDate("collectionDate"),
-                Arrays.stream(rs.getString("nucleotideLinks").split(SEPARATOR)).collect(Collectors.toSet()));
+                rs.getString("collectionDate"),
+                null); // FIXME Arrays.stream(rs.getString("nucleotideLinks").split(SEPARATOR)).collect(Collectors.toSet()));
     }
 
 }
