@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlValue;
     "value"
 })
 @XmlSeeAlso({
-    org.beebiome.dataportal.pipeline.ncbi.bioproject.TypeSubmission.Context.class
+    TypeSubmission.Context.class
 })
 public class TypeIdTag {
 

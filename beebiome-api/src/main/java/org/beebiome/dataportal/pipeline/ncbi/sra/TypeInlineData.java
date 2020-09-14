@@ -1,5 +1,7 @@
 
-package org.beebiome.dataportal.pipeline.ncbi.bioproject;
+package org.beebiome.dataportal.pipeline.ncbi.sra;
+
+import org.w3c.dom.Element;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,7 +10,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import org.w3c.dom.Element;
 
 
 /**
@@ -64,7 +65,7 @@ import org.w3c.dom.Element;
     "dataContent"
 })
 @XmlSeeAlso({
-    org.beebiome.dataportal.pipeline.ncbi.bioproject.TypeSubmission.Action.AddData.Data.class
+    TypeSubmission.Action.AddData.Data.class
 })
 public class TypeInlineData {
 

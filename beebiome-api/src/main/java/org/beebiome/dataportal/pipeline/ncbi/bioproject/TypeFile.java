@@ -1,8 +1,6 @@
 
 package org.beebiome.dataportal.pipeline.ncbi.bioproject;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -11,6 +9,8 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -85,8 +85,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "dataType"
 })
 @XmlSeeAlso({
-    org.beebiome.dataportal.pipeline.ncbi.bioproject.TypeSubmission.Action.ProcessFile.class,
-    org.beebiome.dataportal.pipeline.ncbi.bioproject.TypeSubmission.Action.AddFiles.File.class
+    TypeSubmission.Action.ProcessFile.class,
+    TypeSubmission.Action.AddFiles.File.class
 })
 public class TypeFile {
 
