@@ -5,15 +5,16 @@ const $ = require('jquery');
 $.DataTable = require('datatables.net');
 
 const columns = [
-    { title : 'SRA study', data: 'id'},
-    { title : 'SRA sample', data: 'study'},
-    { title : 'Assay type', data: 'assayType'},
-    { title : 'Center name', data: 'centerName'},
-    { title : 'Instrument', data: 'instrument'},
-    { title : 'Library layout', data: 'libraryLayout'},
-    { title : 'Library source', data: 'librarySource'},
-    { title : 'Organism', data: 'organism'},
-    { title : 'Platform', data: 'platform'},
+    { title : 'BioProject acc', data: 'bioprojectAcc'},
+    { title : 'SRA acc', data: 'biosampleAcc'},
+    { title : 'Assay types', data: 'libraryStrategies'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
+    { title : 'Center name', data: 'submittingOrganizationName'},
+    { title : 'Instruments', data: 'platforms'},
+    { title : 'Library layouts', data: 'libraryLayouts'}, // paired single
+    { title : 'Library sources', data: 'librarySources'}, // genomic, metagenomic... 
+    { title : 'Organism', data: 'organism.scientificName'},
+    { title : 'Host', data: 'host.scientificName'},
+    { title : 'Platform', data: 'platforms'},
     { title : 'Geo. loc. name', data: 'geoLocName'},
     { title : 'Collection date', data: 'collectionDate'}
 ];
@@ -31,7 +32,7 @@ function updateTable(samples) {
     table.rows().every(function () {
         const oldSampleData = this.data();
         const newSampleData = samples.find((sampleData) => {
-            return sampleData.study === oldSampleData.study;
+            return sampleData.bioprojectAcc === oldSampleData.bioprojectAcc;
         });
         // if (oldSampleData.nickname !== newSampleData.nickname) {
             dataChanged = true;
