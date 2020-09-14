@@ -29,8 +29,8 @@ CREATE TABLE location
 (
     -- geography geography(POINT) NOT NULL PRIMARY KEY,
     id varchar(50) PRIMARY KEY, -- id=lat_long - it's temporary, while waiting to use PostGIS 
-    latitude varchar(125) NOT NULL, -- it's temporary, while waiting to use PostGIS
-    longitude varchar(125) NOT NULL, -- it's temporary, while waiting to use PostGIS
+    latitude varchar(125), -- it's temporary, while waiting to use PostGIS
+    longitude varchar(125), -- it's temporary, while waiting to use PostGIS
     name text
 );
 
@@ -45,7 +45,7 @@ CREATE TYPE publicationSource AS ENUM ('PUBMED', 'DOI');
 CREATE TABLE publication
 (
     accession text PRIMARY KEY,
-    source publicationSource NOT NULL
+    source text NOT NULL
 );
 
 CREATE TABLE project
@@ -53,8 +53,8 @@ CREATE TABLE project
     bioprojectAcc varchar(20) PRIMARY KEY,
     title text NOT NULL,
     description text,
-    submissionDate date NOT NULL,
-    updateDate date NOT NULL,
+    submissionDate date,
+    updateDate date,
     submittingOrganizationName text NOT NULL,
     grantId text,
     grantTitle text,
@@ -83,7 +83,7 @@ CREATE TABLE sample
     locationId varchar(50), -- id=lat_long - see location table
     speciesId integer NOT NULL,
     hostSpeciesId integer NOT NULL,
-    collectionDate date,
+    collectionDate varchar(10),
     -- hostBreed text,
     -- hostSex text, -- described using any child term of PATO_0000047
     -- hostAge text,
@@ -114,9 +114,9 @@ CREATE TABLE experiment
     sraAcc varchar(20) PRIMARY KEY,
     title text,
     platform text,
-    libraryStrategy libraryStrategyType,
-    libraryLayout libraryLayoutType,
-    librarySource librarySourceType
+    libraryStrategy text, -- fixme use libraryStrategyType,
+    libraryLayout text, -- fixme use libraryLayoutType,
+    librarySource text -- fixme use librarySourceType
     -- extractionProtocol text,
     -- libraryPreparationProtocol text,
     -- enrichment enum('TDB'), -- DNS, polyA, etc.
