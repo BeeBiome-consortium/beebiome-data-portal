@@ -17,8 +17,9 @@ public class TaxonDAOImpl implements TaxonDAO {
 
     NamedParameterJdbcTemplate template;
 
-    final String INSERTION_SQL = "insert into taxon(id, name)" +
-            " values(:id, :name)";
+    private final static String INSERTION_SQL = "INSERT INTO taxon(id, name) " +
+            "VALUES (:id, :name) " +
+            "ON CONFLICT DO NOTHING";
 
     public TaxonDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

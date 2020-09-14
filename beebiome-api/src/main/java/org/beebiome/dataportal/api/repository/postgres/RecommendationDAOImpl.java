@@ -17,8 +17,9 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 
     NamedParameterJdbcTemplate template;
     
-    private final String INSERTION_SQL = "insert into recommendation(id, name)" +
-            " values(:id, :name)";
+    private final String INSERTION_SQL = "INSERT INTO recommendation(id, name) " +
+            "VALUES (:id, :name) " +
+            "ON CONFLICT DO NOTHING";
 
     public RecommendationDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

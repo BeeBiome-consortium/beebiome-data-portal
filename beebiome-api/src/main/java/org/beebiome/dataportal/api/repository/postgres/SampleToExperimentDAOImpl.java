@@ -17,8 +17,9 @@ public class SampleToExperimentDAOImpl implements SampleToExperimentDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into sampleToExperiment(biosampleAcc, sraAcc)" +
-            " values(:biosampleAcc, :sraAcc)";
+    private final String INSERTION_SQL = "INSERT INTO sampleToExperiment(biosampleAcc, sraAcc) " +
+            "VALUES (:biosampleAcc, :sraAcc) " +
+            "ON CONFLICT DO NOTHING";
 
     public SampleToExperimentDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

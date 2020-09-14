@@ -17,10 +17,10 @@ public class ExperimentDAOImpl implements ExperimentDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into experiment(sraAcc, title, platform, " +
-            "libraryStrategy, libraryLayout, librarySource)" +
-            " values(:sraAcc, :title, :biosampleAcc, :platform," +
-            " :libraryStrategy, :libraryLayout, :librarySource)";
+    private final String INSERTION_SQL = "INSERT INTO experiment(sraAcc, title, platform, " +
+            "libraryStrategy, libraryLayout, librarySource) " +
+            "VALUES (:sraAcc, :title, :platform, :libraryStrategy, :libraryLayout, :librarySource) " +
+            "ON CONFLICT DO NOTHING";
 
     public ExperimentDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

@@ -17,8 +17,9 @@ public class SpeciesToNameDAOImpl implements SpeciesToNameDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into speciesToName(speciesId, name)" +
-            " values(:speciesId, :name)";
+    private final String INSERTION_SQL = "INSERT INTO speciesToName(speciesId, name) " +
+            "VALUES (:speciesId, :name) " +
+            "ON CONFLICT DO NOTHING";
 
     public SpeciesToNameDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

@@ -17,12 +17,13 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into project(bioprojectAcc, title, description, " +
+    private final String INSERTION_SQL = "INSERT INTO project(bioprojectAcc, title, description, " +
             "submissionDate, updateDate, submittingOrganizationName, " +
             "grantId, grantTitle, grantAgency) " +
-            "values(:bioprojectAcc, :title, :description, " +
+            "VALUES (:bioprojectAcc, :title, :description, " +
             ":submissionDate, :updateDate, :submittingOrganizationName, " +
-            ":grantId, :grantTitle, :grantAgency)";
+            ":grantId, :grantTitle, :grantAgency) " +
+            "ON CONFLICT DO NOTHING";
 
     public ProjectDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

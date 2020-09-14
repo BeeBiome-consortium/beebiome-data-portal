@@ -17,8 +17,9 @@ public class ProjectToPublicationDAOImpl implements ProjectToPublicationDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into projectToPublication(bioprojectAcc, publicationAcc)" +
-            " values(:bioprojectAcc, :publicationAcc)";
+    private final String INSERTION_SQL = "INSERT INTO projectToPublication(bioprojectAcc, publicationAcc) " +
+            "VALUES (:bioprojectAcc, :publicationAcc) " +
+            "ON CONFLICT DO NOTHING";
 
 
     public ProjectToPublicationDAOImpl(NamedParameterJdbcTemplate template) {

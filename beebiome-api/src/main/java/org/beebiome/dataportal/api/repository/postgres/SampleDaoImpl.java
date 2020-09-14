@@ -17,10 +17,11 @@ public class SampleDAOImpl implements SampleDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into sample(biosampleAcc, biosamplePackageId, locationId, " +
+    private final String INSERTION_SQL = "INSERT INTO sample(biosampleAcc, biosamplePackageId, locationId, " +
             "speciesId, hostSpeciesId, collectionDate) " +
-            "values(:biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
-            ":hostSpeciesId, :collectionDate)";
+            "VALUES (:biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
+            ":hostSpeciesId, :collectionDate) " +
+            "ON CONFLICT DO NOTHING";
 
     public SampleDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

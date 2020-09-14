@@ -17,8 +17,10 @@ public class PublicationDAOImpl implements PublicationDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into publication(accession, source)" +
-            " values(:accession, :source)";
+    private final String INSERTION_SQL = "INSERT INTO publication(accession, source) " +
+            "VALUES (:accession, :source) " +
+            "ON CONFLICT DO NOTHING";
+    
     public PublicationDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
     }
@@ -30,7 +32,7 @@ public class PublicationDAOImpl implements PublicationDAO {
 
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("accession", to.getAccession())
-                .addValue("source", to.getPublicationSource());
+                .addValue("source", to.getSource());
 
         template.update(INSERTION_SQL, param, holder);
     }

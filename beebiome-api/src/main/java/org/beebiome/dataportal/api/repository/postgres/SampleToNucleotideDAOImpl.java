@@ -17,8 +17,9 @@ public class SampleToNucleotideDAOImpl implements SampleToNucleotideDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into sampleToNucleotide(biosampleAcc, nucleotideLink)" +
-            " values(:biosampleAcc, :nucleotideLink)";
+    private final String INSERTION_SQL = "INSERT INTO sampleToNucleotide(biosampleAcc, nucleotideLink) " +
+            "VALUES(:biosampleAcc, :nucleotideLink) " +
+            "ON CONFLICT DO NOTHING";
 
     public SampleToNucleotideDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

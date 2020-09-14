@@ -17,8 +17,9 @@ public class ProjectToSampleDAOImpl implements ProjectToSampleDAO {
     
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into projectToSample(bioprojectAcc, biosampleAcc)" +
-            " values(:bioprojectAcc, :biosampleAcc)";
+    private final String INSERTION_SQL = "INSERT INTO projectToSample(bioprojectAcc, biosampleAcc) " +
+            "VALUES (:bioprojectAcc, :biosampleAcc) " +
+            "ON CONFLICT DO NOTHING";
 
     public ProjectToSampleDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

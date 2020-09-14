@@ -21,8 +21,9 @@ public class BiosamplePackageDAOImpl implements BiosamplePackageDAO {
         this.template = template;
     }
 
-    private final String INSERTION_SQL = "insert into biosamplePackage(id, name)" +
-            " values(:id, :name)";
+    private final String INSERTION_SQL = "INSERT INTO biosamplePackage(id, name) " +
+            "VALUES (:id, :name) " +
+            "ON CONFLICT DO NOTHING";
     
     @Override
     public void insert(BiosamplePackageTO to) {

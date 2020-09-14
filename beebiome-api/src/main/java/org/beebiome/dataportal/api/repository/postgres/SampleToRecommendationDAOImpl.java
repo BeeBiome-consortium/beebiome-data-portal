@@ -17,8 +17,9 @@ public class SampleToRecommendationDAOImpl implements SampleToRecommendationDAO 
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "insert into sampleToRecommendation(biosampleAcc, recommendationId)" +
-            " values(:biosampleAcc, :recommendationId)";
+    private final String INSERTION_SQL = "INSERT INTO sampleToRecommendation(biosampleAcc, recommendationId) " +
+            "VALUES (:biosampleAcc, :recommendationId) " +
+            "ON CONFLICT DO NOTHING";
 
     public SampleToRecommendationDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
