@@ -6,7 +6,7 @@ $.DataTable = require('datatables.net');
 
 const columns = [
     { title : 'BioProject acc', data: 'bioprojectAcc'},
-    { title : 'SRA acc', data: 'biosampleAcc'},
+    { title : 'BioSample acc', data: 'biosampleAcc'},
     { title : 'Assay types', data: 'libraryStrategies'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
     { title : 'Center name', data: 'submittingOrganizationName'},
     { title : 'Instruments', data: 'platforms'},
@@ -50,13 +50,14 @@ class Table extends Component {
     
     componentDidMount() {
         $(this.refs.main).DataTable({
+            order: [[ 0, 'asc'], [ 1, 'asc']],
             dom: "<'row'<'col-sm-3'i><'col-sm-3'l><'col-sm-6'f>>" +
                 "<'row'<'data-table-wrapper col-sm-12'tr>>" +
                 "<'row'<'col-sm-4'B><'col-sm-8'p>>",
             scrollX: true,
             data: this.props.data,
             columns,
-            ordering: false
+            ordering: true
         });
     }
 
@@ -74,7 +75,7 @@ class Table extends Component {
     }
 
     render() {
-        return (<table className={'stripe'} ref="main" />)
+        return (<table className={'table table-striped table-hover'} ref="main" />)
     }
 }
 
