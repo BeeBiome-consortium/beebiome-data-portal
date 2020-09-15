@@ -492,8 +492,6 @@ public class NCBIImporter {
         RecordSet set = new RecordSet();
         set.setDocumentSummaries(new ArrayList<>(docSums));
 
-        log.debug(set.toString() + ": " + set.getDocumentSummaries().size());
-
         return log.traceExit(set);
     }
 
@@ -504,8 +502,6 @@ public class NCBIImporter {
                 BioSampleSetType::getBioSample);
         BioSampleSetType set = new BioSampleSetType();
         set.setBioSample(new ArrayList<>(biosamples));
-
-        log.debug(set.toString() + ": " + set.getBioSample().size());
 
         return log.traceExit(set);
     }
@@ -518,8 +514,6 @@ public class NCBIImporter {
         ExperimentPackageSet set = new ExperimentPackageSet();
         set.setExperimentPackages(new ArrayList<>(experimentPackageTypes));
 
-        log.debug(set.toString() + ": " + set.getExperimentPackages().size());
-
         return log.traceExit(set);
     }
 
@@ -530,8 +524,6 @@ public class NCBIImporter {
                 TaxaSetType.class, TaxaSetType::getTaxon);
         TaxaSetType set = new TaxaSetType();
         set.setTaxon(new ArrayList<>(taxonTypes));
-
-        log.debug(set.toString() + ": " + set.getTaxon().size());
 
         return log.traceExit(set);
     }
