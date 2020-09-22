@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './table.css';
-import { useLocation } from "react-router-dom";
 
 const $ = require('jquery');
 require( 'datatables.net-buttons-bs4' );
@@ -86,6 +85,9 @@ class Table extends Component {
                 }
             ]
         });
+        if (this.props.searchQuery) {
+            table.search(this.props.searchQuery).draw();
+        }
     }
 
     componentWillUnmount(){
