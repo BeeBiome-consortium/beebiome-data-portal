@@ -18,7 +18,7 @@ import Citation from "./components/about/citation";
 import PrivacyNotice from "./components/about/privacy-notice";
 
 const routing = (
-    <Router>
+    <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
         <Header />
         <Switch>
             <Route exact path="/" component={HomePage} />
