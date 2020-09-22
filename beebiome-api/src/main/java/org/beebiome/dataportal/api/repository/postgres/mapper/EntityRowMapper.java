@@ -16,19 +16,19 @@ import java.util.stream.Collectors;
 
 public class EntityRowMapper implements RowMapper<Entity> {
 
-    private final static String SEPARATOR = ",";
+    private final static String DELIMITER = ";";
     
     public Entity mapRow(ResultSet rs, int i) throws SQLException {
         Set<LibraryStrategy> libraryStrategies =
-                Arrays.stream(rs.getString("libraryStrategies").split(SEPARATOR))
+                Arrays.stream(rs.getString("libraryStrategies").split(DELIMITER))
                         .map(LibraryStrategy::getEnumFromString)
                         .collect(Collectors.toSet());
         Set<LibraryLayout> libraryLayouts =
-                Arrays.stream(rs.getString("libraryLayouts").split(SEPARATOR))
+                Arrays.stream(rs.getString("libraryLayouts").split(DELIMITER))
                         .map(LibraryLayout::valueOf)
                         .collect(Collectors.toSet());
         Set<LibrarySource> librarySources =
-                Arrays.stream(rs.getString("librarySources").split(SEPARATOR))
+                Arrays.stream(rs.getString("librarySources").split(DELIMITER))
                         .map(LibrarySource::getEnumFromString)
                         .collect(Collectors.toSet());
 
@@ -42,7 +42,7 @@ public class EntityRowMapper implements RowMapper<Entity> {
                 librarySources,
                 new Species(rs.getInt("speciesId"), rs.getString("speciesScientificName")),
                 new Species(rs.getInt("hostId"), rs.getString("hostScientificName")),
-                Arrays.stream(rs.getString("platforms").split(SEPARATOR)).collect(Collectors.toSet()),
+                Arrays.stream(rs.getString("platforms").split(DELIMITER)).collect(Collectors.toSet()),
                 rs.getString("geoLocName"),
                 rs.getString("collectionDate"),
                 null); // FIXME Arrays.stream(rs.getString("nucleotideLinks").split(SEPARATOR)).collect(Collectors.toSet()));

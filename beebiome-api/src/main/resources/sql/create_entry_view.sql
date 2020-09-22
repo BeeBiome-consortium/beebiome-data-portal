@@ -1,20 +1,22 @@
-CREATE VIEW entity AS 
+CREATE OR REPLACE VIEW entity AS 
 (
 SELECT s.biosampleAcc AS biosampleAcc,
        p.bioprojectAcc AS bioprojectAcc,
        bp.id AS biosamplePackageId,
        bp.name AS biosamplePackageName,
-       string_agg(DISTINCT e.libraryStrategy, ',') AS libraryStrategies,
+       string_agg(DISTINCT e.libraryStrategy, ';') AS libraryStrategies,
        p.submittingOrganizationName AS submittingOrganizationName,
-       string_agg(DISTINCT e.libraryLayout, ',') AS libraryLayouts,
-       string_agg(DISTINCT e.librarySource, ',') AS librarySources,
+       string_agg(DISTINCT e.libraryLayout, ';') AS libraryLayouts,
+       string_agg(DISTINCT e.librarySource, ';') AS librarySources,
        sp.id AS speciesId,
        sp.scientificName AS speciesScientificName,
        h.id AS hostId,
        h.scientificName AS hostScientificName,
-       string_agg(DISTINCT e.platform, ',') AS platforms,
+       string_agg(DISTINCT e.platform, ';') AS platforms,
        l.name AS geoLocName,
-       s.collectionDate AS collectionDate
+       s.collectionDate AS collectionDate,
+       string_agg(DISTINCT e.sraAcc, ';') AS experimentAccs
+
 --        ,
 --        string_agg(DISTINCT stn.nucleotideLink, ',') AS nucleotideLinks
 
