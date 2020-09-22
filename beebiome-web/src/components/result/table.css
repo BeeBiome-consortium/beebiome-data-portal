@@ -1,0 +1,39 @@
+table.table {
+    margin-bottom: 0;
+}
+
+.dataTables_wrapper label {
+    display: inline-flex;
+}
+
+.dataTables_wrapper label select,
+.dataTables_wrapper label input {
+    margin: 0 0.3em;
+}
+
+.btn-download, .browse-search {
+    text-align: right;
+}
+
+.btn-download button {
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    padding: .25rem .5rem;
+    margin-top: 1em;
+    font-size: 1.1em;
+}
+
+.browse-search input {
+    margin-right: 0 !important;
+}
+
+.pagination {
+    margin-top: 1em;
+}
+
+.page-item.disabled .page-link,
+.page-item .page-link{
+    border: 1px solid #545b62;
+}
+

@@ -1,17 +1,29 @@
 import React, {Component} from 'react';
-import 'datatables.net-dt/css/jquery.dataTables.min.css';
+import './table.css';
+import { useLocation } from "react-router-dom";
 
 const $ = require('jquery');
-$.DataTable = require('datatables.net');
+require( 'datatables.net-buttons-bs4' );
+require( 'datatables.net-buttons/js/buttons.html5.js' );
 
 const columns = [
-    { title : 'BioProject acc', data: 'bioprojectAcc'},
-    { title : 'BioSample acc', data: 'biosampleAcc'},
-    { title : 'Assay types', data: 'libraryStrategies'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
+    { title : 'BioProject acc', data: 'bioprojectAcc',
+        render: function ( data, type, row ) {
+            return '<a href="https://www.ncbi.nlm.nih.gov/bioproject/' + data + '" target="_blank">'
+                + data + '</a>';
+        }
+    },
+    { title : 'BioSample acc', data: 'biosampleAcc',
+        render: function ( data, type, full, row ) {
+            return '<a href="https://www.ncbi.nlm.nih.gov/biosample/' + data + '" target="_blank">'
+                + data + '</a>';
+        }
+    },
+    { title : 'Assay types', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
     { title : 'Center name', data: 'submittingOrganizationName'},
     { title : 'Instruments', data: 'platforms'},
-    { title : 'Library layouts', data: 'libraryLayouts'}, // paired single
-    { title : 'Library sources', data: 'librarySources'}, // genomic, metagenomic... 
+    { title : 'Library layouts', data: 'libraryLayouts[, ]'}, // paired single
+    { title : 'Library sources', data: 'librarySources[, ]'}, // genomic, metagenomic... 
     { title : 'Organism', data: 'organism.scientificName'},
     { title : 'Host', data: 'host.scientificName'},
     { title : 'Platform', data: 'platforms'},
@@ -49,15 +61,30 @@ function updateTable(samples) {
 class Table extends Component {
     
     componentDidMount() {
-        $(this.refs.main).DataTable({
+        let table = $(this.refs.main).DataTable({
             order: [[ 0, 'asc'], [ 1, 'asc']],
-            dom: "<'row'<'col-sm-3'i><'col-sm-3'l><'col-sm-6'f>>" +
+            dom:"<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4 browse-search'f>>" +
                 "<'row'<'data-table-wrapper col-sm-12'tr>>" +
-                "<'row'<'col-sm-4'B><'col-sm-8'p>>",
+                "<'row'<'col-sm-6'p><'col-sm-6 btn-download'B>>",
+
             scrollX: true,
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
             data: this.props.data,
             columns,
-            ordering: true
+            ordering: true,
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy to clipboard'
+                },
+                {
+                    extend: 'csvHtml5',
+                    fieldSeparator: '\t',
+                    extension: '.tsv',
+                    text: 'TSV',
+                    title: 'BeeBiome data portal export'
+                }
+            ]
         });
     }
 
@@ -75,7 +102,14 @@ class Table extends Component {
     }
 
     render() {
-        return (<table className={'table table-striped table-hover'} ref="main" />)
+        return (
+            <div>
+                <p>Results are ordered by 'BioProject acc', then 'BioSample acc'.
+                    The order could be changed by clicking on one column, then press shift and click on another column.</p>
+                <table className={'table table-sm table-striped table-bordered table-hover '} ref="main" />
+            </div>
+        )
+                
     }
 }
 
