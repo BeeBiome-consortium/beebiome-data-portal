@@ -2,13 +2,16 @@ import React from 'react';
 
 export default function SearchBar() {
     return (
-        <div className="container search-bar mt-3">
-            <div className="form-group text-center">
-                <div className="input-group col-sm-4 m-auto">
-                    <input className="form-control form-control-sm" type="text" placeholder="Search..." />
-                    <button type="submit" className="btn btn-sm btn-light">Search</button>
+        <form className="form-inline search-bar mt-3" action={"/browse"}>
+            <div className="form-row align-items-center">
+                <div className="col-auto">
+                    <input type="text" className="form-control form-control-sm mb-2"
+                           name="basicSearchQuery" />
+                </div>
+                <div className="col-auto">
+                    <button type="submit" className="btn btn-sm btn-light mb-2">Basic search</button>
                 </div>
             </div>
-        </div>
+        </form>
     );
 }

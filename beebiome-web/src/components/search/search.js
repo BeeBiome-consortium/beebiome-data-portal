@@ -41,7 +41,7 @@ class Search extends Component {
         }
         return (
             <div>
-                <h1>Search</h1>
+                <h1>Advanced search</h1>
                 <div className='row'>
                     <div className='col-sm-10 offset-sm-1'>
                         <Input onAddClick={(sampleId) => { this.onAddClick(sampleId); }} />
