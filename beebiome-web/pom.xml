@@ -97,7 +97,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <configuration>
                             <environmentVariables>
-                                <PUBLIC_URL>http://devbioinfo.unil.ch/${router.base.name}</PUBLIC_URL>
+                                <PUBLIC_URL>/${router.base.name}</PUBLIC_URL>
                                 <REACT_APP_ROUTER_BASE>/${router.base.name}</REACT_APP_ROUTER_BASE>
                             </environmentVariables>
                         </configuration>

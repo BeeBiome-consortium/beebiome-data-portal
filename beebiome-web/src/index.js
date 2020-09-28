@@ -22,13 +22,13 @@ const routing = (
         <Header />
         <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/browse" component={Browse} />
-            <Route exact path="/search" component={Search} />
-            <Route exact path="/wiki" component={Wiki} />
-            <Route exact path="/about/data-portal" component={About} />
-            <Route exact path="/about/consortium" component={Consortium} />
-            <Route exact path="/about/citing-beebiome" component={Citation} />
-            <Route exact path="/about/privacy-notice" component={PrivacyNotice} />
+            <Route path="/browse" component={Browse} />
+            <Route path="/search" component={Search} />
+            <Route path="/wiki" component={Wiki} />
+            <Route path="/about/data-portal" component={About} />
+            <Route path="/about/consortium" component={Consortium} />
+            <Route path="/about/citing-beebiome" component={Citation} />
+            <Route path="/about/privacy-notice" component={PrivacyNotice} />
             <Route component={Notfound} />
         </Switch>
         <Footer />
