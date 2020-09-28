@@ -23,14 +23,18 @@ class Input extends Component {
 
     render() {
         return (
-            <div className="app-input">
-                <div className="form-group">
-                    <label htmlFor={'sampleId'} className="form-label">Sample ID</label>
-                    <input id='sampleId' type="text" onChange={(e) => {
-                        this.updateValue('sampleId', e.target.value)
-                    }} />
+            <div className="form-row align-items-center">
+                <div className="col-auto">
+                    <label htmlFor={'sampleId'} className="col-form-label mr-3">Sample ID</label>
+                    <input id='sampleId' className="mr-3" type="text"
+                           onChange={(e) => {
+                               this.updateValue('sampleId', e.target.value)
+                           }} />
                 </div>
-                <button onClick={() => { this.onAddClick() }}>Submit</button>
+                <div className="col-auto">
+                        <button className="btn btn-sm btn-secondary"
+                                onClick={() => { this.onAddClick() }}>Submit</button>
+                </div>
             </div>
         );
     }
