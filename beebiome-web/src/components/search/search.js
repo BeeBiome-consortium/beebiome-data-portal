@@ -13,13 +13,11 @@ class Search extends Component {
 
     onAddClick(sampleId) {
         this.setState({data: []});
-        console.log("Fetching data...");
 
         fetch(process.env.REACT_APP_API_URL + "/sample/" + sampleId)
             .then(results => { return results.json()} )
             .then(data => {
                 this.setState({data: data});
-                console.log("Fetch data: done", this.state.data);
             })
             .catch(function(error) {
                 // FIXME manage cathched error
