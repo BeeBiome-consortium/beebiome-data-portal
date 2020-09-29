@@ -1,53 +1,87 @@
 import React, {Component} from 'react';
-import Input from './form/input';
 import Table from '../result/table';
+import './search.css';
+import Loading from "../result/loading";
 
 class Search extends Component {
     constructor() {
         super();
         this.state = {
-            data: []
+            data: null,
+            isLoaded: false,
+            isFetching: false,
+            errorMessage: null
         };
-        this.onAddClick = this.onAddClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    onAddClick(sampleId) {
-        this.setState({data: []});
+    handleSubmit(e) {
+        e.preventDefault();
+        let self = this;
+        self.setState({data: null, isFetching: true, isLoaded: false, errorMessage: null});
 
-        fetch(process.env.REACT_APP_API_URL + "/sample/" + sampleId)
+        fetch(process.env.REACT_APP_API_URL + "/sample/" + self.state.sampleId)
             .then(results => { return results.json()} )
             .then(data => {
-                this.setState({data: data});
+                this.setState({data: data, isFetching: false, isLoaded: true, errorMessage: null});
             })
             .catch(function(error) {
-                // FIXME manage cathched error
-                console.log('Fetch data: failed', error)
-                // this.setState((state) => {
-                //     return {content: state.content, data: [], hasResult: false, isFetching: false}
-                // });
+                self.setState({isFetching: false, errorMessage: "Failed to get data from API."});
             });
+    }
+
+    handleChange(fieldName, value) {
+        this.setState({
+            [fieldName]: value
+        })
     }
 
     render() {
         let result = "";
-        if (this.state.data.length > 0) {
-            result =
-                <div>
-                    <h2>Results</h2>
-                    <Table data={this.state.data}/>
-                </div>
-        }
+        if (this.state.isLoaded) {
+            result = <Table data={this.state.data}/>
+        } else if (this.state.errorMessage !== null) {
+            result = <p>{this.state.errorMessage}</p>
+        } else if (this.state.isFetching) {
+            result = <Loading/>
+        } 
+        
+        // let result = "";
+        // if (this.state.data !== null && this.state.data.length === 0) {
+        //     result = <p className="no-data-message">No data found</p>
+        // } else if (this.state.data !== null) {
+        //     result = <Table data={this.state.data}/>
+        // }
         return (
             <div>
                 <h1>Advanced search</h1>
                 <div className='row'>
                     <div className='col-sm-10 offset-sm-1'>
-                        <Input onAddClick={(sampleId) => { this.onAddClick(sampleId); }} />
-                        {result}
+                        <div className="row mb-3">
+                            <form onSubmit={this.handleSubmit}>
+                                <div className="form-row align-items-center">
+                                    <div className="col-auto">
+                                        <label htmlFor={'sampleId'} className="col-form-label mr-3">Sample ID</label>
+                                        <input id='sampleId' className="mr-3" type="text"
+                                               onChange={(e) => {
+                                                   this.handleChange('sampleId', e.target.value) }} />
+                                    </div>
+                                    <div className="col-auto">
+                                        <button className="btn btn-sm btn-secondary" 
+                                                type='submit'>Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="row">
+                            <div id="search-result">
+                                {result}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         );
     }
 }
