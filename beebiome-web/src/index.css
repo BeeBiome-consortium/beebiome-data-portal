@@ -41,3 +41,8 @@ body {
   font-size: 1em;
   margin: 1em 0 1em 0;
 }
+
+#beebiome-body .CookieConsent {
+  z-index: 1040 !important;
+  background-color: rgba(0, 0, 0, 0.8);
+}
