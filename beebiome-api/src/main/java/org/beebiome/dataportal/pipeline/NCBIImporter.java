@@ -72,18 +72,27 @@ public class NCBIImporter {
                             "- path to the input directory containing all XML files"));
         }
 
-        Set<FileInfo> fileInfos = new HashSet<>();
-        final File folder = new File(args[0]);
-        for (final File f : folder.listFiles()) {
-            fileInfos.add(new FileInfo(f.getName(), new FileInputStream(f)));
-        }
 
         NCBIImporter importer = new NCBIImporter();
-        importer.importData(fileInfos);
+        importer.importData(args[0]);
 
         log.traceExit();
     }
-
+    public ImportTO importData(String directory) throws IOException, JAXBException {
+        log.traceEntry("Parameters: {}", directory);
+        
+        Set<FileInfo> fileInfos = new HashSet<>();
+        ImportTO importTO = null;
+        final File folder = new File(directory);
+        if (folder.exists()) {
+            for (final File f : folder.listFiles()) {
+                fileInfos.add(new FileInfo(f.getName(), new FileInputStream(f)));
+            }
+            importTO = importData(fileInfos);
+        }
+        return log.traceExit(importTO);
+    }
+    
     public ImportTO importData(Set<FileInfo> fileInfos) throws JAXBException, IOException {
         log.traceEntry("Parameters: {}", fileInfos);
         
@@ -169,8 +178,8 @@ public class NCBIImporter {
         Set<SampleTO> sampleTOs = new HashSet<>();
         Set<GeoLocationTO> geoLocationTOs = new HashSet<>();
         Set<BiosamplePackageTO> biosamplePackageTOs = new HashSet<>();
-        Set<String> rejectedHost = new HashSet<>();
-        Set<String> severalSpeciesHosts = new HashSet<>();
+        Set<String> rejectedHosts = new HashSet<>();
+        Set<String> unknownHosts = new HashSet<>();
         Set<String> rejectedBiosamples = new HashSet<>();
         for (BioSampleType bioSample : bioSampleSet.getBioSample()) {
             Integer hostSpeciesId = null;
@@ -188,12 +197,12 @@ public class NCBIImporter {
                                 .filter(to -> to.getName() != null && to.getName().equalsIgnoreCase(host))
                                 .collect(Collectors.toSet());
                         if (snTOs.size() > 1) {
-                            severalSpeciesHosts.add(host);
+                            unknownHosts.add(host);
 
                         } else if (snTOs.size() == 1) {
                             hostSpeciesId = snTOs.stream().findAny().get().getSpeciesId();
                         } else {
-                            rejectedHost.add(host);
+                            rejectedHosts.add(host);
                         }
                         break;
                     case "geo_loc_name":
@@ -237,12 +246,9 @@ public class NCBIImporter {
                     hostSpeciesId,
                     collectionDate));
         }
-        log.debug(rejectedHost.size() + " rejected hosts");
-        log.trace("Rejected hosts: " + String.join(", ", rejectedHost));
-        log.debug(severalSpeciesHosts.size() + " hosts mapping several species");
-        log.trace("Hosts mapping several species: " + String.join(", ", severalSpeciesHosts));
-        log.debug(rejectedBiosamples.size() + " rejected BioSamples due to absent or unknown host attribute");
-        log.trace("Rejected BioSamples due to absent or unknown host attribute: " + String.join(", ", rejectedBiosamples));
+        logList(rejectedHosts, "rejected hosts");
+        logList(unknownHosts, "hosts mapping several species");
+        logList(rejectedBiosamples, "rejected BioSamples due to absent or unknown host attribute");
 
         Set<String> validSampleAccs = sampleTOs.stream()
                 .map(SampleTO::getBiosampleAcc)
@@ -253,12 +259,12 @@ public class NCBIImporter {
         Set<ExperimentTO> experimentTOs = new HashSet<>();
         Set<String> rejectedExperiments = new HashSet<>();
         for (ExperimentPackageType experiment : experimentPackageSet.getExperimentPackages()) {
-            Set<String> biosampleAccs = experiment.getSampleType().getIDENTIFIERS().getEXTERNALID().stream()
+            Set<String> experimentBiosampleAccs = experiment.getSampleType().getIDENTIFIERS().getEXTERNALID().stream()
                     .filter(id -> "BioSample".equals(id.getNamespace()))
                     .map(id -> id.getValue())
                     .collect(Collectors.toSet());
 
-            if (biosampleAccs.stream().noneMatch(validSampleAccs::contains)) {
+            if (experimentBiosampleAccs.stream().noneMatch(validSampleAccs::contains)) {
                 rejectedExperiments.add(experiment.getExperimentType().getAccession());
                 continue;
             }
@@ -311,16 +317,14 @@ public class NCBIImporter {
                     .filter(id -> "BioProject".equals(id.getNamespace()))
                     .map(id -> id.getValue())
                     .collect(Collectors.toSet());
-            for (String biosampleAcc : biosampleAccs) {
+            for (String biosampleAcc : experimentBiosampleAccs) {
                 for (String bioProjectAcc : bioProjectAccs) {
                     projectToSampleTOs.add(new ProjectToSampleTO(bioProjectAcc, biosampleAcc));
                 }
                 sampleToExperimentTOs.add(new SampleToExperimentTO(biosampleAcc, experimentTO.getSraAcc()));
             }
         }
-        log.debug(rejectedExperiments.size() + " rejected experiments due to the absence of valid BioSampleAcc");
-        log.debug("Rejected experiments due to the absence of valid BioSampleAcc: " + String.join(", ", rejectedExperiments));
-
+        logList(rejectedExperiments, "rejected experiments due to the absence of valid BioSampleAcc");
 
         Set<String> validBioProjectAccs = projectToSampleTOs.stream()
                 .map(ProjectToSampleTO::getBioprojectAcc)
@@ -361,22 +365,8 @@ public class NCBIImporter {
                 projectToPublicationTOs.add(new ProjectToPublicationTO(bioprojectAcc, pub.getId()));
             }
         }
-        log.debug(rejectedProjects.size() + " rejected projects due to the absence in samples");
-        log.trace("Rejected projects due to the absence in samples: " + String.join(", ", rejectedProjects));
-
-        log.debug("speciesToNameTOs: " + speciesToNameTOs.size());
-        log.debug("speciesTOs: " + speciesTOs.size());
-        log.debug("taxonTOs: " + taxonTOs.size());
-        log.debug("sampleTOs: " + sampleTOs.size());
-        log.debug("geoLocationTOs: " + geoLocationTOs.size());
-        log.debug("biosamplePackageTOs: " + biosamplePackageTOs.size());
-        log.debug("projectToSampleTOs " + projectToSampleTOs.size());
-        log.debug("sampleToExperimentTOs: " + sampleToExperimentTOs.size());
-        log.debug("experimentTOs: " + experimentTOs.size());
-        log.debug("projectTOs: " + projectTOs.size());
-        log.debug("publicationTOs: " + publicationTOs.size());
-        log.debug("projectToPublicationTOs: " + projectToPublicationTOs.size());
-
+        logList(rejectedProjects, "rejected projects due to the absence in samples");
+        
         log.info("Done converting data...");
 
         return log.traceExit(new ImportTO(taxonTOs, speciesTOs.values(), speciesToNameTOs, geoLocationTOs,
@@ -385,6 +375,13 @@ public class NCBIImporter {
                 sampleTOs, projectToSampleTOs,
                 //                sampleToRecommendationTOs, sampleToNucleotide, 
                 experimentTOs, sampleToExperimentTOs));
+    }
+
+    private void logList(Set<String> set, String text) {
+        log.debug(set.size() + " " + text);
+        if (set.size() > 0) {
+            log.debug(text + ": " + String.join(", ", set));
+        }
     }
 
     protected String getLocalDate(String inputDate) {

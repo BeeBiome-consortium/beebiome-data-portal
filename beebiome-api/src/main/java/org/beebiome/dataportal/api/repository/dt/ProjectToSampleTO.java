@@ -1,6 +1,7 @@
 package org.beebiome.dataportal.api.repository.dt;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class ProjectToSampleTO {
 
@@ -32,5 +33,13 @@ public class ProjectToSampleTO {
     @Override
     public int hashCode() {
         return Objects.hash(bioprojectAcc, biosampleAcc);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ProjectToSampleTO.class.getSimpleName() + "[", "]")
+                .add("bioprojectAcc='" + bioprojectAcc + "'")
+                .add("biosampleAcc='" + biosampleAcc + "'")
+                .toString();
     }
 }

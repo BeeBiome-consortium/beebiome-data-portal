@@ -4,7 +4,172 @@
         <TaxId>132113</TaxId>
         <ScientificName>Bombus impatiens</ScientificName>
         <OtherNames>
+            <Synonym>Duplicated synonym</Synonym>
             <GenbankCommonName>common eastern bumble bee</GenbankCommonName>
+            <Includes>Bombus sp. SLB-2003</Includes>
+            <Name>
+                <ClassCDE>authority</ClassCDE>
+                <DispName>Bombus impatiens Cresson, 1863</DispName>
+            </Name>
+        </OtherNames>
+        <ParentTaxId>144703</ParentTaxId>
+        <Rank>species</Rank>
+        <Division>Invertebrates</Division>
+        <GeneticCode>
+            <GCId>1</GCId>
+            <GCName>Standard</GCName>
+        </GeneticCode>
+        <MitoGeneticCode>
+            <MGCId>5</MGCId>
+            <MGCName>Invertebrate Mitochondrial</MGCName>
+        </MitoGeneticCode>
+        <Lineage>cellular organisms; Eukaryota; Opisthokonta; Metazoa; Eumetazoa; Bilateria; Protostomia; Ecdysozoa; Panarthropoda; Arthropoda; Mandibulata; Pancrustacea; Hexapoda; Insecta; Dicondylia; Pterygota; Neoptera; Holometabola; Hymenoptera; Apocrita; Aculeata; Apoidea; Apidae; Apinae; Bombini; Bombus; Pyrobombus</Lineage>
+        <LineageEx>
+            <Taxon>
+                <TaxId>131567</TaxId>
+                <ScientificName>cellular organisms</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>2759</TaxId>
+                <ScientificName>Eukaryota</ScientificName>
+                <Rank>superkingdom</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>33154</TaxId>
+                <ScientificName>Opisthokonta</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>33208</TaxId>
+                <ScientificName>Metazoa</ScientificName>
+                <Rank>kingdom</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>6072</TaxId>
+                <ScientificName>Eumetazoa</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>33213</TaxId>
+                <ScientificName>Bilateria</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>33317</TaxId>
+                <ScientificName>Protostomia</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>1206794</TaxId>
+                <ScientificName>Ecdysozoa</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>88770</TaxId>
+                <ScientificName>Panarthropoda</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>6656</TaxId>
+                <ScientificName>Arthropoda</ScientificName>
+                <Rank>phylum</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>197563</TaxId>
+                <ScientificName>Mandibulata</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>197562</TaxId>
+                <ScientificName>Pancrustacea</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>6960</TaxId>
+                <ScientificName>Hexapoda</ScientificName>
+                <Rank>subphylum</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>50557</TaxId>
+                <ScientificName>Insecta</ScientificName>
+                <Rank>class</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>85512</TaxId>
+                <ScientificName>Dicondylia</ScientificName>
+                <Rank>no rank</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>7496</TaxId>
+                <ScientificName>Pterygota</ScientificName>
+                <Rank>subclass</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>33340</TaxId>
+                <ScientificName>Neoptera</ScientificName>
+                <Rank>infraclass</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>33392</TaxId>
+                <ScientificName>Holometabola</ScientificName>
+                <Rank>cohort</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>7399</TaxId>
+                <ScientificName>Hymenoptera</ScientificName>
+                <Rank>order</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>7400</TaxId>
+                <ScientificName>Apocrita</ScientificName>
+                <Rank>suborder</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>7434</TaxId>
+                <ScientificName>Aculeata</ScientificName>
+                <Rank>infraorder</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>34735</TaxId>
+                <ScientificName>Apoidea</ScientificName>
+                <Rank>superfamily</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>7458</TaxId>
+                <ScientificName>Apidae</ScientificName>
+                <Rank>family</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>70987</TaxId>
+                <ScientificName>Apinae</ScientificName>
+                <Rank>subfamily</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>83311</TaxId>
+                <ScientificName>Bombini</ScientificName>
+                <Rank>tribe</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>28641</TaxId>
+                <ScientificName>Bombus</ScientificName>
+                <Rank>genus</Rank>
+            </Taxon>
+            <Taxon>
+                <TaxId>144703</TaxId>
+                <ScientificName>Pyrobombus</ScientificName>
+                <Rank>subgenus</Rank>
+            </Taxon>
+        </LineageEx>
+        <CreateDate>2000/07/11 11:45:00</CreateDate>
+        <UpdateDate>2018/11/01 17:19:24</UpdateDate>
+        <PubDate>2000/09/22 11:05:00</PubDate>
+    </Taxon>
+    <Taxon>
+        <TaxId>132114</TaxId>
+        <ScientificName>Bombus impatiens test</ScientificName>
+        <OtherNames>
+            <Synonym>Duplicated synonym</Synonym>
             <Includes>Bombus sp. SLB-2003</Includes>
             <Name>
                 <ClassCDE>authority</ClassCDE>

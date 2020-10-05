@@ -20564,7 +20564,7 @@
         <Package display_name="Metagenome or environmental; version 1.0">Metagenome.environmental.1.0</Package>
         <Attributes>
             <Attribute attribute_name="collection_date" harmonized_name="collection_date" display_name="collection date">01-Aug-2015</Attribute>
-            <Attribute attribute_name="host" harmonized_name="host" display_name="host">Bombus impatiens</Attribute>
+<!--            <Attribute attribute_name="host" harmonized_name="host" display_name="host">Bombus impatiens</Attribute>-->
             <Attribute attribute_name="isolation_source" harmonized_name="isolation_source" display_name="isolation source">Whole body homogenate</Attribute>
             <Attribute attribute_name="lat_lon" harmonized_name="lat_lon" display_name="latitude and longitude">40.8198 N 77.8588 W</Attribute>
             <Attribute attribute_name="geo_loc_name" harmonized_name="geo_loc_name" display_name="geographic location">USA: State College, PA</Attribute>
@@ -20603,7 +20603,7 @@
         <Package display_name="Metagenome or environmental; version 1.0">Metagenome.environmental.1.0</Package>
         <Attributes>
             <Attribute attribute_name="collection_date" harmonized_name="collection_date" display_name="collection date">01-Aug-2015</Attribute>
-            <Attribute attribute_name="host" harmonized_name="host" display_name="host">Bombus impatiens</Attribute>
+            <Attribute attribute_name="host" harmonized_name="host" display_name="host">Unknown</Attribute>
             <Attribute attribute_name="isolation_source" harmonized_name="isolation_source" display_name="isolation source">Whole body homogenate</Attribute>
             <Attribute attribute_name="lat_lon" harmonized_name="lat_lon" display_name="latitude and longitude">46.5197 N 6.6323 E</Attribute>
             <Attribute attribute_name="geo_loc_name" harmonized_name="geo_loc_name" display_name="geographic location">Switzerland</Attribute>
@@ -22275,7 +22275,7 @@
         </Models>
         <Package display_name="Metagenome or environmental; version 1.0">Metagenome.environmental.1.0</Package>
         <Attributes>
-            <Attribute attribute_name="host" harmonized_name="host" display_name="host">Bombus impatiens</Attribute>
+            <Attribute attribute_name="host" harmonized_name="host" display_name="host">Duplicated synonym</Attribute>
             <Attribute attribute_name="collection_date" harmonized_name="collection_date" display_name="collection date">29-May-2014</Attribute>
             <Attribute attribute_name="geo_loc_name" harmonized_name="geo_loc_name" display_name="geographic location">USA: Decauter, GA; River Creek</Attribute>
             <Attribute attribute_name="lat_lon" harmonized_name="lat_lon" display_name="latitude and longitude">30.85158 N 84.0641 W</Attribute>
