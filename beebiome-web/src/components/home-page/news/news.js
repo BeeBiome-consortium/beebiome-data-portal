@@ -9,7 +9,7 @@ const News = () => {
             <h2>News</h2>
             <AdBlockDetect />
             <div className="twitter-embed">
-                <TwitterTimelineEmbed sourceType="profile" screenName="BeeMicrobiome"
+                <TwitterTimelineEmbed sourceType="profile" screenName="BeeMicrobiome" noHeader 
                                       options={{tweetLimit: "5", lang: "en", dnt: "true", cards: "hidden"}}
                 />
             </div>
