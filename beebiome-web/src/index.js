@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -52,6 +53,18 @@ const routing = (
 );
 
 ReactDOM.render(routing, document.getElementById('beebiome-body'));
+
+const isLocalhost = Boolean(
+    window.location.hostname === 'localhost' ||
+    // [::1] is the IPv6 localhost address.
+    window.location.hostname === '[::1]' ||
+    // 127.0.0.1/8 is considered localhost for IPv4.
+    window.location.hostname.match(
+        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+    )
+);
+ReactGA.initialize("UA-180272382-1", {testMode: isLocalhost});
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
