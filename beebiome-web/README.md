@@ -55,6 +55,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ma
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
+#### Create a war for production
+
+`mvn -P prod clean install`
+
 #### Deployment
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
