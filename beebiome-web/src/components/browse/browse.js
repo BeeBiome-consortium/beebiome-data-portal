@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Table from '../result/table';
 import Loading from "../result/loading";
+import ReactGA from "react-ga";
 
 class Browse extends Component {
     constructor() {
@@ -14,6 +15,8 @@ class Browse extends Component {
     }
 
     componentDidMount() {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+
         let self = this;
         self.setState({data: null, isLoaded: false, errorMessage: null});
         

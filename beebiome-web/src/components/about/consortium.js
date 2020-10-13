@@ -1,8 +1,16 @@
 import React from 'react';
 import MarkdownPage from "../markdown/markdown";
+import ReactGA from "react-ga";
 
-export default function Consortium() {
-    return (
-        <MarkdownPage relativePath={'generalities/consortium'}/>
-    );
+export default class Consortium extends React.Component {
+
+    componentDidMount() {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    }
+
+    render() {
+        return (
+            <MarkdownPage relativePath={'generalities/consortium'}/>
+        );
+    }
 }

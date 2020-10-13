@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Table from '../result/table';
 import './search.css';
 import Loading from "../result/loading";
+import ReactGA from "react-ga";
 
 class Search extends Component {
     constructor() {
@@ -35,6 +36,10 @@ class Search extends Component {
         this.setState({
             [fieldName]: value
         })
+    }
+
+    componentDidMount() {
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }
 
     render() {
