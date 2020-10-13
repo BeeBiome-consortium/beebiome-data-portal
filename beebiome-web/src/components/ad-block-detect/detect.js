@@ -36,7 +36,7 @@ class AdBlockDetect extends Component {
 
     render() {
         return this.state.detected ?
-            <p>We have detected that your are using an ad blocker. To see our news, you must deactivate it.</p>
+            <p>We have detected that you are using an ad blocker. To see our news, you must deactivate it.</p>
             : null
     }
 }
