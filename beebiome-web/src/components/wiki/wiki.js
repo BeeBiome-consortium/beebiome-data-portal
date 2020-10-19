@@ -1,15 +1,24 @@
 import React from 'react';
 import ReactGA from "react-ga";
+import MarkdownPage from "../markdown/markdown";
 
-export default class Wiki extends React.Component {
-
+class WikiPage extends React.Component {
+    
+    constructor(props, key) {
+        super();
+        this.state = {
+            page: props.location.pathname
+        };
+    }
+    
     componentDidMount() {
         ReactGA.pageview(window.location.pathname + window.location.search);
     }
 
     render() {
         return (
-            <h1>Wiki</h1>
+            <MarkdownPage relativePath={this.state.page}/>
         );
     }
 }
+export default WikiPage;
