@@ -4,13 +4,13 @@
     font-size: 0.8em;
 }
 
-#beebiome-footer a {
+#beebiome-footer p {
     color: #f7f8fa;
     text-decoration: none;
-    padding: 5px 15px 5px 0
+    margin-bottom: 0;
 }
 
-#beebiome-footer a:hover {
+#beebiome-footer p:hover {
     text-decoration: underline
 }
 
