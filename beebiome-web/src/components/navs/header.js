@@ -24,8 +24,16 @@ function Header() {
                         <li className="nav-item">
                             <Link to="/search" className="nav-link">Advanced search</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to="/wiki" className="nav-link">Wiki</Link>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
+                               role="button" aria-haspopup="true" aria-expanded="false">Wiki</a>
+                            <div className="dropdown-menu">
+                                <Link to="/wiki/wiki-home-page" className="dropdown-item">Wiki home page</Link>
+                                <Link to="/wiki/apis-bee-disease-overview" className="dropdown-item">Apis bee diseases</Link>
+                                <Link to="/wiki/non-apis-bee-disease-overview" className="dropdown-item">Non-Apis bee diseases</Link>
+                                <Link to="/wiki/apis-bee-microbe-overview" className="dropdown-item">Apis bee microbes</Link>
+                                <Link to="/wiki/non-apis-bee-microorganism-overview" className="dropdown-item">Non-Apis bee microorganisms</Link>
+                            </div>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
@@ -36,7 +44,6 @@ function Header() {
                                 <Link to="/about/citing-beebiome" className="dropdown-item">Citing us</Link>
                                 <Link to="/about/privacy-notice" className="dropdown-item">Privacy notice</Link>
                             </div>
-
                         </li>
                     </ul>
                 </div>
