@@ -8,8 +8,8 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import HomePage from "./components/home-page/home-page";
 import Browse from "./components/browse/browse";
-import Notfound from "./components/notfound"
-import Wiki from "./components/wiki/wiki";
+import Notfound from "./components/notfound";
+import WikiPage from "./components/wiki/wiki";
 import Search from "./components/search/search";
 import About from "./components/about/about";
 import Header from "./components/navs/header";
@@ -26,7 +26,8 @@ const routing = (
             <Route exact path="/" component={HomePage} />
             <Route path="/browse" component={Browse} />
             <Route path="/search" component={Search} />
-            <Route path="/wiki" component={Wiki} />
+            <Route path='/wiki/:wikiPage' component={(props) =>
+                <WikiPage {...props} key={window.location.pathname}/>} />
             <Route path="/about/data-portal" component={About} />
             <Route path="/about/consortium" component={Consortium} />
             <Route path="/about/citing-beebiome" component={Citation} />
