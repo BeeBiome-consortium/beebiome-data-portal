@@ -6,7 +6,7 @@ Microbe | Taxonomy | Known Apis hosts | Effect on host | Citations (DOI URL or s
 -- | -- | -- | -- | --  
 Ascosphaera apis | Eukaryota; Opisthokonta; Fungi; Dikarya; Ascomycota; saccharomyceta; Pezizomycotina; leotiomyceta; Eurotiomycetes; Eurotiomycetidae; Onygenales; Ascosphaeraceae; Ascosphaera | Apis mellifera | Pathogenic | [Spiltoir 1955](http://www.jstor.org/stable/2438686)  
 Nosema apis |  |  | Pathogenic | Zander 1909  
-Nosema ceranae |  |  | unknown | [Fries et al. 1996](https://doi.org/10.1016/S0932-4739(96)80059-9) 
+Nosema ceranae |  |  | unknown | [Fries et al. 1996](https://doi.org/10.1016/S0932-4739\(96\)80059-9) 
 
 ## Viruses 
 
@@ -33,7 +33,7 @@ Apis iridescent virus | Viruses; dsDNA viruses, no RNA stage; Iridoviridae | Api
 
 Microbe | Known Apis hosts | Effect on host | Citations (DOI URL or stable URL if available)  
 -- | -- | -- | --  
-Melissococcus plutonius | A. cerana, A. mellifera, A. laboriosa | Pathogenic to larvae | [Bailey 1983](https://doi.org/10.1111/j.1365-2672.1983.tb02648.x) ; [Allen et al. 1990](https://doi.org/10.1016/0022-2011(90)90090-S)  
+Melissococcus plutonius | A. cerana, A. mellifera, A. laboriosa | Pathogenic to larvae | [Bailey 1983](https://doi.org/10.1111/j.1365-2672.1983.tb02648.x) ; [Allen et al. 1990](https://doi.org/10.1016/0022-2011\(90\)90090-S)  
 Paenibacillus larvae | Apis mellifera | Pathogenic to larvae | [Qin 2006](https://doi.org/10.1111/j.1365-2583.2006.00694.x)  
 Paenibacillus alvei | Apis mellifera | Parasitic | Bailey 1963 ; Bailey and Ball 1991 (ISBN 0-12-073481-8)  
 Brevibacillus laterosporus | Apis mellifera | Parasitic | Bailey 1963 ; Bailey and Ball 1991 (ISBN 0-12-073481-9)  

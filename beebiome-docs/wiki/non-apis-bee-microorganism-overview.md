@@ -4,7 +4,7 @@
 
 Microbe | Taxonomy | Citations (DOI or stable URL if available)  
 -- | -- | --  
-Antonospora scoticae | Eukaryota; Opisthokonta;Fungi;Microsporidia;Microsporidia incertae sedis; Antonospora | [Fries et al. 1999](http://dx.doi.org/10.1016/s0932-4739(99)80036-4)  
+Antonospora scoticae | Eukaryota; Opisthokonta;Fungi;Microsporidia;Microsporidia incertae sedis; Antonospora | [Fries et al. 1999](http://dx.doi.org/10.1016/s0932-4739\(99\)80036-4)  
 Ascosphaera acerosa | Eukaryota; Opisthokonta; Fungi; Dikarya; Ascomycota; saccharomyceta; Pezizomycotina; leotiomyceta; Eurotiomycetes; Eurotiomycetidae; Onygenales; Ascosphaeraceae; Ascosphaera | [Anderson et al. 1998](http://dx.doi.org/10.1017/s0953756297005261), Bissett et al. 1996  
 Ascosphaera aggregata | Eukaryota; Opisthokonta; Fungi; Dikarya; Ascomycota; saccharomyceta; Pezizomycotina; leotiomyceta; Eurotiomycetes; Eurotiomycetidae; Onygenales; Ascosphaeraceae; Ascosphaera | [Anderson et al. 1998](http://dx.doi.org/10.1017/s0953756297005261), McFrederick 2014  
 Ascosphaera asterophora | Eukaryota; Opisthokonta; Fungi; Dikarya; Ascomycota; saccharomyceta; Pezizomycotina; leotiomyceta; Eurotiomycetes; Eurotiomycetidae; Onygenales; Ascosphaeraceae; Ascosphaera | [Anderson et al. 1998](http://dx.doi.org/10.1017/s0953756297005261), Skou 1982  
@@ -53,7 +53,7 @@ Microbe | Taxonomy | Citations (DOI or stable URL if available)
 Acute bee paralysis virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Dicistroviridae; Aparavirus | [McMahon et al. 2015](http://dx.doi.org/10.1111/1365-2656.12345)  
 Black Queen Cell Virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Dicistroviridae; Cripavirus | [Singh et al. 2010](http://dx.doi.org/10.1371/journal.pone.0014357), McMahon et al. 2015  
 Deformed Wing Virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Iflaviridae; Iflavirus | [Singh et al. 2010](http://dx.doi.org/10.1371/journal.pone.0014357), Levitt 2013, Evison et al. 2012, Singh 2011, Dissertation, Furst et al. 2014; Genersch et al. 2006  
-Entomopox-like virus | Viruses; dsDNA viruses, no RNA stage; Poxviridae; Entomopoxvirinae; unclassified Entomopoxvirinae | [Clark 1982](http://dx.doi.org/10.1016/0022-2011(82)90168-9)  
+Entomopox-like virus | Viruses; dsDNA viruses, no RNA stage; Poxviridae; Entomopoxvirinae; unclassified Entomopoxvirinae | [Clark 1982](http://dx.doi.org/10.1016/0022-2011\(82\)90168-9)  
 Israeli acute paralysis virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Dicistroviridae; Aparavirus | [Levitt et al. 2013](http://dx.doi.org/10.1016/j.virusres.2013.06.013), Singh et al. 2010, Singh 2011, Dissertation, Meeus et al. 2014  
 Kashmir bee virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Dicistroviridae; Aparavirus | [Meeus et al. 2014](http://dx.doi.org/10.1016/j.jip.2014.06.011)  
 Sac brood virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Iflaviridae; Iflavirus | [Singh et al. 2010](http://dx.doi.org/10.1371/journal.pone.0014357), McMahon et al. 2015  
