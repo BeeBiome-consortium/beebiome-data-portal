@@ -57,7 +57,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 #### Create a war for production
 
-`mvn -P prod clean install`
+First, modify .env to set REACT_APP_CONTACT_MAIL. Do not commit it to prevent it from being unencrypted in the git repository.
+
+Then, `mvn -P prod clean install`
 
 #### Deployment
 
