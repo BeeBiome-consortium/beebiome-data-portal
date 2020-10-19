@@ -1,6 +1,7 @@
 # Members of the bee microbiome (Bacteria)
- 
+
 ## Corbiculate Apid 'core' microbiome  
+
 There are many citations for these bacteria, here we present important early records and species descriptions.
 
 Bacterium | Taxonomy | Known hosts | Effect on host | Citations  
@@ -14,7 +15,7 @@ Lactobacillus Firm4 (L. mellifer, L. mellis) | Bacteria; Firmicutes; Bacilli; La
 Bartonella apis | Bacteria; Proteobacteria; Alphaproteobacteria; Rhizobiales; Bartonellaceae; Bartonella | Apis spp. |  | Jeyaprakash 2003, Mohr and Tebbe 2006, Babendreier et al. 2007, Martinson et al. 2011, Engel et al. 2012, [Kesnerova et al. 2015](http://dx.doi.org/10.1099/ijsem.0.000736)  
 
 ## Apis colony bacteria (i.e. not core bacteria in the worker gut but commonly found in other parts of the colony)  
- 
+
 Bacterium | Taxonomy | Known hosts | Effect on host | Citations  
 -- | -- | -- | -- | --  
 Parasaccharibacter apium | Bacteria; Proteobacteria; Alphaproteobacteria; Rhodospirillales;Acetobacteraceae; Parasaccharibacter | Apis mellifera larvae hypopharyngeal glands, royal jelly | increased larval fitness | [Jeyaprakash et al. 2003](http://dx.doi.org/10.1016/j.jip.2003.08.007), [Mohr and Tebbe 2006](http://dx.doi.org/10.1111/j.1462-2920.2005.00893.x), [Babendreier et al. 2007](http://dx.doi.org/10.1111/j.1574-6941.2006.00249.x), Corby-Harris et al. 2014A  
@@ -23,6 +24,7 @@ Lactobacillus kunkeei | Bacteria; Firmicutes; Bacilli; Lactobacillales; Lactobac
 Fructobacillus fructosus | Bacteria; Firmicutes; Bacilli; Lactobacillales; Leuconostocaceae; Fructobacillus | Apis mellifera, Bombus spp. |  | [Koch et al. 2011](http://dx.doi.org/10.1007/s00248-011-9854-3), [Anderson et al. 2013](http://dx.doi.org/10.1371/journal.pone.0083125), Vojvodic et al. 2013  
 
 ## Apis incidental bacteria  
+
 Many other bacteria have been found associated with honey bees, but in low numbers. We include Arsenophonus as it has possibly interesting biology. 
 
 Bacterium | Taxonomy | Known hosts | Effect on host | Citations  
@@ -30,6 +32,7 @@ Bacterium | Taxonomy | Known hosts | Effect on host | Citations
 Arsenophonus sp.  | Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales; Enterobacteriaceae; Arsenophonus | Apis mellifera |  | [Babendreier et al. 2007](http://dx.doi.org/10.1111/j.1574-6941.2006.00249.x), Aizenberg-Gershtein et al. 2013, Corby-Harris et al. 2014B  
 
 ## Non-Apis bee bacteria common associates  
+
 Many other environmental bacteria are also found sporadically associated with Non-Apis bees. Very few of the nearly 20,000 species of bees have been studied, so this list will likely change drastically with future research.
 
 Bacterium | Taxonomy | Known hosts | Effect on host | Citations  

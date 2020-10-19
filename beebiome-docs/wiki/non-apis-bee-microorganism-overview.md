@@ -1,6 +1,7 @@
 # Non-Apis bee micro-organisms  
   
 ## Fungi  
+
 Microbe | Taxonomy | Citations (DOI or stable URL if available)  
 -- | -- | --  
 Antonospora scoticae | Eukaryota; Opisthokonta;Fungi;Microsporidia;Microsporidia incertae sedis; Antonospora | [Fries et al. 1999](http://dx.doi.org/10.1016/s0932-4739(99)80036-4)  
@@ -44,8 +45,9 @@ Nosema ceranae | Eukaryota; Opisthokonta; Fungi; Microsporidia; Apansporoblastin
 Nosema undescribed spp. | Eukaryota; Opisthokonta; Fungi; Microsporidia; Apansporoblastina; Nosematidae | [Li et al. 2012](http://dx.doi.org/10.1016/j.ijpara.2011.10.005)  
 Rhizopus sp. | Eukaryota; Opisthokonta;Fungi; Fungi incertae sedis; Mucoromycotina; Mucorales; Mucorineae; Rhizopodaceae | [Batra and Bohart 1969](http://dx.doi.org/10.1126/science.165.3893.607), Linsley and MacSwain 1952  
 Trichothecium roseum | Eukaryota; Opisthokonta;Fungi; Dikarya; Ascomycota; saccharomyceta; Pezizomycotina; leotiomyceta; sordariomyceta; Sordariomycetes; Hypocreomycetidae; Hypocreales; Hypocreales incertae sedis;Trichothecium | [Batra, Batra, and Bohart 1973](http://dx.doi.org/10.1007/bf02057445)  
- 
+
 ## Viruses  
+
 Microbe | Taxonomy | Citations (DOI or stable URL if available)  
 -- | -- | --  
 Acute bee paralysis virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Dicistroviridae; Aparavirus | [McMahon et al. 2015](http://dx.doi.org/10.1111/1365-2656.12345)  
@@ -56,8 +58,9 @@ Israeli acute paralysis virus | Viruses; ssRNA viruses; ssRNA positive-strand vi
 Kashmir bee virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Dicistroviridae; Aparavirus | [Meeus et al. 2014](http://dx.doi.org/10.1016/j.jip.2014.06.011)  
 Sac brood virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Iflaviridae; Iflavirus | [Singh et al. 2010](http://dx.doi.org/10.1371/journal.pone.0014357), McMahon et al. 2015  
 Slow bee paralysis virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Picornavirales; Iflaviridae; Iflavirus | [McMahon et al. 2015](http://dx.doi.org/10.1111/1365-2656.12345)  
- 
+
 ## Bacteria  
+
 Microbe | Taxonomy | Citations (DOI or stable URL if available)  
 -- | -- | --  
 Arsenophonus | Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales; Enterobacteriaceae | [McFrederick 2014](http://dx.doi.org/10.1111/1574-6941.12302), Gerth 2015  
@@ -68,6 +71,7 @@ Spiroplasma melliferum | Bacteria; Tenericutes; Mollicutes; Entomoplasmatales; S
 Wolbachia | Bacteria; Proteobacteria; Alphaproteobacteria; Rickettsiales; Anaplasmataceae; Wolbachieae | [Evison et al. 2012](http://dx.doi.org/10.1371/journal.pone.0030641), McFrederick et al. 2012, McFrederick et al. 2014, Gerth et al. 2015  
 
 ## Protists  
+
 Microbe | Taxonomy | Citations (DOI or stable URL if available)  
 -- | -- | --  
 Apicystis bombi | Eukaryota; Alveolata; Apicomplexa; Conoidasida; Gregarinasina; Neogregarinorida; Ophryocystidae; Apicystis | [Graystock et al. 2013](http://dx.doi.org/10.1111/1365-2664.12134), Gamboa et al. 2015, [Ravoet et al. 2014](http://dx.doi.org/10.1016/j.jip.2014.08.007)  

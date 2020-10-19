@@ -1,8 +1,5 @@
 # Apis bee diseases
 
-Microbe | Taxonomy | Known Apis hosts | Effect on host | Citations | DOI number or stable URL if available 
--- | -- | -- | -- | -- | --
-
 ## Fungi
 
 Microbe | Taxonomy | Known Apis hosts | Effect on host | Citations (DOI URL or stable URL if available)  
@@ -31,7 +28,7 @@ Lake Sinai viruses (LSV) | Viruses; ssRNA viruses; ssRNA positive-strand viruses
 Bee macula-like virus | Viruses; ssRNA viruses; ssRNA positive-strand viruses, no DNA stage; Thymovirales; Thymoviridae | Apis mellifera | unknown | [de Miranda et al. 2015](https://doi.org/10.3390/v7072789)  
 Apis mellifera filamentous virus (AmFV) | Bee | Apis mellifera | unknown | [Gauthier et al. 2015](https://doi.org/10.3390/v7072798)  
 Apis iridescent virus | Viruses; dsDNA viruses, no RNA stage; Iridoviridae | Apis cerana | unknown | [Bailey L. et al. 1976](https://doi.org/10.1099/0022-1317-31-3-459)  
- 
+
 ## Bacteria  
 
 Microbe | Known Apis hosts | Effect on host | Citations (DOI URL or stable URL if available)  
