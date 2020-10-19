@@ -3,7 +3,20 @@
 This privacy notice explains what personal data are collected by the specific service you are requesting, for what purposes, how they are processed, and how we keep them secure.
 
 ## Who controls your personal data and how to contact us?
-TBD
+
+### The BeeBiome data controller's contact
+Benjamin Dainat, BeeBiome Principal Investigator at Agroscope (e-mail)
+Département fédéral de l’économie, de la formation et de la recherche DEFR
+Agroscope, Schwarzenburgstrasse 161, CH - 3003 Berne Switzerland
+
+Philipp Engel, BeeBiome Principal Investigator and Professor at University of Lausanne (e-mail)
+Department of Fundamental Microbiology, University of Lausanne, 1015 Lausanne, Switzerland
+
+### The University of Lausanne Data Protection Officer's contact
+Gwenaëlle Gilliéron, Responsable Service Juridique (e-mail)
+Service Juridique, University of Lausanne, 1015 Lausanne, Switzerland
+
+### The Agroscope Protection Officer's contact
 
 ## Which is the lawful basis for processing personal data?
 Processing your personal data is necessary for our legitimate interests in providing services to you, to help improve our resources and for the purposes of day-to-day running of the BeeBiome data portal and underlying infrastructure.
