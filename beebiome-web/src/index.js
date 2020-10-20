@@ -9,15 +9,11 @@ import * as serviceWorker from './serviceWorker';
 import HomePage from "./components/home-page/home-page";
 import Browse from "./components/browse/browse";
 import Notfound from "./components/notfound";
-import WikiPage from "./components/wiki/wiki";
 import Search from "./components/search/search";
-import About from "./components/about/about";
 import Header from "./components/navs/header";
 import Footer from "./components/navs/footer";
-import Consortium from "./components/about/consortium";
-import Citation from "./components/about/citation";
-import PrivacyNotice from "./components/about/privacy-notice";
 import CookieConsent from "react-cookie-consent";
+import MarkdownPage from "./components/markdown/markdown";
 
 const routing = (
     <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
@@ -26,12 +22,8 @@ const routing = (
             <Route exact path="/" component={HomePage} />
             <Route path="/browse" component={Browse} />
             <Route path="/search" component={Search} />
-            <Route path='/wiki/:wikiPage' component={(props) =>
-                <WikiPage {...props} key={window.location.pathname}/>} />
-            <Route path="/about/data-portal" component={About} />
-            <Route path="/about/consortium" component={Consortium} />
-            <Route path="/about/citing-beebiome" component={Citation} />
-            <Route path="/about/privacy-notice" component={PrivacyNotice} />
+            <Route path='/wiki/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
+            <Route path="/about/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route component={Notfound} />
         </Switch>
         <Footer />

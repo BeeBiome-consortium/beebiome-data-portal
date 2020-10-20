@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Markdown from 'markdown-to-jsx';
+import ReactGA from "react-ga";
 
 export default class MarkdownPage extends Component {
     
@@ -11,7 +12,9 @@ export default class MarkdownPage extends Component {
     }
     
     componentDidMount() {
-        fetch(process.env.REACT_APP_API_URL + "/contents/" + this.props.relativePath)
+        ReactGA.pageview(window.location.pathname + window.location.search);
+
+        fetch(process.env.REACT_APP_API_URL + "contents/" + this.props.location.pathname)
             .then(results => { return results.text()} )
             .then(text => {
                 this.setState({content: text});
@@ -19,9 +22,6 @@ export default class MarkdownPage extends Component {
             .catch(function(error) {
                 // FIXME manage catched error
                 console.log('Fetch data: failed', error)
-                // this.setState((state) => {
-                //     return {content: state.content, data: [], hasResult: false, isFetching: false}
-                // });
             });
     }
     
