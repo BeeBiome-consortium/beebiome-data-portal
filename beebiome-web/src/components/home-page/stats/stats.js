@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactGA from "react-ga";
 import Loading from "../../result/loading";
 
 export default class Stats extends React.Component {
