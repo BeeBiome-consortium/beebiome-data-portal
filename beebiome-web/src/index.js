@@ -14,6 +14,7 @@ import Header from "./components/navs/header";
 import Footer from "./components/navs/footer";
 import CookieConsent from "react-cookie-consent";
 import MarkdownPage from "./components/markdown/markdown";
+import PrivacyNotice from "./components/privacy-notice/privacy-notice";
 
 const routing = (
     <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
@@ -23,6 +24,7 @@ const routing = (
             <Route path="/browse" component={Browse} />
             <Route path="/search" component={Search} />
             <Route path='/wiki/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
+            <Route exact path="/about/privacy-notice" component={PrivacyNotice} />
             <Route path="/about/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route component={Notfound} />
         </Switch>
