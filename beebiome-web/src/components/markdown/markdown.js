@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './markdown.css';
 import Markdown from 'markdown-to-jsx';
 import ReactGA from "react-ga";
 
@@ -23,6 +24,20 @@ export default class MarkdownPage extends Component {
                 // FIXME manage catched error
                 console.log('Fetch data: failed', error)
             });
+
+        
+    }
+
+    componentDidUpdate() {
+        let tables = document.getElementsByTagName("table");
+        Array.from(tables).forEach(table => {
+            table.classList.add("table")
+            table.classList.add("table-striped")
+            table.classList.add("table-hover")
+            table.classList.add("table-sm")
+            table.classList.add("table-bordered")
+        })
+
     }
     
     render() {
