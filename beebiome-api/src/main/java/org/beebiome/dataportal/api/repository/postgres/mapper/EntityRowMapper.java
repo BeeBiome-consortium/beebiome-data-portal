@@ -32,6 +32,7 @@ public class EntityRowMapper implements RowMapper<Entity> {
                         .map(LibrarySource::getEnumFromString)
                         .collect(Collectors.toSet());
 
+        // FIXME Add nucleotide links or accessions
         return new Entity(
                 rs.getString("biosampleAcc"),
                 rs.getString("bioprojectAcc"),
@@ -45,7 +46,7 @@ public class EntityRowMapper implements RowMapper<Entity> {
                 Arrays.stream(rs.getString("platforms").split(DELIMITER)).collect(Collectors.toSet()),
                 rs.getString("geoLocName"),
                 rs.getString("collectionDate"),
-                null); // FIXME Arrays.stream(rs.getString("nucleotideLinks").split(SEPARATOR)).collect(Collectors.toSet()));
+                Arrays.stream(rs.getString("experimentAccs").split(DELIMITER)).collect(Collectors.toSet()));
     }
 
 }

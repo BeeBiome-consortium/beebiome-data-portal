@@ -18,13 +18,14 @@ public class Entity {
     private final Set<String> platforms;
     private final String geoLocName;
     private final String collectionDate;
-    private final Set<String> links; //link to 'SRA', link to 'Nucleotide'.
+    private final Set<String> experimentAccs;
+//    private final Set<String> nucleotideAccs;
 
     public Entity(String biosampleAcc, String bioprojectAcc, BioSamplePackage biosamplePackage,
                   Set<LibraryStrategy> libraryStrategies, String submittingOrganizationName,
                   Set<LibraryLayout> libraryLayouts, Set<LibrarySource> librarySources, Species organism,
                   Species host, Set<String> platforms,
-                  String geoLocName, String collectionDate, Set<String> links) {
+                  String geoLocName, String collectionDate, Set<String> experimentAccs) {
         this.biosampleAcc = biosampleAcc;
         this.bioprojectAcc = bioprojectAcc;
         this.biosamplePackage = biosamplePackage;
@@ -37,7 +38,7 @@ public class Entity {
         this.platforms = platforms;
         this.geoLocName = geoLocName;
         this.collectionDate = collectionDate;
-        this.links = Collections.unmodifiableSet(links == null ? new HashSet<>(): new HashSet<>(links));
+        this.experimentAccs = Collections.unmodifiableSet(experimentAccs == null ? new HashSet<>(): new HashSet<>(experimentAccs));
     }
 
     public String getBiosampleAcc() {
@@ -88,7 +89,7 @@ public class Entity {
         return collectionDate;
     }
     
-    public Set<String> getLinks() {
-        return links;
+    public Set<String> getExperimentAccs() {
+        return experimentAccs;
     }
 }

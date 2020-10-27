@@ -18,6 +18,15 @@ const columns = [
                 + data + '</a>';
         }
     },
+    { title : 'SRA experiment count', data: 'experimentAccs[, ]',
+        render: function ( data, type, full ) {
+            if (data) {
+                return ' <a href="https://www.ncbi.nlm.nih.gov/sra?term=' + full.biosampleAcc +
+                    '%5BBioSample%5D" target="_blank">' + data.split(", ").length + '</a>';
+            }
+            return '0';
+        }
+    },
     { title : 'Assay types', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
     { title : 'Center name', data: 'submittingOrganizationName'},
     { title : 'Instruments', data: 'platforms'},
