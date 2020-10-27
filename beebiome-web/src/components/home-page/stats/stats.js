@@ -16,7 +16,6 @@ export default class Stats extends React.Component {
         let self = this;
         self.setState({data: null, isLoaded: false, errorMessage: null});
 
-        console.log("Fetching data...");
         fetch(process.env.REACT_APP_API_URL + "/statistics/all")
             .then(results => { return results.json()} )
             .then(data => {

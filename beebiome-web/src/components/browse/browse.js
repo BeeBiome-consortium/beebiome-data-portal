@@ -23,7 +23,6 @@ class Browse extends Component {
         let searchQuery = new URLSearchParams(this.props.location.search).get("search_query");
         self.setState({searchQuery: searchQuery});
 
-        console.log("Fetching data...");
         fetch(process.env.REACT_APP_API_URL + "/sample/all")
             .then(results => { return results.json()} )
             .then(data => {
