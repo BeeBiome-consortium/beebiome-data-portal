@@ -36,6 +36,7 @@ export default class MarkdownPage extends Component {
             table.classList.add("table-hover")
             table.classList.add("table-sm")
             table.classList.add("table-bordered")
+            table.classList.add("markdown-table")
         })
 
     }
