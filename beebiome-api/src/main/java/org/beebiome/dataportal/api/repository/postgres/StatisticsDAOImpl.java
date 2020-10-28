@@ -17,22 +17,24 @@ public class StatisticsDAOImpl implements StatisticsDAO {
 
     @Override
     public int findSampleCount() {
-        return template.queryForObject("select count(*) from sample", new HashMap<>(), Integer.class);
+        return template.queryForObject("select count(distinct biosampleacc) from entity", new HashMap<>(), Integer.class);
     }
 
     @Override
     public int findProjectCount() {
-        return template.queryForObject("select count(*) from project", new HashMap<>(), Integer.class);
+        return template.queryForObject("select count(distinct bioprojectacc) from entity", new HashMap<>(), Integer.class);
 
     }
 
     @Override
     public int findExperimentCount() {
-        return template.queryForObject("select count(*) from experiment", new HashMap<>(), Integer.class);
+        return template.queryForObject("SELECT count(distinct s.expAcc)" +
+                " FROM entity, unnest(string_to_array(entity.experimentaccs, ';')) s(expAcc);",
+                new HashMap<>(), Integer.class);
     }
 
     @Override
     public int findHostCount() {
-        return template.queryForObject("select count(distinct hostSpeciesId) from sample", new HashMap<>(), Integer.class);
+        return template.queryForObject("select count(distinct hostid) from entity", new HashMap<>(), Integer.class);
     }
 }
