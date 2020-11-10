@@ -29,7 +29,7 @@ export default class Stats extends React.Component {
     render() {
         let text = "";
         if (this.state.isLoaded) {
-            text = "BeeBiome contains " + this.state.data.sampleCount + " BioSamples (entries), " +
+            text = "BeeBiome contains " + this.state.data.sampleCount + " BioSamples (unique entries), " +
                 "encompassing " + this.state.data.projectCount + " Bioprojects " +
                 "and " + this.state.data.experimentCount + " SRA experiments. " +
                 "This represents data for " + this.state.data.hostCount + " Apoidea hosts. " +

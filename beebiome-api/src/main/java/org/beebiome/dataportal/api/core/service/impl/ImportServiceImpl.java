@@ -1,5 +1,7 @@
 package org.beebiome.dataportal.api.core.service.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.beebiome.dataportal.api.core.exception.BeebiomeException;
 import org.beebiome.dataportal.api.core.model.FileInfo;
 import org.beebiome.dataportal.api.core.model.ImportResult;
@@ -30,6 +32,8 @@ import java.util.Set;
 @Service
 public class ImportServiceImpl implements ImportService {
 
+    private final static Logger log = LogManager.getLogger(ImportServiceImpl.class.getName());
+
     @Autowired private TaxonDAO taxonDAO;
     @Autowired private SpeciesDAO speciesDAO;
     @Autowired private SpeciesToNameDAO speciesToNameDAO;
@@ -45,6 +49,8 @@ public class ImportServiceImpl implements ImportService {
 
     @Override
     public ImportResult importData(MultipartFile[] files) {
+        log.info("Start data import...");
+
         Set<FileInfo> fileInfos = new HashSet<>();
         for (MultipartFile file : files) {
             try {
@@ -77,6 +83,8 @@ public class ImportServiceImpl implements ImportService {
         projectToSampleDAO.insertAll(importTO.getProjectToSampleTOs());
         experimentDAO.insertAll(importTO.getExperimentTOs());
         sampleToExperimentDAO.insertAll(importTO.getSampleToExperimentTOs());
+
+        log.info("Done data import.");
 
         return new ImportResult(importTO.getProjectTOs().size(),
                 importTO.getSampleTOs().size(),importTO.getExperimentTOs().size());
