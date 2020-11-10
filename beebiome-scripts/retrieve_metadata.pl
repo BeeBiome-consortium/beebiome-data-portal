@@ -117,7 +117,7 @@ printWithTimestamp("Clean file '$taxonomy_filename.tmp'...");
 cleanFile($taxonomy_filename . ".xml.tmp");
 
 printWithTimestamp("Read '$taxonomy_filename.tmp'...");
-my $parser = XML::Simple->new( KeepRoot => 1 );
+my $parser = XML::Simple->new( KeepRoot => 1, forcearray => [ 'Taxon' ] );
 my $doc = $parser->XMLin($taxonomy_filename . ".xml");
 
 my %all_names = ();
