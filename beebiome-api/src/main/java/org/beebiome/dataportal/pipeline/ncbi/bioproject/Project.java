@@ -511,7 +511,7 @@ import java.util.List;
             @XmlElement(name = "Relevance")
             protected ProjectDescr.Relevance relevance;
             @XmlElement(name = "LocusTagPrefix")
-            protected List<String> locusTagPrefix;
+            protected List<ProjectDescr.LocusTagPrefix> locusTagPrefix;
             @XmlElement(name = "UserTerm")
             protected List<ProjectDescr.UserTerm> userTerm;
             @XmlElement(name = "RefSeq")
@@ -775,10 +775,7 @@ import java.util.List;
              * 
              * 
              */
-            public List<String> getLocusTagPrefix() {
-                if (locusTagPrefix == null) {
-                    locusTagPrefix = new ArrayList<String>();
-                }
+            public List<LocusTagPrefix> getLocusTagPrefix() {
                 return this.locusTagPrefix;
             }
 
@@ -1526,8 +1523,34 @@ import java.util.List;
 
             }
 
-        }
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                    "value"
+            })
+            public static class LocusTagPrefix {
+                
+                @XmlValue
+                protected String value;
+                @XmlAttribute(name = "biosample_id")
+                protected String biosampleId;
 
+                public String getValue() {
+                    return value;
+                }
+
+                public void setValue(String value) {
+                    this.value = value;
+                }
+
+                public String getBiosampleId() {
+                    return biosampleId;
+                }
+
+                public void setBiosampleId(String biosampleId) {
+                    this.biosampleId = biosampleId;
+                }
+            }
+        }
 
         /**
          * <p>Classe Java pour anonymous complex type.

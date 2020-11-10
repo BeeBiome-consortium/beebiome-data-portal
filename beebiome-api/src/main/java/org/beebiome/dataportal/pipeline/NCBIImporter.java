@@ -350,7 +350,19 @@ public class NCBIImporter {
         for (DocumentSummary documentSummary : recordSet.getDocumentSummaries()) {
             Project p = documentSummary.getProject();
             String bioprojectAcc = p.getProjectID().getArchiveID().getAccession();
-            if (!validBioProjectAccs.contains(bioprojectAcc)) {
+            if (p.getProjectDescr().getLocusTagPrefix() != null) {
+                // here we try to retrieve more links between bioproject and biosample
+                Set<String> validBiosamplesInPrefixes = p.getProjectDescr().getLocusTagPrefix().stream()
+                        .map(prefix -> prefix.getBiosampleId())
+                        .distinct()
+                        .filter(validBiosampleAccs::contains)
+                        .collect(Collectors.toSet());
+                if (!validBiosamplesInPrefixes.isEmpty()) {
+                    for (String bsAcc : validBiosamplesInPrefixes) {
+                        projectToSampleTOs.add(new ProjectToSampleTO(bioprojectAcc, bsAcc));
+                    }
+                }
+            } else if (!validBioProjectAccs.contains(bioprojectAcc)) {
                 rejectedProjects.add(bioprojectAcc);
                 continue;
             }
