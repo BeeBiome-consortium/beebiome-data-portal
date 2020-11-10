@@ -93,9 +93,11 @@ if (!-d $dir) {
 }
 my $taxonomy_filename = $folder . $taxonomy_level_formatted . "_taxonomy";
 my $sra_filename = $folder . $taxonomy_level_formatted . "_sra";
-my $nucleotide_filename = $folder . $taxonomy_level_formatted . "_nucleotide";
 my $bioproject_filename = $folder . $taxonomy_level_formatted . "_bioproject";
 my $biosample_filename = $folder . $taxonomy_level_formatted . "_biosample";
+my $biosample_bioproject_filename = $folder . $taxonomy_level_formatted . "_biosample_bioproject";
+my $biosample_sra_filename = $folder . $taxonomy_level_formatted . "_biosample_sra";
+my $biosample_nuccore_filename = $folder . $taxonomy_level_formatted . "_biosample_nuccore";
 
 printWithTimestamp("Retrieve taxonomy subtree of $taxonomy_level...");
 $params_taxonomy{db} = "taxonomy";
@@ -183,6 +185,7 @@ foreach my $query (@biosample_queries) {
     ## Retrieve SRA file
     printWithTimestamp("Retrieve SRA data...");
     $biosample_search_result{linkname} = "biosample_sra";
+    $biosample_search_result{outfile} = "$biosample_sra_filename.$queryCount.idx";
     if ($doSearch) {
         %sra_search_result = elink_by_id_to('sra', %biosample_search_result);
     }
@@ -195,25 +198,20 @@ foreach my $query (@biosample_queries) {
     }
     cleanFile(getTmpFileName($sra_filename, $queryCount));
 
-    ## Retrieve Nucleotide file
-    printWithTimestamp("Retrieve Nucleotide data...");
+    ## Retrieve BioSample/Nucleotide links
+    printWithTimestamp("Retrieve BisoSample/Nucleotide links...");
     $biosample_search_result{linkname} = "biosample_nuccore";
+    $biosample_search_result{outfile} = "$biosample_nuccore_filename.$queryCount.idx";
     if ($doSearch) {
         %nucleotide_search_result = elink_by_id_to('nuccore', %biosample_search_result);
-    }
-   
-    $nucleotide_search_result{retmode} = "xml";
-    $nucleotide_search_result{rettype} = "full";
-    $nucleotide_search_result{outfile} = getTmpFileName($nucleotide_filename, $queryCount);
-    if ($doSearch) {
-        efetch_batch(%nucleotide_search_result);
     }
 
     ## Retrieve Bioproject file
     printWithTimestamp("Retrieve Bioproject data...");
     $biosample_search_result{linkname} = "biosample_bioproject";
+    $biosample_search_result{outfile} = "$biosample_bioproject_filename.$queryCount.idx";
     if ($doSearch) {
-        %bioproject_search_result = elink_batch_to('bioproject', %biosample_search_result);
+        %bioproject_search_result = elink_by_id_to('bioproject', %biosample_search_result);
     }
    
     $bioproject_search_result{outfile} = getTmpFileName($bioproject_filename, $queryCount);
@@ -1634,7 +1632,7 @@ for ($retstart=0; $retstart < $max; $retstart += $batch) {
 if ($params{get_uids} ne 'n') {
  foreach $name (keys %foundnames) {
    # write index file and combine UIDs
-   if ($params{outfile}) { $file = $params{outfile} . "_$name.idx"; }
+   if ($params{outfile}) { $file = $params{outfile}; }
    else { $file = $name . '.idx'; }
 
    if ($params{scorefile}) { $scorefile = $params{scorefile} . "_$name.sco"; }
