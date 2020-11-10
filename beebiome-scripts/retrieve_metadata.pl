@@ -122,7 +122,7 @@ my $doc = $parser->XMLin($taxonomy_filename . ".xml");
 
 my %all_names = ();
 
-printWithTimestamp("Parse '$taxonomy_filename.xml.tmp' to retrieve names...");
+printWithTimestamp("Parse '$taxonomy_filename.xml' to retrieve names...");
 
 foreach my $taxon ( @{ $doc->{TaxaSet}->{Taxon} } ) {
     my $scientific_name = $taxon->{ScientificName};
@@ -284,29 +284,32 @@ sub cleanFile {
     my ($tmp_filename) = @_;
     my $filename = $tmp_filename =~ s/\.tmp$//r;
 
-    my $replacestring;
-    
+    my @replacedstrings;
+
     if (index($tmp_filename, "taxonomy") != -1 ) {
-        $replacestring = '<\/TaxaSet><\?xml version="1\.0"\s+\?>\s*<\!DOCTYPE TaxaSet PUBLIC "-\/\/NLM\/\/DTD Taxon, 14th January 2002\/\/EN" "https:\/\/www\.ncbi\.nlm\.nih\.gov\/entrez\/query\/DTD\/taxon\.dtd">\s*<TaxaSet>';
+        @replacedstrings = ('<\/TaxaSet><\?xml version="1\.0"\s+\?>\s*<\!DOCTYPE TaxaSet PUBLIC "-\/\/NLM\/\/DTD Taxon, 14th January 2002\/\/EN" "https:\/\/www\.ncbi\.nlm\.nih\.gov\/entrez\/query\/DTD\/taxon\.dtd">\s*<TaxaSet>',
+            '<\!DOCTYPE TaxaSet PUBLIC "-\/\/NLM\/\/DTD Taxon, 14th January 2002\/\/EN" "https:\/\/www\.ncbi\.nlm\.nih\.gov\/entrez\/query\/DTD\/taxon\.dtd">');
     } elsif (index($tmp_filename, "bioproject") != -1 ) {
-        $replacestring = '<\/RecordSet>\s*<\?xml version="1\.0"\s+\?>\s*<RecordSet>';
+        @replacedstrings = ('<\/RecordSet>\s*<\?xml version="1\.0"\s+\?>\s*<RecordSet>');
     } elsif (index($tmp_filename, "biosample") != -1 ) {
-        $replacestring = '<\/BioSampleSet>\s*<\?xml version="1\.0"\s+\?>\s*<BioSampleSet>';
+        @replacedstrings = ('<\/BioSampleSet>\s*<\?xml version="1\.0"\s+\?>\s*<BioSampleSet>');
     } elsif (index($tmp_filename, "sra") != -1 ) {
-        $replacestring = '<\/EXPERIMENT_PACKAGE_SET>\s*<\?xml version="1\.0"\s+\?>\s*<EXPERIMENT_PACKAGE_SET>';
-    } 
-        
+        @replacedstrings = ('<\/EXPERIMENT_PACKAGE_SET>\s*<\?xml version="1\.0"\s+\?>\s*<EXPERIMENT_PACKAGE_SET>');
+    }
+
     my $file_content = read_file($tmp_filename);
 
-    my $tail = substr $file_content, -300;
+    foreach my $replacedstring (@replacedstrings) {
+        $file_content =~ s/$replacedstring//sg;
+    }
 
-    $file_content =~ s/$replacestring//sg;
-    
+    # Remove non ascii characters
     $file_content =~ s/[^[:ascii:]]//g;
    
     write_file($filename, $file_content);
 
-    # TODO Remove $infile
+    # Remove tmp file
+    unlink $tmp_filename;
 }
 
 #************************************************************
