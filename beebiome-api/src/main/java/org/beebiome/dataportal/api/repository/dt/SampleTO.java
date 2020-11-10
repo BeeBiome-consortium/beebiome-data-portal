@@ -10,15 +10,18 @@ public class SampleTO {
     private final Integer speciesId;
     private final Integer hostSpeciesId;
     private final String collectionDate;
+    private final Integer nucleotideCount;
 
     public SampleTO(String biosampleAcc, String biosamplePackageId, String locationId,
-                    Integer speciesId, Integer hostSpeciesId, String collectionDate) {
+                    Integer speciesId, Integer hostSpeciesId, String collectionDate,
+                    Integer nucleotideCount) {
         this.biosampleAcc = biosampleAcc;
         this.biosamplePackageId = biosamplePackageId;
         this.locationId = locationId;
         this.speciesId = speciesId;
         this.hostSpeciesId = hostSpeciesId;
         this.collectionDate = collectionDate;
+        this.nucleotideCount = nucleotideCount;
     }
 
     public String getBiosampleAcc() {
@@ -43,6 +46,10 @@ public class SampleTO {
 
     public String getCollectionDate() {
         return collectionDate;
+    }
+
+    public Integer getNucleotideCount() {
+        return nucleotideCount;
     }
 
     @Override

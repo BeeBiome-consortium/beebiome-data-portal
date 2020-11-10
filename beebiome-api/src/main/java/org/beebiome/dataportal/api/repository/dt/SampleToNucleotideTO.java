@@ -5,19 +5,19 @@ import java.util.Objects;
 public class SampleToNucleotideTO {
 
     private final String biosampleAcc;
-    private final String nucleotideLink;
+    private final String nucleotideAcc;
 
-    public SampleToNucleotideTO(String biosampleAcc, String nucleotideLink) {
+    public SampleToNucleotideTO(String biosampleAcc, String nucleotideAcc) {
         this.biosampleAcc = biosampleAcc;
-        this.nucleotideLink = nucleotideLink;
+        this.nucleotideAcc = nucleotideAcc;
     }
 
     public String getBiosampleAcc() {
         return biosampleAcc;
     }
 
-    public String getNucleotideLink() {
-        return nucleotideLink;
+    public String getNucleotideAcc() {
+        return nucleotideAcc;
     }
 
     @Override
@@ -26,11 +26,11 @@ public class SampleToNucleotideTO {
         if (o == null || getClass() != o.getClass()) return false;
         SampleToNucleotideTO that = (SampleToNucleotideTO) o;
         return Objects.equals(biosampleAcc, that.biosampleAcc) &&
-                Objects.equals(nucleotideLink, that.nucleotideLink);
+                Objects.equals(nucleotideAcc, that.nucleotideAcc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(biosampleAcc, nucleotideLink);
+        return Objects.hash(biosampleAcc, nucleotideAcc);
     }
 }

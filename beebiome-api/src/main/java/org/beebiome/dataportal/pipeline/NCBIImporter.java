@@ -13,7 +13,6 @@ import org.beebiome.dataportal.api.repository.dt.ProjectToSampleTO;
 import org.beebiome.dataportal.api.repository.dt.PublicationTO;
 import org.beebiome.dataportal.api.repository.dt.SampleTO;
 import org.beebiome.dataportal.api.repository.dt.SampleToExperimentTO;
-import org.beebiome.dataportal.api.repository.dt.SampleToNucleotideTO;
 import org.beebiome.dataportal.api.repository.dt.SpeciesTO;
 import org.beebiome.dataportal.api.repository.dt.SpeciesToNameTO;
 import org.beebiome.dataportal.api.repository.dt.TaxonTO;
@@ -37,17 +36,22 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.JAXBIntrospector;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -100,7 +104,8 @@ public class NCBIImporter {
         Set<InputStream> biosampleFiles = new HashSet<>();
         Set<InputStream> sraFiles = new HashSet<>();
         Set<InputStream> taxonomyFiles = new HashSet<>();
-
+        Set<InputStream> biosampleToNuccoreFiles = new HashSet<>();
+        
         for (FileInfo f : fileInfos) {
             if (f.getName().matches(".*_bioproject\\.*[0-9]*\\.xml")) {
                 bioprojectFiles.add(f.getInputStream());
@@ -110,19 +115,23 @@ public class NCBIImporter {
                 sraFiles.add(f.getInputStream());
             } else if (f.getName().matches(".*_taxonomy\\.*[0-9]*\\.xml")) {
                 taxonomyFiles.add(f.getInputStream());
+            } else if (f.getName().matches(".*biosample_nuccore\\.*[0-9]*\\.idx")) {
+                biosampleToNuccoreFiles.add(f.getInputStream());
             }
         }
         NCBIImporter importer = new NCBIImporter();
-        return log.traceExit(importer.importData(bioprojectFiles, biosampleFiles, sraFiles, taxonomyFiles));
+        return log.traceExit(importer.importData(bioprojectFiles, biosampleFiles, sraFiles, taxonomyFiles,
+                biosampleToNuccoreFiles));
     }
 
     public ImportTO importData(Set<InputStream> bioProjectXMLFiles, Set<InputStream> bioSampleXMLFiles,
-                               Set<InputStream> sraXMLFiles, Set<InputStream> taxonomyXMLFiles)
+                               Set<InputStream> sraXMLFiles, Set<InputStream> taxonomyXMLFiles,
+                               Set<InputStream> biosampleToNuccoreFiles)
             throws JAXBException, IOException {
         log.traceEntry("Parameters: {}, {}, {}, {}",
                 bioProjectXMLFiles, bioSampleXMLFiles, sraXMLFiles, taxonomyXMLFiles);
 
-        log.info("Start parsing of XML files...");
+        log.info("Start parsing of files...");
 
         RecordSet recordSet = readBioproject(bioProjectXMLFiles);
 
@@ -132,7 +141,9 @@ public class NCBIImporter {
 
         TaxaSetType taxaSet = readTaxonomy(taxonomyXMLFiles);
 
-        log.info("Done parsing of XML files.");
+        Map<String, Set<String>> biosampleToNuccore = readIdx(biosampleToNuccoreFiles);
+        
+        log.info("Done parsing of files.");
 
         log.info("Start converting data...");
 
@@ -238,19 +249,21 @@ public class NCBIImporter {
             biosamplePackageTOs.add(new BiosamplePackageTO(bioSample.getPackage().getValue(),
                     bioSample.getPackage().getDisplayName()));
 
+            Set<String> nuccoreIDs = biosampleToNuccore.get(bioSample.getId());
             sampleTOs.add(new SampleTO(
                     bioSample.getAccession(),
                     bioSample.getPackage().getValue(),
                     geoLocationId,
                     bioSample.getDescription().getOrganism().getTaxonomyId(),
                     hostSpeciesId,
-                    collectionDate));
+                    collectionDate,
+                    nuccoreIDs == null? 0 : nuccoreIDs.size()));
         }
         logList(rejectedHosts, "rejected hosts");
         logList(unknownHosts, "hosts mapping several species");
         logList(rejectedBiosamples, "rejected BioSamples due to absent or unknown host attribute");
 
-        Set<String> validSampleAccs = sampleTOs.stream()
+        Set<String> validBiosampleAccs = sampleTOs.stream()
                 .map(SampleTO::getBiosampleAcc)
                 .collect(Collectors.toSet());
 
@@ -264,7 +277,7 @@ public class NCBIImporter {
                     .map(id -> id.getValue())
                     .collect(Collectors.toSet());
 
-            if (experimentBiosampleAccs.stream().noneMatch(validSampleAccs::contains)) {
+            if (experimentBiosampleAccs.stream().noneMatch(validBiosampleAccs::contains)) {
                 rejectedExperiments.add(experiment.getExperimentType().getAccession());
                 continue;
             }
@@ -329,7 +342,6 @@ public class NCBIImporter {
         Set<String> validBioProjectAccs = projectToSampleTOs.stream()
                 .map(ProjectToSampleTO::getBioprojectAcc)
                 .collect(Collectors.toSet());
-        Set<SampleToNucleotideTO> sampleToNucleotideTOs = new HashSet<>();
 
         Set<ProjectTO> projectTOs = new HashSet<>();
         Set<PublicationTO> publicationTOs = new HashSet<>();
@@ -367,7 +379,7 @@ public class NCBIImporter {
         }
         logList(rejectedProjects, "rejected projects due to the absence in samples");
         
-        log.info("Done converting data...");
+        log.info("Done converting data.");
 
         return log.traceExit(new ImportTO(taxonTOs, speciesTOs.values(), speciesToNameTOs, geoLocationTOs,
                 publicationTOs, projectTOs, projectToPublicationTOs, biosamplePackageTOs,
@@ -517,11 +529,33 @@ public class NCBIImporter {
     private TaxaSetType readTaxonomy(Set<InputStream>  taxonomyXmlFiles) throws JAXBException, IOException {
         log.traceEntry("Parameter: {}", taxonomyXmlFiles);
 
-        Set<TaxonType> taxonTypes = read(taxonomyXmlFiles,
-                TaxaSetType.class, TaxaSetType::getTaxon);
+        Set<TaxonType> taxonTypes = read(taxonomyXmlFiles, TaxaSetType.class, TaxaSetType::getTaxon);
         TaxaSetType set = new TaxaSetType();
         set.setTaxon(new ArrayList<>(taxonTypes));
 
         return log.traceExit(set);
+    }
+
+    private Map<String, Set<String>> readIdx(Set<InputStream>  idxFiles) throws IOException {
+        log.traceEntry("Parameter: {}", idxFiles);
+
+        Map<String, Set<String>> map = new HashMap<>();
+        for (InputStream file : idxFiles) {
+            if (file.available() > 0) {
+                map.putAll(
+                        new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))
+                                .lines()
+                                .map(line -> {
+                                    String[] split = line.split(":");
+                                    List<String> dbToIds = Arrays.asList(split[1].split(","));
+                                    return new AbstractMap.SimpleEntry<>(split[0],
+                                            new HashSet<>(dbToIds));
+                                })
+                                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue(),
+                                        (v1, v2) -> v1)));
+            }
+        }
+
+        return log.traceExit(map);
     }
 }

@@ -18,9 +18,9 @@ public class SampleDAOImpl implements SampleDAO {
     NamedParameterJdbcTemplate template;
 
     private final String INSERTION_SQL = "INSERT INTO sample(biosampleAcc, biosamplePackageId, locationId, " +
-            "speciesId, hostSpeciesId, collectionDate) " +
+            "speciesId, hostSpeciesId, collectionDate, nucleotideCount) " +
             "VALUES (:biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
-            ":hostSpeciesId, :collectionDate) " +
+            ":hostSpeciesId, :collectionDate, :nucleotideCount) " +
             "ON CONFLICT DO NOTHING";
 
     public SampleDAOImpl(NamedParameterJdbcTemplate template) {
@@ -38,7 +38,8 @@ public class SampleDAOImpl implements SampleDAO {
                 .addValue("locationId", to.getLocationId())
                 .addValue("speciesId", to.getSpeciesId())
                 .addValue("hostSpeciesId", to.getHostSpeciesId())
-                .addValue("collectionDate", to.getCollectionDate());
+                .addValue("collectionDate", to.getCollectionDate())
+                .addValue("nucleotideCount", to.getNucleotideCount());
 
         template.update(INSERTION_SQL, param, holder);
     }

@@ -1,3 +1,7 @@
+CREATE DATABASE beebiome_v0;
+
+\c beebiome_v0;
+
 CREATE TABLE taxon
 (
     id integer PRIMARY KEY,
@@ -84,6 +88,7 @@ CREATE TABLE sample
     speciesId integer NOT NULL,
     hostSpeciesId integer NOT NULL,
     collectionDate varchar(10),
+    nucleotideCount integer NOT NULL,
     -- hostBreed text,
     -- hostSex text, -- described using any child term of PATO_0000047
     -- hostAge text,
@@ -151,7 +156,7 @@ CREATE TABLE sampleToRecommendation
 CREATE TABLE sampleToNucleotide
 (
     biosampleAcc varchar(20) NOT NULL,
-    nucleotideLink text NOT NULL, -- we don’t want to store nucleotide data
-    PRIMARY KEY (biosampleAcc, nucleotideLink),
+    nucleotideAcc varchar(20) NOT NULL,
+    PRIMARY KEY (biosampleAcc, nucleotideAcc),
     FOREIGN KEY(biosampleAcc) REFERENCES sample(biosampleAcc) ON DELETE CASCADE
 );
