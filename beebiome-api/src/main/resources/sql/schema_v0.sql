@@ -152,11 +152,3 @@ CREATE TABLE sampleToRecommendation
     FOREIGN KEY(biosampleAcc) REFERENCES sample(biosampleAcc) ON DELETE CASCADE,
     FOREIGN KEY(recommendationId) REFERENCES recommendation(id) ON DELETE CASCADE
 );
-
-CREATE TABLE sampleToNucleotide
-(
-    biosampleAcc varchar(20) NOT NULL,
-    nucleotideAcc varchar(20) NOT NULL,
-    PRIMARY KEY (biosampleAcc, nucleotideAcc),
-    FOREIGN KEY(biosampleAcc) REFERENCES sample(biosampleAcc) ON DELETE CASCADE
-);
