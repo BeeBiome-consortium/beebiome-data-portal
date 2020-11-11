@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import './table.css';
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import "datatables.net-buttons-dt/css/buttons.dataTables.min.css"
 
 const $ = require('jquery');
-require( 'datatables.net-buttons-bs4' );
-require( 'datatables.net-buttons/js/buttons.html5.js' );
+require( 'datatables.net-dt' );
+require( 'datatables.net-buttons-dt' );
+require( 'datatables.net-buttons/js/buttons.html5.min.js' );
 
 const columns = [
     { title : 'BioProject acc', data: 'bioprojectAcc',
@@ -82,7 +85,7 @@ class Table extends Component {
             order: [[ 0, 'asc'], [ 1, 'asc']],
             dom:"<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4 browse-search'f>>" +
                 "<'row'<'data-table-wrapper col-sm-12'tr>>" +
-                "<'row'<'col-sm-6'p><'col-sm-6 btn-download'B>>",
+                "<'row'<'col-sm-6 btn-download'B><'col-sm-6'p>>",
 
             scrollX: true,
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
