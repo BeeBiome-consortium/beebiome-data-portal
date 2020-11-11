@@ -54,7 +54,8 @@ CREATE TABLE publication
 
 CREATE TABLE project
 (
-    bioprojectAcc varchar(20) PRIMARY KEY,
+    bioprojectId integer PRIMARY KEY,
+    bioprojectAcc varchar(20) UNIQUE,
     title text NOT NULL,
     description text,
     submissionDate date,
@@ -67,10 +68,10 @@ CREATE TABLE project
 
 CREATE TABLE projectToPublication
 (
-    bioprojectAcc varchar(20) NOT NULL,
+    bioprojectId integer NOT NULL,
     publicationAcc text NOT NULL,
-    PRIMARY KEY (bioprojectAcc, publicationAcc),
-    FOREIGN KEY(bioprojectAcc) REFERENCES project(bioprojectAcc) ON DELETE CASCADE,
+    PRIMARY KEY (bioprojectId, publicationAcc),
+    FOREIGN KEY(bioprojectId) REFERENCES project(bioprojectId) ON DELETE CASCADE,
     FOREIGN KEY(publicationAcc) REFERENCES publication(accession) ON DELETE CASCADE 
 );
 
@@ -82,7 +83,8 @@ CREATE TABLE biosamplePackage
 
 CREATE TABLE sample
 (
-    biosampleAcc varchar(20) PRIMARY KEY,
+    biosampleId integer PRIMARY KEY,
+    biosampleAcc varchar(20) UNIQUE,
     biosamplePackageId varchar(50) NOT NULL,
     locationId varchar(50), -- id=lat_long - see location table
     speciesId integer NOT NULL,
@@ -102,11 +104,11 @@ CREATE TABLE sample
 
 CREATE TABLE projectToSample -- one sample can be part of several projects
 (
-    bioprojectAcc varchar(20) NOT NULL,
-    biosampleAcc varchar(20) NOT NULL,
-    PRIMARY KEY (bioprojectAcc, biosampleAcc),
-    FOREIGN KEY(bioprojectAcc) REFERENCES project(bioprojectAcc) ON DELETE CASCADE,
-    FOREIGN KEY(biosampleAcc) REFERENCES sample(biosampleAcc) ON DELETE CASCADE
+    bioprojectId integer NOT NULL,
+    biosampleId integer NOT NULL,
+    PRIMARY KEY (bioprojectId, biosampleId),
+    FOREIGN KEY(bioprojectId) REFERENCES project(bioprojectId) ON DELETE CASCADE,
+    FOREIGN KEY(biosampleId) REFERENCES sample(biosampleId) ON DELETE CASCADE
 );
 
 -- FIXME define values
@@ -131,7 +133,7 @@ CREATE TABLE experiment
 
 CREATE TABLE sampleToExperiment
 (
-    biosampleAcc varchar(20) NOT NULL,
+    biosampleAcc varchar(20) NOT NULL, -- we use accession and not id because we don't have relation BioSample/SRA using IDs in files
     sraAcc varchar(20) NOT NULL,
     PRIMARY KEY (biosampleAcc, sraAcc),
     FOREIGN KEY(biosampleAcc) REFERENCES sample(biosampleAcc) ON DELETE CASCADE,
@@ -146,9 +148,9 @@ CREATE TABLE recommendation
 
 CREATE TABLE sampleToRecommendation
 (
-    biosampleAcc varchar(20) NOT NULL,
+    biosampleId integer NOT NULL,
     recommendationId integer NOT NULL,
-    PRIMARY KEY (biosampleAcc, recommendationId),
-    FOREIGN KEY(biosampleAcc) REFERENCES sample(biosampleAcc) ON DELETE CASCADE,
+    PRIMARY KEY (biosampleId, recommendationId),
+    FOREIGN KEY(biosampleId) REFERENCES sample(biosampleId) ON DELETE CASCADE,
     FOREIGN KEY(recommendationId) REFERENCES recommendation(id) ON DELETE CASCADE
 );

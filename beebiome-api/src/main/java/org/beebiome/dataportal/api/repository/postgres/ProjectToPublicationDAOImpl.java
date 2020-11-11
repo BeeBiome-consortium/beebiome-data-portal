@@ -17,8 +17,8 @@ public class ProjectToPublicationDAOImpl implements ProjectToPublicationDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "INSERT INTO projectToPublication(bioprojectAcc, publicationAcc) " +
-            "VALUES (:bioprojectAcc, :publicationAcc) " +
+    private final String INSERTION_SQL = "INSERT INTO projectToPublication(bioprojectId, publicationAcc) " +
+            "VALUES (:bioprojectId, :publicationAcc) " +
             "ON CONFLICT DO NOTHING";
 
 
@@ -31,7 +31,7 @@ public class ProjectToPublicationDAOImpl implements ProjectToPublicationDAO {
         KeyHolder holder = new GeneratedKeyHolder();
 
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("bioprojectAcc", to.getBioprojectAcc())
+                .addValue("bioprojectId", to.getBioprojectId())
                 .addValue("publicationAcc", to.getPublicationAcc());
 
         template.update(INSERTION_SQL, param, holder);

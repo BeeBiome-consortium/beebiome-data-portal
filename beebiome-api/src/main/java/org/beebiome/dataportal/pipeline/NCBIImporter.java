@@ -105,6 +105,7 @@ public class NCBIImporter {
         Set<InputStream> sraFiles = new HashSet<>();
         Set<InputStream> taxonomyFiles = new HashSet<>();
         Set<InputStream> biosampleToNuccoreFiles = new HashSet<>();
+        Set<InputStream> biosampleToBioprojectFiles = new HashSet<>();
         
         for (FileInfo f : fileInfos) {
             if (f.getName().matches(".*_bioproject\\.*[0-9]*\\.xml")) {
@@ -117,19 +118,22 @@ public class NCBIImporter {
                 taxonomyFiles.add(f.getInputStream());
             } else if (f.getName().matches(".*biosample_nuccore\\.*[0-9]*\\.idx")) {
                 biosampleToNuccoreFiles.add(f.getInputStream());
+            } else if (f.getName().matches(".*biosample_bioproject\\.*[0-9]*\\.idx")) {
+                biosampleToBioprojectFiles.add(f.getInputStream());
             }
         }
         NCBIImporter importer = new NCBIImporter();
         return log.traceExit(importer.importData(bioprojectFiles, biosampleFiles, sraFiles, taxonomyFiles,
-                biosampleToNuccoreFiles));
+                biosampleToNuccoreFiles, biosampleToBioprojectFiles));
     }
 
     public ImportTO importData(Set<InputStream> bioProjectXMLFiles, Set<InputStream> bioSampleXMLFiles,
                                Set<InputStream> sraXMLFiles, Set<InputStream> taxonomyXMLFiles,
-                               Set<InputStream> biosampleToNuccoreFiles)
+                               Set<InputStream> biosampleToNuccoreFiles, Set<InputStream> biosampleToBioprojectFiles)
             throws JAXBException, IOException {
-        log.traceEntry("Parameters: {}, {}, {}, {}",
-                bioProjectXMLFiles, bioSampleXMLFiles, sraXMLFiles, taxonomyXMLFiles);
+        log.traceEntry("Parameters: {}, {}, {}, {}, {}, {}",
+                bioProjectXMLFiles, bioSampleXMLFiles, sraXMLFiles, taxonomyXMLFiles,
+                biosampleToNuccoreFiles, biosampleToBioprojectFiles);
 
         log.info("Start parsing of files...");
 
@@ -142,6 +146,8 @@ public class NCBIImporter {
         TaxaSetType taxaSet = readTaxonomy(taxonomyXMLFiles);
 
         Map<String, Set<String>> biosampleToNuccore = readIdx(biosampleToNuccoreFiles);
+        
+        Map<String, Set<String>> biosampleToBioproject = readIdx(biosampleToBioprojectFiles);
         
         log.info("Done parsing of files.");
 
@@ -251,6 +257,7 @@ public class NCBIImporter {
 
             Set<String> nuccoreIDs = biosampleToNuccore.get(bioSample.getId());
             sampleTOs.add(new SampleTO(
+                    Integer.valueOf(bioSample.getId()),
                     bioSample.getAccession(),
                     bioSample.getPackage().getValue(),
                     geoLocationId,
@@ -266,8 +273,10 @@ public class NCBIImporter {
         Set<String> validBiosampleAccs = sampleTOs.stream()
                 .map(SampleTO::getBiosampleAcc)
                 .collect(Collectors.toSet());
+        Set<Integer> validBiosampleIds = sampleTOs.stream()
+                .map(SampleTO::getBiosampleId)
+                .collect(Collectors.toSet());
 
-        Set<ProjectToSampleTO> projectToSampleTOs = new HashSet<>();
         Set<SampleToExperimentTO> sampleToExperimentTOs = new HashSet<>();
         Set<ExperimentTO> experimentTOs = new HashSet<>();
         Set<String> rejectedExperiments = new HashSet<>();
@@ -326,21 +335,22 @@ public class NCBIImporter {
                     libraryDescriptor.getLIBRARYSOURCE().value());
             experimentTOs.add(experimentTO);
 
-            Set<String> bioProjectAccs = experiment.getStudyType().getIDENTIFIERS().getEXTERNALID().stream()
-                    .filter(id -> "BioProject".equals(id.getNamespace()))
-                    .map(id -> id.getValue())
-                    .collect(Collectors.toSet());
             for (String biosampleAcc : experimentBiosampleAccs) {
-                for (String bioProjectAcc : bioProjectAccs) {
-                    projectToSampleTOs.add(new ProjectToSampleTO(bioProjectAcc, biosampleAcc));
-                }
                 sampleToExperimentTOs.add(new SampleToExperimentTO(biosampleAcc, experimentTO.getSraAcc()));
             }
         }
         logList(rejectedExperiments, "rejected experiments due to the absence of valid BioSampleAcc");
-
-        Set<String> validBioProjectAccs = projectToSampleTOs.stream()
-                .map(ProjectToSampleTO::getBioprojectAcc)
+        
+        Set<ProjectToSampleTO> projectToSampleTOs = biosampleToBioproject.entrySet().stream()
+                .filter(e -> validBiosampleIds.contains(Integer.valueOf(e.getKey())))
+                .map(e -> e.getValue().stream()
+                        .map(bp -> new ProjectToSampleTO(Integer.valueOf(bp), Integer.valueOf(e.getKey())))
+                        .collect(Collectors.toSet()))
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+        
+        Set<Integer> validBioProjectIds = projectToSampleTOs.stream()
+                .map(ProjectToSampleTO::getBioprojectId)
                 .collect(Collectors.toSet());
 
         Set<ProjectTO> projectTOs = new HashSet<>();
@@ -350,19 +360,8 @@ public class NCBIImporter {
         for (DocumentSummary documentSummary : recordSet.getDocumentSummaries()) {
             Project p = documentSummary.getProject();
             String bioprojectAcc = p.getProjectID().getArchiveID().getAccession();
-            if (p.getProjectDescr().getLocusTagPrefix() != null) {
-                // here we try to retrieve more links between bioproject and biosample
-                Set<String> validBiosamplesInPrefixes = p.getProjectDescr().getLocusTagPrefix().stream()
-                        .map(prefix -> prefix.getBiosampleId())
-                        .distinct()
-                        .filter(validBiosampleAccs::contains)
-                        .collect(Collectors.toSet());
-                if (!validBiosamplesInPrefixes.isEmpty()) {
-                    for (String bsAcc : validBiosamplesInPrefixes) {
-                        projectToSampleTOs.add(new ProjectToSampleTO(bioprojectAcc, bsAcc));
-                    }
-                }
-            } else if (!validBioProjectAccs.contains(bioprojectAcc)) {
+            Integer bioprojectId = p.getProjectID().getArchiveID().getId().intValue();
+            if (!validBioProjectIds.contains(bioprojectId)) {
                 rejectedProjects.add(bioprojectAcc);
                 continue;
             }
@@ -372,7 +371,9 @@ public class NCBIImporter {
             LocalDate submittedDate = getLocalDate(s.getSubmitted());
             LocalDate lastUpdateDate = getLocalDate(s.getLastUpdate());
 
-            projectTOs.add(new ProjectTO(bioprojectAcc,
+            projectTOs.add(new ProjectTO(
+                    bioprojectId,
+                    bioprojectAcc,
                     p.getProjectDescr().getTitle(),
                     p.getProjectDescr().getDescription(),
                     submittedDate,
@@ -386,7 +387,7 @@ public class NCBIImporter {
 
             for (TypePublication pub : p.getProjectDescr().getPublication()) {
                 publicationTOs.add(new PublicationTO(pub.getId(), pub.getDbType()));
-                projectToPublicationTOs.add(new ProjectToPublicationTO(bioprojectAcc, pub.getId()));
+                projectToPublicationTOs.add(new ProjectToPublicationTO(bioprojectId, pub.getId()));
             }
         }
         logList(rejectedProjects, "rejected projects due to the absence in samples");
@@ -397,7 +398,7 @@ public class NCBIImporter {
                 publicationTOs, projectTOs, projectToPublicationTOs, biosamplePackageTOs,
                 //                recommendationTOs,
                 sampleTOs, projectToSampleTOs,
-                //                sampleToRecommendationTOs, sampleToNucleotide, 
+                //                sampleToRecommendationTOs, 
                 experimentTOs, sampleToExperimentTOs));
     }
 

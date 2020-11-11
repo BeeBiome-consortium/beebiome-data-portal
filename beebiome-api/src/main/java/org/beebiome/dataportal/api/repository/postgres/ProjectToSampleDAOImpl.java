@@ -17,8 +17,8 @@ public class ProjectToSampleDAOImpl implements ProjectToSampleDAO {
     
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "INSERT INTO projectToSample(bioprojectAcc, biosampleAcc) " +
-            "VALUES (:bioprojectAcc, :biosampleAcc) " +
+    private final String INSERTION_SQL = "INSERT INTO projectToSample(bioprojectId, biosampleId) " +
+            "VALUES (:bioprojectId, :biosampleId) " +
             "ON CONFLICT DO NOTHING";
 
     public ProjectToSampleDAOImpl(NamedParameterJdbcTemplate template) {
@@ -31,8 +31,8 @@ public class ProjectToSampleDAOImpl implements ProjectToSampleDAO {
         KeyHolder holder = new GeneratedKeyHolder();
 
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("bioprojectAcc", to.getBioprojectAcc())
-                .addValue("biosampleAcc", to.getBiosampleAcc());
+                .addValue("bioprojectId", to.getBioprojectId())
+                .addValue("biosampleId", to.getBiosampleId());
 
         template.update(INSERTION_SQL, param, holder);
     }

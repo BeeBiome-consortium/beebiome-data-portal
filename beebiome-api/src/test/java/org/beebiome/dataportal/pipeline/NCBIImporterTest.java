@@ -3,6 +3,7 @@ package org.beebiome.dataportal.pipeline;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.beebiome.dataportal.api.repository.dt.ImportTO;
+import org.beebiome.dataportal.api.repository.dt.ProjectToSampleTO;
 import org.beebiome.dataportal.api.repository.dt.SampleTO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,7 +30,8 @@ public class NCBIImporterTest {
                 this.getInputStream("Bombus_impatiens_biosample.xml"),
                 this.getInputStream("Bombus_impatiens_sra.xml"),
                 this.getInputStream("Bombus_impatiens_taxonomy.xml"),
-                this.getInputStream("Bombus_impatiens_biosample_nuccore.idx"));
+                this.getInputStream("Bombus_impatiens_biosample_nuccore.idx"),
+                this.getInputStream("Bombus_impatiens_biosample_bioproject.idx"));
 
         Assert.assertFalse("Should not be saved because there is no host in attributes",
                 isInBiosampleTOs(importTO, "SAMN02316836"));
@@ -51,6 +54,13 @@ public class NCBIImporterTest {
                 .filter(sampleTO -> sampleTO.getNucleotideCount() > 0)
                 .collect(Collectors.toSet());
         Assert.assertEquals("Should find only one sample with nucleotide", 1, sampleWithNucleotide.size());
+
+        Assert.assertEquals("Should find only one sample with nucleotide",
+                new HashSet<>(Arrays.asList(
+                        new ProjectToSampleTO(224116,5179609),
+                        new ProjectToSampleTO(323464, 5179609))), 
+                importTO.getProjectToSampleTOs());
+
     }
 
     private boolean isInBiosampleTOs(ImportTO importTO, String biosampleAcc) {

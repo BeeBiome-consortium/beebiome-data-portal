@@ -17,10 +17,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "INSERT INTO project(bioprojectAcc, title, description, " +
-            "submissionDate, updateDate, submittingOrganizationName, " +
+    private final String INSERTION_SQL = "INSERT INTO project(bioprojectId, bioprojectAcc, title, " +
+            "description, submissionDate, updateDate, submittingOrganizationName, " +
             "grantId, grantTitle, grantAgency) " +
-            "VALUES (:bioprojectAcc, :title, :description, " +
+            "VALUES (:bioprojectId, :bioprojectAcc, :title, :description, " +
             ":submissionDate, :updateDate, :submittingOrganizationName, " +
             ":grantId, :grantTitle, :grantAgency) " +
             "ON CONFLICT DO NOTHING";
@@ -35,6 +35,7 @@ public class ProjectDAOImpl implements ProjectDAO {
         KeyHolder holder = new GeneratedKeyHolder();
 
         SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("bioprojectId", to.getBioprojectId())
                 .addValue("bioprojectAcc", to.getBioprojectAcc())
                 .addValue("title", to.getTitle())
                 .addValue("description", to.getDescription())

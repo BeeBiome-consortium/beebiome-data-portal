@@ -19,7 +19,6 @@ public class ImportTO {
     private final Set<SampleTO> sampleTOs;
     private final Set<ProjectToSampleTO> projectToSampleTOs;
     //    private final Set<SampleToRecommendationTO> sampleToRecommendationTOs;
-    //    private final Set<SampleToNucleotideTO> sampleToNucleotideTOs;
     private final Set<ExperimentTO> experimentTOs;
     private final Set<SampleToExperimentTO> sampleToExperimentTOs;
 

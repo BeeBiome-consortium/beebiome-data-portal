@@ -3,16 +3,16 @@ package org.beebiome.dataportal.api.repository.dt;
 import java.util.Objects;
 
 public class SampleToRecommendationTO {
-    private final String biosampleAcc;
+    private final Integer biosampleId;
     private final String recommendationId;
 
-    public SampleToRecommendationTO(String biosampleAcc, String recommendationId) {
-        this.biosampleAcc = biosampleAcc;
+    public SampleToRecommendationTO(Integer biosampleId, String recommendationId) {
+        this.biosampleId = biosampleId;
         this.recommendationId = recommendationId;
     }
 
-    public String getBiosampleAcc() {
-        return biosampleAcc;
+    public Integer getBiosampleId() {
+        return biosampleId;
     }
 
     public String getRecommendationId() {
@@ -24,12 +24,12 @@ public class SampleToRecommendationTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SampleToRecommendationTO that = (SampleToRecommendationTO) o;
-        return Objects.equals(biosampleAcc, that.biosampleAcc) &&
+        return Objects.equals(biosampleId, that.biosampleId) &&
                 Objects.equals(recommendationId, that.recommendationId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(biosampleAcc, recommendationId);
+        return Objects.hash(biosampleId, recommendationId);
     }
 }

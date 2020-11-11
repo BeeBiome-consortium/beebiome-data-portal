@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class ProjectTO {
 
+    private final Integer bioprojectId;
     private final String bioprojectAcc;
     private final String title;
     private final String description;
@@ -15,13 +16,10 @@ public class ProjectTO {
     private final String grantTitle;
     private final String grantAgency;
 
-    public ProjectTO(String bioprojectAcc) {
-        this(bioprojectAcc, null, null, null, null, null, null, null, null);
-    }
-
-    public ProjectTO(String bioprojectAcc, String title, String description,
+    public ProjectTO(Integer bioprojectId, String bioprojectAcc, String title, String description,
                      LocalDate submissionDate, LocalDate updateDate, String submittingOrganizationName,
                      String grantId, String grantTitle, String grantAgency) {
+        this.bioprojectId = bioprojectId;
         this.bioprojectAcc = bioprojectAcc;
         this.title = title;
         this.description = description;
@@ -31,6 +29,10 @@ public class ProjectTO {
         this.grantId = grantId;
         this.grantTitle = grantTitle;
         this.grantAgency = grantAgency;
+    }
+
+    public Integer getBioprojectId() {
+        return bioprojectId;
     }
 
     public String getBioprojectAcc() {
@@ -74,11 +76,11 @@ public class ProjectTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectTO projectTO = (ProjectTO) o;
-        return Objects.equals(bioprojectAcc, projectTO.bioprojectAcc);
+        return Objects.equals(bioprojectId, projectTO.bioprojectId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bioprojectAcc);
+        return Objects.hash(bioprojectId);
     }
 }

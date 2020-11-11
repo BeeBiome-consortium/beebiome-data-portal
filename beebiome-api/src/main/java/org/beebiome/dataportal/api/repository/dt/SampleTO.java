@@ -3,7 +3,8 @@ package org.beebiome.dataportal.api.repository.dt;
 import java.util.Objects;
 
 public class SampleTO {
-    
+
+    private final Integer biosampleId;
     private final String biosampleAcc;
     private final String biosamplePackageId;
     private final String locationId;
@@ -12,9 +13,10 @@ public class SampleTO {
     private final String collectionDate;
     private final Integer nucleotideCount;
 
-    public SampleTO(String biosampleAcc, String biosamplePackageId, String locationId,
+    public SampleTO(Integer biosampleId, String biosampleAcc, String biosamplePackageId, String locationId,
                     Integer speciesId, Integer hostSpeciesId, String collectionDate,
                     Integer nucleotideCount) {
+        this.biosampleId = biosampleId;
         this.biosampleAcc = biosampleAcc;
         this.biosamplePackageId = biosamplePackageId;
         this.locationId = locationId;
@@ -22,6 +24,10 @@ public class SampleTO {
         this.hostSpeciesId = hostSpeciesId;
         this.collectionDate = collectionDate;
         this.nucleotideCount = nucleotideCount;
+    }
+
+    public Integer getBiosampleId() {
+        return biosampleId;
     }
 
     public String getBiosampleAcc() {
@@ -57,11 +63,11 @@ public class SampleTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SampleTO sampleTO = (SampleTO) o;
-        return Objects.equals(biosampleAcc, sampleTO.biosampleAcc);
+        return Objects.equals(biosampleId, sampleTO.biosampleId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(biosampleAcc);
+        return Objects.hash(biosampleId);
     }
 }

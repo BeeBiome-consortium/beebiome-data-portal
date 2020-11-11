@@ -17,8 +17,8 @@ public class SampleToRecommendationDAOImpl implements SampleToRecommendationDAO 
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "INSERT INTO sampleToRecommendation(biosampleAcc, recommendationId) " +
-            "VALUES (:biosampleAcc, :recommendationId) " +
+    private final String INSERTION_SQL = "INSERT INTO sampleToRecommendation(biosampleId, recommendationId) " +
+            "VALUES (:biosampleId, :recommendationId) " +
             "ON CONFLICT DO NOTHING";
 
     public SampleToRecommendationDAOImpl(NamedParameterJdbcTemplate template) {
@@ -31,7 +31,7 @@ public class SampleToRecommendationDAOImpl implements SampleToRecommendationDAO 
         KeyHolder holder = new GeneratedKeyHolder();
 
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("biosampleAcc", to.getBiosampleAcc())
+                .addValue("biosampleId", to.getBiosampleId())
                 .addValue("recommendationId", to.getRecommendationId());
 
         template.update(INSERTION_SQL, param, holder);

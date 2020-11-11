@@ -12,10 +12,6 @@ public class PublicationTO {
     private final String accession;
     private final String source;
 
-    public PublicationTO(String accession) {
-        this(accession, null);
-    }
-
     public PublicationTO(String accession, String source) {
         this.accession = accession;
         this.source = source;

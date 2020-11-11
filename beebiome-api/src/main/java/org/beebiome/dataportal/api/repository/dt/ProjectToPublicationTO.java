@@ -4,16 +4,16 @@ import java.util.Objects;
 
 public class ProjectToPublicationTO {
     
-    private final String bioprojectAcc;
+    private final Integer bioprojectId;
     private final String publicationAcc;
 
-    public ProjectToPublicationTO(String bioprojectAcc, String publicationAcc) {
-        this.bioprojectAcc = bioprojectAcc;
+    public ProjectToPublicationTO(Integer bioprojectId, String publicationAcc) {
+        this.bioprojectId = bioprojectId;
         this.publicationAcc = publicationAcc;
     }
 
-    public String getBioprojectAcc() {
-        return bioprojectAcc;
+    public Integer getBioprojectId() {
+        return bioprojectId;
     }
 
     public String getPublicationAcc() {
@@ -25,12 +25,12 @@ public class ProjectToPublicationTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectToPublicationTO that = (ProjectToPublicationTO) o;
-        return Objects.equals(bioprojectAcc, that.bioprojectAcc) &&
+        return Objects.equals(bioprojectId, that.bioprojectId) &&
                 Objects.equals(publicationAcc, that.publicationAcc);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bioprojectAcc, publicationAcc);
+        return Objects.hash(bioprojectId, publicationAcc);
     }
 }

@@ -19,8 +19,8 @@ SELECT s.biosampleAcc AS biosampleAcc,
        s.nucleotideCount AS nucleotideCount
 
 FROM sample s
-         INNER JOIN projectToSample ps ON (ps.biosampleAcc = s.biosampleAcc)
-         INNER JOIN project p ON (p.bioprojectAcc = ps.bioprojectAcc)
+         INNER JOIN projectToSample ps ON (ps.biosampleId = s.biosampleId)
+         INNER JOIN project p ON (p.bioprojectId = ps.bioprojectId)
          INNER JOIN species sp ON (sp.id = s.speciesId)
          INNER JOIN species h ON (h.id = s.hostSpeciesId)
          LEFT JOIN sampleToExperiment se ON (se.biosampleAcc = s.biosampleAcc)
@@ -28,5 +28,5 @@ FROM sample s
          LEFT JOIN biosamplePackage bp ON (bp.id = s.biosamplePackageId)
          LEFT JOIN location l ON (l.id = s.locationId)
 
-GROUP BY s.biosampleAcc, p.bioprojectAcc, bp.id, sp.id, h.id, l.name, s.collectionDate
+GROUP BY s.biosampleId, p.bioprojectId, bp.id, sp.id, h.id, l.name, s.collectionDate
 );

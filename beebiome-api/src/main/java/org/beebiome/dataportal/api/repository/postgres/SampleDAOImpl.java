@@ -17,9 +17,9 @@ public class SampleDAOImpl implements SampleDAO {
 
     NamedParameterJdbcTemplate template;
 
-    private final String INSERTION_SQL = "INSERT INTO sample(biosampleAcc, biosamplePackageId, locationId, " +
-            "speciesId, hostSpeciesId, collectionDate, nucleotideCount) " +
-            "VALUES (:biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
+    private final String INSERTION_SQL = "INSERT INTO sample(biosampleId, biosampleAcc, biosamplePackageId, " +
+            "locationId, speciesId, hostSpeciesId, collectionDate, nucleotideCount) " +
+            "VALUES (:biosampleId, :biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
             ":hostSpeciesId, :collectionDate, :nucleotideCount) " +
             "ON CONFLICT DO NOTHING";
 
@@ -33,6 +33,7 @@ public class SampleDAOImpl implements SampleDAO {
         KeyHolder holder = new GeneratedKeyHolder();
 
         SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("biosampleId", to.getBiosampleId())
                 .addValue("biosampleAcc", to.getBiosampleAcc())
                 .addValue("biosamplePackageId", to.getBiosamplePackageId())
                 .addValue("locationId", to.getLocationId())
