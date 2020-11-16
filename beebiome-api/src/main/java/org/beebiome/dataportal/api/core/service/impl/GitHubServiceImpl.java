@@ -16,21 +16,22 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class GitHubServiceImpl implements GitHubService {
 
-    // GitHub properties set to default values
+    // GitHub properties default values.
+    // They can be overrided by using application.properties file (see @Value of each setter method).
     private String githubRepository = "BeeBiome-consortium/beebiome-data-portal";
     private String githubBranch = "master";
     private String githubDocsDirectory = "beebiome-docs";
+    private String githubToken = null;
 
-    // FIXME: anonymous calls are limited to 60 calls per hour
     /**
      * Connects anonymously if token is not defined
      */
     private GitHub getGitHubConnection() throws IOException {
-//        if (githubToken == null || "undefined".equalsIgnoreCase(githubToken)) {
+        if (githubToken == null || "undefined".equalsIgnoreCase(githubToken)) {
             return GitHub.connectAnonymously();
-//        } else {
-//            return GitHub.connectUsingOAuth(githubToken);
-//        }
+        } else {
+            return GitHub.connectUsingOAuth(githubToken);
+        }
     }
 
     @Value("${github.repository}")
@@ -46,6 +47,11 @@ public class GitHubServiceImpl implements GitHubService {
     @Value("${github.docs.directory}")
     public void setGithubDocsDirectory(String githubDocsDirectory) {
         this.githubDocsDirectory = githubDocsDirectory;
+    }
+
+    @Value("${github.token}")
+    public void setGithubToken(String githubToken) {
+        this.githubToken = githubToken;
     }
 
     @Override
