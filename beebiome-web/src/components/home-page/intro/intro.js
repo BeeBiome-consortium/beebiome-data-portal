@@ -4,9 +4,8 @@ export default function Intro() {
     return (
         <section className="beebiome-introduction">
             <h2>BeeBiome</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Sed non risus. Suspendisse lectus tortor, dignissim sit amet,
-                adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.</p>
+            <p>BeeBiome Data Portal is a resource providing a comprehensive catalogue of 
+                currently available sequence datasets about bee-associated microbes and virus.</p>
         </section>
     );
 }
