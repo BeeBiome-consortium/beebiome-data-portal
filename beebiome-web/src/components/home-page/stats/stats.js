@@ -29,11 +29,12 @@ export default class Stats extends React.Component {
     render() {
         let text = "";
         if (this.state.isLoaded) {
-            text = "BeeBiome contains " + this.state.data.sampleCount + " BioSamples (unique entries), " +
+            let tmp = "BeeBiome contains " + this.state.data.sampleCount + " BioSamples (unique entries), " +
                 "encompassing " + this.state.data.projectCount + " Bioprojects " +
                 "and " + this.state.data.experimentCount + " SRA experiments. " +
                 "This represents data for " + this.state.data.hostCount + " Apoidea hosts. " +
                 "If you use our data, please note the date of access, as data can change."
+            text = <p>{tmp}</p>
         } else if (this.state.errorMessage !== null) {
             text = <p>{this.state.errorMessage}</p>
         } else {
@@ -43,7 +44,7 @@ export default class Stats extends React.Component {
         return (
             <section className="beebiome-stats">
                 <h2>Statistics</h2>
-                <p>{text}</p>
+                {text}
             </section>
         );
     }
