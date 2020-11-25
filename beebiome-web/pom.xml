@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <npm.output.directory>build</npm.output.directory>
-        <router.base.name>alpha</router.base.name>
+        <router.base.name>beta</router.base.name>
     </properties>
 
     <build>
