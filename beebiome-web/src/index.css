@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+}
+
+#beebiome-body {
+  margin-top: 55px;
+  font-size: 0.9em;
+  margin-bottom: 40px;
+}
+
+#beebiome-body h1, #beebiome-body h2, #beebiome-body h3 {
+  font-weight: bold;
+}
+#beebiome-body h1 {
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+#beebiome-body h2 {
+  margin: 1em 0 1em 0;
+  font-size: 1.2em;
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 2px #F5AC3A solid; /* Set color for browsers that do not support gradients */
+  border-image: linear-gradient(to right, #F5AC3A 70%, rgba(146, 2, 9, 0));
+  border-image-slice: 1;
+}
+#beebiome-body h3 {
+  font-size: 1.1em;
+  margin: 2em 0 1em 0;
+}
+#beebiome-body h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 2em 0 1em 0;
+}
+#beebiome-body h5 {
+  font-size: 1em;
+  margin: 1em 0 1em 0;
+}
+
+#beebiome-body .CookieConsent {
+  z-index: 1040 !important;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Beta ribbon */
+body:after, .beebiome-logo:after {
+  z-index: 10000;
+  content: "beta";
+  position: fixed;
+  width: 100px;
+  height: 25px;
+  background: darkred;
+  top: 12px;
+  right: -23px;
+  text-align: center;
+  font-size: 13px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  line-height: 26px;
+  transform:rotate(45deg);
+}
