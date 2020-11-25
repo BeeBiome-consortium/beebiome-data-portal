@@ -46,3 +46,23 @@ body {
   z-index: 1040 !important;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+/* Beta ribbon */
+body:after, .beebiome-logo:after {
+  z-index: 10000;
+  content: "beta";
+  position: fixed;
+  width: 100px;
+  height: 25px;
+  background: darkred;
+  top: 12px;
+  right: -23px;
+  text-align: center;
+  font-size: 13px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  line-height: 26px;
+  transform:rotate(45deg);
+}
