@@ -58,7 +58,14 @@ const isLocalhost = Boolean(
         /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
 );
-ReactGA.initialize("UA-180272382-1", {testMode: isLocalhost});
+ReactGA.initialize("UA-180272382-1", {
+    testMode: isLocalhost,
+    gaOptions: {
+        cookieFlags: "SameSite=None; Secure",
+        cookieExpires: "7200"
+    }
+});
+
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 // If you want your app to work offline and load faster, you can change
