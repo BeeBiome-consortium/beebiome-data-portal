@@ -40,7 +40,6 @@ function Header() {
                                role="button" aria-haspopup="true" aria-expanded="false">About</a>
                             <div className="dropdown-menu">
                                 <Link to="/about/data-portal" className="dropdown-item">BeeBiome data portal</Link>
-                                <Link to="/about/consortium" className="dropdown-item">BeeBiome consortium</Link>
                                 <Link to="/about/citing-beebiome" className="dropdown-item">Citing us</Link>
                                 <Link to="/about/privacy-notice" className="dropdown-item">Privacy notice</Link>
                             </div>
