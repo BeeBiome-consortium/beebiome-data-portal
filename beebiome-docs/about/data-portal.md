@@ -12,4 +12,4 @@ Beebiome Data portal is developed by :
 
 ## Funding source
 BeeBiome Data Portal received funding from the [Dr. Eva Crane Trust](https://www.evacranetrust.org/page/eva-crane) for its development.  
-![Eva Crane logo](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/master/beebiome-docs/about/assets/eva_crane_logo.png)
+![Eva Crane logo](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/eva_crane_logo.png)
