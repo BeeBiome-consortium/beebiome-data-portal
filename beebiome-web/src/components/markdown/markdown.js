@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './markdown.css';
 import Markdown from 'markdown-to-jsx';
 import ReactGA from "react-ga";
+import Notfound from "../notfound";
 
 export default class MarkdownPage extends Component {
     
@@ -24,8 +25,6 @@ export default class MarkdownPage extends Component {
                 // FIXME manage catched error
                 console.log('Fetch data: failed', error)
             });
-
-        
     }
 
     componentDidUpdate() {
@@ -42,9 +41,16 @@ export default class MarkdownPage extends Component {
     }
     
     render() {
-        return (
-            <div className={'row'}>
-                <Markdown className={'col-sm-10 offset-sm-1'}>{this.state.content}</Markdown>
-            </div>);
+        let text = "";
+        if (this.state.content != null && this.state.content !== ''
+                && !this.state.content.includes("BeebiomeException")) {
+            text =
+                <div className={'row'}>
+                    <Markdown className={'col-sm-10 offset-sm-1'}>{this.state.content}</Markdown>
+                </div>
+        } else {
+            text = <Notfound />
+        }
+        return <div>{text}</div>
     }
 }
