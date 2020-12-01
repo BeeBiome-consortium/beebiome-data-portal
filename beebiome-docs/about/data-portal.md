@@ -7,7 +7,7 @@ BeeBiome Data Portal is a resource for scientists and the general public on bee-
 ## Who are we?
 Beebiome Data portal is developed by :  
 - [The Engel lab](https://engelbeelab.com/) at the University of Lausanne;  
-- [The Evolutionary Bioinformatics group](https://bioinfo.unil.ch/) at the University of Lausanne;  
+- [The Evolutionary Bioinformatics group](https://bioinfo.unil.ch/) at the University of Lausanne and the SIB Swiss Institute of Bioinformatics;  
 - [The Swiss Bee Research Centre](https://www.agroscope.admin.ch/agroscope/en/home/topics/livestock/bees.html) belongs to Agroscope.  
 
 ## Funding source
