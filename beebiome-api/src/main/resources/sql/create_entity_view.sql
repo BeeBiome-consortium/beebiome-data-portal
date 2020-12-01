@@ -28,5 +28,8 @@ FROM sample s
          LEFT JOIN biosamplePackage bp ON (bp.id = s.biosamplePackageId)
          LEFT JOIN location l ON (l.id = s.locationId)
 
+WHERE se.biosampleAcc IS NOT NULL 
+AND e.sraAcc IS NOT NULL
+
 GROUP BY s.biosampleId, p.bioprojectId, bp.id, sp.id, h.id, l.name, s.collectionDate
 );
