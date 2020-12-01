@@ -1,6 +1,6 @@
 # Consortium members
 
-![Consortium members](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/master/beebiome-docs/assets/beebiome_consortium_members_2014.jpg)
+![Consortium members](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/beebiome_consortium_members_2014.jpg)
 First picture of the beebiome consortium gathered at Nescent in Durham, NC, US in 2014
 
 ## Coordination team
