@@ -15,7 +15,7 @@ export default class MarkdownPage extends Component {
     componentDidMount() {
         ReactGA.pageview(window.location.pathname + window.location.search);
 
-        fetch(process.env.REACT_APP_API_URL + "/contents/" + this.props.location.pathname)
+        fetch(process.env.REACT_APP_API_URL + "contents/" + this.props.location.pathname)
             .then(results => { return results.text()} )
             .then(text => {
                 this.setState({content: text});
