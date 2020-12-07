@@ -27,7 +27,7 @@ public class GitHubServiceImpl implements GitHubService {
      * Connects anonymously if token is not defined
      */
     private GitHub getGitHubConnection() throws IOException {
-        if (githubToken == null || "undefined".equalsIgnoreCase(githubToken)) {
+        if (StringUtils.isEmpty(githubToken) || "undefined".equalsIgnoreCase(githubToken)) {
             return GitHub.connectAnonymously();
         } else {
             return GitHub.connectUsingOAuth(githubToken);
@@ -63,7 +63,9 @@ public class GitHubServiceImpl implements GitHubService {
 
             String branch = StringUtils.isNotBlank(this.githubBranch) ? this.githubBranch : "master";
             
-            return IOUtils.toString(repo.getFileContent(filename, branch).read(), StandardCharsets.UTF_8);
+            String fileContent = IOUtils.toString(repo.getFileContent(filename, branch).read(), StandardCharsets.UTF_8);
+            
+            return fileContent.replaceAll("\\$\\{GITHUB_BRANCH\\}", githubBranch);
 
         } catch (IOException e) {
             throw new BeebiomeException("GitHub page not available, sorry for the inconvenience", e);

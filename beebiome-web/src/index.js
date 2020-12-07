@@ -26,6 +26,7 @@ const routing = (
             <Route path='/wiki/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route exact path="/about/privacy-notice" component={PrivacyNotice} />
             <Route path="/about/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
+            <Route path="/consortium/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route component={Notfound} />
         </Switch>
         <Footer />

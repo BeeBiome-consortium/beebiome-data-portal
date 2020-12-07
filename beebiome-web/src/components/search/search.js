@@ -67,7 +67,7 @@ class Search extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-row align-items-center">
                                     <div className="col-auto">
-                                        <label htmlFor={'sampleId'} className="col-form-label mr-3">Sample ID</label>
+                                        <label htmlFor={'sampleId'} className="col-form-label mr-3">BioSample accession</label>
                                         <input id='sampleId' className="mr-3" type="text"
                                                onChange={(e) => {
                                                    this.handleChange('sampleId', e.target.value) }} />
