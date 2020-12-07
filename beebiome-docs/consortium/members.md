@@ -1,13 +1,13 @@
 # Consortium members
 
+Here is the first picture of the BeeBiome consortium gathered at Nescent in Durham, NC, US in 2014:
 ![Consortium members](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/beebiome_consortium_members_2014.jpg)
-First picture of the beebiome consortium gathered at Nescent in Durham, NC, US in 2014
 
 ## Coordination team
 
 The coordination team is composed of Benjamin Dainat, Jay D Evans, Philipp Engel, Joachim de Miranda and Vincent Doublet (further details in contact).
 
-## Currently we have 42 members in our consortium!
+## Currently, we have 42 members in our consortium!
 
 Name | Affiliation
 - | -

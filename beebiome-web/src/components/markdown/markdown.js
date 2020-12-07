@@ -45,7 +45,7 @@ export default class MarkdownPage extends Component {
         if (this.state.content != null && this.state.content !== ''
                 && !this.state.content.includes("BeebiomeException")) {
             text =
-                <div className={'row'}>
+                <div className={'row markdown-page'}>
                     <Markdown className={'col-sm-10 offset-sm-1'}>{this.state.content}</Markdown>
                 </div>
         } else {
