@@ -20,13 +20,17 @@ export default class MarkdownPage extends Component {
         this.setState({content: null, errorMessage: null});
 
         fetch(process.env.REACT_APP_API_URL + "/contents" + this.props.location.pathname)
-            .then(results => { return results.text()} )
+            .then(results => {
+                if (!results.ok) {
+                    this.setState({errorMessage: "Fail to get data from BeeBiome API"});
+                    return null;
+                }
+                return results.text()} )
             .then(text => {
                 this.setState({content: text});
             })
             .catch(function(error) {
                 this.setState({errorMessage: error});
-                console.log('Fetch data: failed', error)
             });
     }
 
@@ -44,14 +48,12 @@ export default class MarkdownPage extends Component {
     
     render() {
         let text = "";
-        if (this.state.content != null && this.state.content !== ''
-                && !this.state.content.includes("BeebiomeException")) {
+        if (this.state.errorMessage == null && this.state.content != null) {
             text =
                 <div className={'row markdown-page'}>
                     <Markdown className={'col-sm-10 offset-sm-1'}>{this.state.content}</Markdown>
                 </div>
-        } else if (this.state.errorMessage != null ||
-            this.state.content != null && this.state.content !== '' && this.state.content.includes("BeebiomeException")) {
+        } else if (this.state.errorMessage != null) {
             text = <Notfound />
         }
         return <div>{text}</div>
