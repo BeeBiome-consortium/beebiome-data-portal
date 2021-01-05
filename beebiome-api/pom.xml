@@ -11,7 +11,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<springboot.version>2.1.9.RELEASE</springboot.version>
+		<springboot.version>2.1.18.RELEASE</springboot.version>
 	</properties>
 
 	<dependencies>
