@@ -80,24 +80,36 @@ my $base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 
 #*************************************************************
 #** SCRIPT MAIN BODY *****************************************
-my $doSearch = $ARGV[1];
+printWithTimestamp("Start retrieving of metadata for " . $ARGV[1]);
+my $doSearch = $ARGV[2];
+
 my $batchSize = 500;
 
-my $taxonomy_level = $ARGV[0];
+my $taxonomy_level = $ARGV[1];
 my $taxonomy_level_formatted = $taxonomy_level =~ s/\s/_/rg;
 
-my $folder = "data/" . $taxonomy_level_formatted . "/";
-if (!-d $dir) {
-    printWithTimestamp("Creation of directory " . $folder);
-    mkdir $folder;
+my $datadir = $ARGV[0] . "/" . $taxonomy_level_formatted;
+if (-d $datadir . ".bck") {
+    printWithTimestamp("Remove directory ". $datadir . ".bck");
+    rmdir($datadir . ".bck");
 }
-my $taxonomy_filename = $folder . $taxonomy_level_formatted . "_taxonomy";
-my $sra_filename = $folder . $taxonomy_level_formatted . "_sra";
-my $bioproject_filename = $folder . $taxonomy_level_formatted . "_bioproject";
-my $biosample_filename = $folder . $taxonomy_level_formatted . "_biosample";
-my $biosample_bioproject_filename = $folder . $taxonomy_level_formatted . "_biosample_bioproject";
-my $biosample_sra_filename = $folder . $taxonomy_level_formatted . "_biosample_sra";
-my $biosample_nuccore_filename = $folder . $taxonomy_level_formatted . "_biosample_nuccore";
+if (-d $datadir) {
+    printWithTimestamp("Move directory ". $datadir . " to " . $datadir . ".bck");
+    move($datadir, $datadir . ".bck");
+}
+
+printWithTimestamp("Create directory: " . $datadir);
+mkdir $datadir;
+
+$datadir = $datadir . "/";
+
+my $taxonomy_filename = $datadir . $taxonomy_level_formatted . "_taxonomy";
+my $sra_filename = $datadir . $taxonomy_level_formatted . "_sra";
+my $bioproject_filename = $datadir . $taxonomy_level_formatted . "_bioproject";
+my $biosample_filename = $datadir . $taxonomy_level_formatted . "_biosample";
+my $biosample_bioproject_filename = $datadir . $taxonomy_level_formatted . "_biosample_bioproject";
+my $biosample_sra_filename = $datadir . $taxonomy_level_formatted . "_biosample_sra";
+my $biosample_nuccore_filename = $datadir . $taxonomy_level_formatted . "_biosample_nuccore";
 
 printWithTimestamp("Retrieve taxonomy subtree of $taxonomy_level...");
 $params_taxonomy{db} = "taxonomy";

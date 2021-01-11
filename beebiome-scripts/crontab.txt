@@ -1,0 +1,14 @@
+# mm   hh   DD   MM   dd
+# *    *    *    *    *  command to be executed
+# ┬    ┬    ┬    ┬    ┬
+# │    │    │    │    └───── day of week (0 - 7) (0 or 7 are Sunday, or use names)
+# │    │    │    └────────── month (1 - 12)
+# │    │    └─────────────── day of month (1 - 31)
+# │    └──────────────────── hour (0 - 23)
+# └───────────────────────── min (0 - 59)
+#
+#
+
+MAILTO="beebiome@unil.ch"
+
+00 02 * * 6 cd /home/vrechdel/beebiome-data-portal/beebiome-scripts; ./update-beebiome-db.sh /home/vrechdel/proxy /home/vrechdel/beebiome-data-portal > /home/vrechdel/proxy/logs/update-beebiome-db-`date +\%Y\%m\%d`.log
