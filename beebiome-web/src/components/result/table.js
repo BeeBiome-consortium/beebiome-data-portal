@@ -21,7 +21,7 @@ const columns = [
                 + data + '</a>';
         }
     },
-    { title : 'SRA experiment count', data: 'experimentAccs[, ]',
+    { title : 'SRA experiment entries', data: 'experimentAccs[, ]',
         render: function ( data, type, full ) {
             if (data) {
                 return ' <a href="https://www.ncbi.nlm.nih.gov/sra?term=' + full.biosampleAcc +
@@ -30,7 +30,7 @@ const columns = [
             return '0';
         }
     },
-    { title : 'NCBI Nucleotide db count', data: 'nucleotideCount',
+    { title : 'NCBI Nucleotide entries', data: 'nucleotideCount',
         render: function ( data, type, full ) {
             if (data) {
                 return ' <a href="https://www.ncbi.nlm.nih.gov/nucleotide?term=' + full.biosampleAcc +
