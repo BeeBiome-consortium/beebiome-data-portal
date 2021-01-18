@@ -11,4 +11,4 @@
 
 MAILTO="beebiome@unil.ch"
 
-00 02 * * 6 cd /home/vrechdel/beebiome-data-portal/beebiome-scripts; ./update-beebiome-db.sh /home/vrechdel/proxy /home/vrechdel/beebiome-data-portal > /home/vrechdel/proxy/logs/update-beebiome-db-`date +\%Y\%m\%d`.log
+0 0 1 * * cd /home/beebiome/beebiome-data-portal/beebiome-scripts; ./update-beebiome-db.sh > /home/beebiome/beebiome-update/logs/update-beebiome-db-`date +\%Y\%m\%d`.log
