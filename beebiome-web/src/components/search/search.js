@@ -80,7 +80,7 @@ class Search extends Component {
                             </form>
                         </div>
                         <div className="row">
-                            <div id="search-result" class="col-sm-12">
+                            <div id="search-result">
                                 {result}
                             </div>
                         </div>

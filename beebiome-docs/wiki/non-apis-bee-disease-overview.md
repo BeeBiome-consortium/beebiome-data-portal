@@ -77,3 +77,9 @@ Apicystis bombi | Eukaryota; Alveolata; Apicomplexa; Conoidasida; Gregarinasina;
 Crithidia bombi | Eukaryota; Euglenozoa; Kinetoplastida; Trypanosomatidae; Leishmaniinae; Crithidia | Bombus spp., Andrean vaga, Osmia bicornis | Negative in Bombus | Shykoff and Schmidt-Hempel 1991 (among many others), Ravoet et al. 2014
 Crithidia expoeki | Eukaryota; Euglenozoa; Kinetoplastida; Trypanosomatidae; Leishmaniinae; Crithidia | Bombus spp. | Not known. | Schmid-Hempel and Tognazzo 2010
 Crithidia mellificae | Eukaryota; Euglenozoa; Kinetoplastida; Trypanosomatidae; Leishmaniinae; Crithidia | Vespula squamosa, Osmia bicornis, Osmia cornuta | Unknown | Schwarz et al. 2015, Ravoet et al. 2015
+
+##  Reference
+These data come from supplemental material of:  
+**The Bee Microbiome: Impact on Bee Health and Model for Evolution and Ecology of Host-Microbe Interactions**  
+Engel et al., mBio, 2016; DOI: 10.1128/mBio.02164-15  
+PubMed PMID: [27118586](https://www.ncbi.nlm.nih.gov/pubmed/27118586); PubMed Central PMCID: [PMC4850275](https://europepmc.org/abstract/pmc/pmc4850275).

@@ -49,3 +49,9 @@ Arsenophonus sp. | Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteria
 Wolbachia | Bacteria; Proteobacteria; Alphaproteobacteria; Rickettsiales; Anaplasmataceae; Wolbachieae; Wolbachia | Widespread outside of Apis | unknown | [Gerth et al. 2011](http://dx.doi.org/10.1080/14772000.2011.627953), [McFrederick 2012](http://dx.doi.org/10.1111/j.1365-294x.2012.05496.x), [McFrederick et al. 2014B](https://doi.org/10.1111/1574-6941.12302), Gerth et al. 2015  
 Rickettsia | Bacteria; Proteobacteria; Alphaproteobacteria; Rickettsiales; Rickettsiaceae; Rickettsieae; Rickettsia | Halictidae, Osmia | unknown | [Gerth et al. 2015](http://dx.doi.org/10.1093/femsec/fiv047)  
 Spiroplasma | Bacteria; Tenericutes; Mollicutes; Entomoplasmatales; Spiroplasmataceae; Spiroplasma | Megalopta spp. | unknown | [McFrederick et al. 2014B](https://doi.org/10.1111/1574-6941.12302)
+
+##  Reference
+These data come from supplemental material of:  
+**The Bee Microbiome: Impact on Bee Health and Model for Evolution and Ecology of Host-Microbe Interactions**  
+Engel et al., mBio, 2016; DOI: 10.1128/mBio.02164-15  
+PubMed PMID: [27118586](https://www.ncbi.nlm.nih.gov/pubmed/27118586); PubMed Central PMCID: [PMC4850275](https://europepmc.org/abstract/pmc/pmc4850275).
