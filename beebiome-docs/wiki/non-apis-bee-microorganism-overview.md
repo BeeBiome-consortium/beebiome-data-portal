@@ -76,3 +76,9 @@ Microbe | Taxonomy | Citations (DOI or stable URL if available)
 -- | -- | --  
 Apicystis bombi | Eukaryota; Alveolata; Apicomplexa; Conoidasida; Gregarinasina; Neogregarinorida; Ophryocystidae; Apicystis | [Graystock et al. 2013](http://dx.doi.org/10.1111/1365-2664.12134), Gamboa et al. 2015, [Ravoet et al. 2014](http://dx.doi.org/10.1016/j.jip.2014.08.007)  
 Crithidia bombi | Eukaryota; Euglenozoa; Kinetoplastida; Trypanosomatidae; Leishmaniinae; Crithidia | [Shykoff and Schmidt-Hempel 1991](http://dx.doi.org/10.1007/bf00164387) (among many others), [Ravoet et al. 2014](http://dx.doi.org/10.1016/j.jip.2014.08.007)  
+
+##  Reference
+These data come from supplemental material of:  
+**The Bee Microbiome: Impact on Bee Health and Model for Evolution and Ecology of Host-Microbe Interactions**  
+Engel et al., mBio, 2016; DOI: 10.1128/mBio.02164-15  
+PubMed PMID: [27118586](https://www.ncbi.nlm.nih.gov/pubmed/27118586); PubMed Central PMCID: [PMC4850275](https://europepmc.org/abstract/pmc/pmc4850275).
