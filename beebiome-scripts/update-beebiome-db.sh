@@ -11,10 +11,25 @@ export TAXON_LEVEL="Apoidea" # warning: use underscore to replace spaces such as
 perl $SCRIPT_DIR/retrieve_metadata.pl $OUTPUT_DIR $TAXON_LEVEL 1 > $LOG_DIR/retrieve_beebiome_metadata.$(date "+%Y%m%d-%H%M").log
 
 ## Build option for the curl from file list to be parsed to fill the db
-options=''
-for f in "$OUTPUT_DIR"/"$TAXON_LEVEL"/*; do options="$options -F files=@${f}"; done;
+i=1
+while true
+do
+    options=''
+    fileCount=0
+    for f in "$OUTPUT_DIR"/"$TAXON_LEVEL"/*.$i.*
+    do
+        options="$options -F files=@${f}"
+        fileCount=$((fileCount + 1))
+    done
 
-curl -X POST $options https://beebiome.org/import > $LOG_DIR/save_beebiome_metadata.$(date "+%Y%m%d-%H%M").log
+    if [ $fileCount -eq 1 ]
+    then
+        break;
+    fi
+    options=$options' -F '$TAXON_LEVEL'_taxonomy.xml'
+    curl -X POST $options https://beebiome.org/beebiome/import >> $LOG_DIR/save_beebiome_metadata.$(date "+%Y%m%d-%H%M").log
+    i=$((i + 1))
+done
 
 MAIL="beebiome@unil.ch"
 echo "Dear BeeBiome maintainers,\n\nBeeBiome database has been updated.\n\nThe BeeBiome team" | mailx -s "BeeBiome update" "$MAIL"
