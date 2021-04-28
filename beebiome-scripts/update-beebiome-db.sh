@@ -26,7 +26,7 @@ do
     then
         break;
     fi
-    options=$options' -F '$TAXON_LEVEL'_taxonomy.xml'
+    options=$options' -F files=@'$OUTPUT_DIR'/'$TAXON_LEVEL'/'$TAXON_LEVEL'_taxonomy.xml' 
     curl -X POST $options https://beebiome.org/beebiome/import >> $LOG_DIR/save_beebiome_metadata.$(date "+%Y%m%d-%H%M").log
     i=$((i + 1))
 done
