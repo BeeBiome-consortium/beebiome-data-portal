@@ -359,6 +359,11 @@ public class NCBIImporter {
         Set<String> rejectedProjects = new HashSet<>();
         for (DocumentSummary documentSummary : recordSet.getDocumentSummaries()) {
             Project p = documentSummary.getProject();
+            if (p == null || p.getProjectID() == null || p.getProjectID().getArchiveID() == null 
+                    || p.getProjectID().getArchiveID().getAccession() == null
+                    || p.getProjectID().getArchiveID().getId() == null) {
+                continue;
+            }
             String bioprojectAcc = p.getProjectID().getArchiveID().getAccession();
             Integer bioprojectId = p.getProjectID().getArchiveID().getId().intValue();
             if (!validBioProjectIds.contains(bioprojectId)) {

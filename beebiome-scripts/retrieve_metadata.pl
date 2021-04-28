@@ -180,10 +180,15 @@ printWithTimestamp("Count of found names: " . $name_count);
 printWithTimestamp("Build BioSample queries...");
 my @biosample_queries = buildQueries(%all_names); 
 
+$length = @biosample_queries;
+printWithTimestamp("Number of queries: $length");
+
 my $queryCount = 0;
 foreach my $query (@biosample_queries) {
     
     $queryCount++;
+
+    printWithTimestamp("Start retrieve data for query $queryCount");
 
     printWithTimestamp("Retrieve Biosample IDs...");
     my %biosample_params = ();
@@ -242,7 +247,11 @@ foreach my $query (@biosample_queries) {
         efetch_batch(%biosample_search_result);
     }
     cleanFile(getTmpFileName($biosample_filename, $queryCount));
+
+    printWithTimestamp("End retrieve data for query $queryCount");
 }
+
+printWithTimestamp("End retrieve data.");
 
 #************************************************************
 #** SCRIPT BeeBiome *****************************************
