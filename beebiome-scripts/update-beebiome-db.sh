@@ -6,9 +6,10 @@ export LOG_DIR=$WORK_DIR/logs
 export OUTPUT_DIR=$WORK_DIR/data
 export SCRIPT_DIR=$HOME_DIR/beebiome-data-portal/beebiome-scripts
 export TAXON_LEVEL="Apoidea" # warning: use underscore to replace spaces such as Bombus_impatiens
+export STARTING_TIMEPOINT=$(date "+%Y%m%d-%H%M")
 
 ## Retrieve data from NCBI
-perl $SCRIPT_DIR/retrieve_metadata.pl $OUTPUT_DIR $TAXON_LEVEL 1 > $LOG_DIR/retrieve_beebiome_metadata.$(date "+%Y%m%d-%H%M").log
+perl $SCRIPT_DIR/retrieve_metadata.pl $OUTPUT_DIR $TAXON_LEVEL 1 $STARTING_TIMEPOINT > $LOG_DIR/retrieve_beebiome_metadata.$STARTING_TIMEPOINT.log
 
 ## Build option for the curl from file list to be parsed to fill the db
 i=1
@@ -27,7 +28,7 @@ do
         break;
     fi
     options=$options' -F files=@'$OUTPUT_DIR'/'$TAXON_LEVEL'/'$TAXON_LEVEL'_taxonomy.xml' 
-    curl -X POST $options https://beebiome.org/beebiome/import >> $LOG_DIR/save_beebiome_metadata.$(date "+%Y%m%d-%H%M").log
+    curl -X POST $options https://beebiome.org/beebiome/import >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
     i=$((i + 1))
 done
 
