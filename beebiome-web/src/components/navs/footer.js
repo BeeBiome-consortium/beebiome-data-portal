@@ -11,8 +11,8 @@ class Footer extends React.Component {
                         <ul className="nav navbar-nav navbar-right ml-auto">
                             <li className="nav-item">
                                 {/*<button onClick={displayContactUs} >Perform action</button>*/}
-                                <Obfuscate email={process.env.REACT_APP_CONTACT_MAIL}
-                                           headers={{subject: '[beebiome data  portal] '}}
+                                <Obfuscate email={process.env.REACT_APP_CONTACT_EMAIL}
+                                           headers={{subject: '[beebiome data portal] '}}
                                 >
                                     <p>Contact us</p>
                                 </Obfuscate>

@@ -14,130 +14,79 @@ export default class PrivacyNotice extends Component {
                 <div className={'col-sm-10 offset-sm-1'}>
                     <h1>BeeBiome privacy notice</h1>
 
-                    <p>This privacy notice explains what personal data are collected by the specific service
-                        you are requesting, for what purposes, how they are processed, and how we keep them secure.</p>
+                    <p>The University of Lausanne is committed to the privacy of individuals whose personal data are processed at one time or another for the purpose of their relationship with the University.</p>
+                    <p>Article 15 of the Constitution of the Canton of Vaud (Cst-VD; BLV 101.01) and the cantonal Act of 11 September 2007 on personal data protection (LPrD; BLV 172.65) provide that everyone has the right to protection of their privacy and to be protected from unlawful use of their personal data.</p>
+                    <p>The University of Lausanne complies with these requirements in its capacity as a processor.
+                        As data controller when using BeeBiome, the Department of Fundamental Microbiology of the Faculty of Biology and Medicine of UNIL respects these prerogatives.</p>
+                    <p>By using this website, you signify that you have read this privacy policy and agree to our processing your personal data as described in this privacy policy.</p>
+                    <p>This policy concerns the processing of your data collected as a user of the website https://beebiome.org/.</p>
+                    <p>This policy is dated May, 2021. However, it is likely to be updated on a regular basis; if so, you will be informed via the website https://beebiome.org/. Any use of our services after this notification has been published will be deemed acceptance of the latest version of this policy.</p>
 
-                    <h2>Who controls your personal data and how to contact us?</h2>
-                    <dl>
-                        <dt>The BeeBiome data controller's contacts</dt>
+                    <h2>What is meant by personal data?</h2>
+                    <p>Personal data are any data that can be used to identify an individual. These data may be able to identify you directly (for example, your last name and first name, e-mail address or OASI (Old Age and Survivors' Insurance) number or indirectly, by cross-referencing various kinds of information about you (for example, your computer's IP address, your credit card number or your phone number).</p>
 
-                        <dd>
-                            Benjamin Dainat, BeeBiome Principal Investigator at Agroscope (
-                            <Obfuscate email={process.env.REACT_APP_EMAIL_PI1}
-                                       headers={{subject: '[beebiome data  portal] '}}>e-mail</Obfuscate>)<br />
-                            Département fédéral de l’économie, de la formation et de la recherche DEFR<br />
-                            Agroscope, Schwarzenburgstrasse 161, CH - 3003 Berne Switzerland
-                        </dd>
-
-                        <dd>Philipp Engel, BeeBiome Principal Investigator and Professor at University of Lausanne (
-                            <Obfuscate email= {process.env.REACT_APP_EMAIL_PI2}
-                                       headers={{subject: '[beebiome data  portal] '}}>e-mail</Obfuscate>)<br />
-                            Department of Fundamental Microbiology<br />
-                            University of Lausanne, 1015 Lausanne, Switzerland
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>The University of Lausanne Data Protection Officer's contact</dt>
-                        <dd>Gwenaëlle Gilliéron, Responsable Service Juridique (
-                            <Obfuscate email= {process.env.REACT_APP_DPO_UNIL}>e-mail</Obfuscate>)<br />
-                            Service Juridique, University of Lausanne, 1015 Lausanne, Switzerland</dd>
-                    </dl>
-                    <dl>
-                        <dt>The Agroscope Protection Officer's contact</dt>
-                        <dd>DPO Agroscope (
-                            <Obfuscate email= {process.env.REACT_APP_DPO_AGROSCOPE}>e-mail</Obfuscate>)<br />
-                            Address DPO Agroscope</dd>
-                    </dl>
-
-                    <h2>Which is the lawful basis for processing personal data?</h2>
-                    <p>Processing your personal data is necessary for our legitimate interests in
-                        providing services to you, to help improve our resources and for the purposes
-                        of day-to-day running of the BeeBiome data portal and underlying infrastructure.</p>
-
-                    <h2>What personal data is collected from users of the service? How do we use these personal data?</h2>
-                    <p>The personal data collected from the services listed below is as follows:</p>
+                    <h2>What type of personal data is collected by BeeBiome?</h2>
+                    <p>The list below provides a summary of the type of data we collect:</p>
                     <ul>
-                        <li>Website and API</li>
                         <li>IP address</li>
                         <li>Email address</li>
-                        <li>Date and time of a visit to the service</li>
-                        <li>Operating system</li>
-                        <li>Browser</li>
-                        <li>Amount of data transmitted</li>
-                        <li>Help desk</li>
                         <li>Name</li>
-                        <li>Email address</li>
                     </ul>
-                    <p>The data controller will use your personal data for the following purposes:</p>
+
+                    <h2>What are the reasons for which we might process it?</h2>
+                    <p>Your personal data are processed by BeeBiome for the following purposes:</p>
                     <ul>
                         <li>To provide the user access to the service</li>
                         <li>To answer questions from users</li>
                         <li>To better understand the needs of the users and guide future improvements of the service</li>
-                        <li>To create anonymous usage statistics</li>
                         <li>To conduct and monitor data protection activities</li>
                         <li>To conduct and monitor security activities</li>
                     </ul>
+                    <p>The processing of your data indicated above is necessary to fulfil the public duties incumbent on the University of Lausanne, in particular the development of science through teaching and research.</p>
+                    <p>Data analyzes are carried out to find out the characteristics of BeeBiome users. These are however carried out on fully anonymized data.</p>
 
-                    <h2>Who will have access to your personal data?</h2>
-                    <p>Personal data will only be disclosed to authorized staff of BeeBiome.
-                        Your personal data are stored internally and not exposed to third parties or countries.
-                        IP addresses are removed from log files or anonymized before being stored in case they are needed.</p>
+                    <h2>With whom do we share your data?</h2>
+                    <p>The data you communicate to us may be shared between the various departments of the University of Lausanne.</p>
+                    <p>Your personal data are not communicated abroad or to third parties. <strong>Your data will not be sold to third parties under any circumstances, and in particular, for marketing or promotional purposes</strong>.</p>
+                    <p>BeeBiome may also be required to disclose your data in order to fulfil its statutory obligations, in response to a request from a judicial or administrative authority or in accordance with its statutory obligations or in relation to legal proceedings.</p>
 
-                    <h2>Will your personal data be transferred to third parties/countries (i.e. countries not part of EU/EAA) and/or international organisations?</h2>
-                    <p>There are no personal data transfers to international organisations outside of BeeBiome.</p>
-                    <p>BeeBiome uses Google Analytics as a third-party analytics service to collect information
-                        about website performance and how users navigate through and use our site to help us
-                        design better interfaces. We do not use Google Analytics to track you individually
-                        or collect personal data. Personal data send to Google Analytics are anonymized upstream.</p>
+                    <h2>How does BeeBiome protect your data?</h2>
+                    <p>We do our utmost to ensure the security of your data and avoid any inappropriate access, use, modification or disclosure of your personal information. We also do our utmost to ensure that any third party to whom your data are process them securely to ensure their confidentiality and integrity.</p>
+                    <p>BeeBiome is stored on a secure University of Lausanne's server. Our website use TLS certificates authenticated by a third party to guarantee the confidentiality of the data exchanged, in particular during the delivery of an online service. These certificates also provide a means of checking that your computer is communicating correctly with the server. IP addresses are removed from log files or anonymized before being stored in case they are needed.</p>
 
-                    <h2>How long do we keep your personal data?</h2>
-                    <p>Any personal data directly obtained from you will be retained as long as the service is live,
-                        even if you stop using the service. We will keep the personal data for the minimum
-                        amount of time possible to ensure legal compliance and to facilitate internal
-                        and external audits if they arise.</p>
-                    <p>Most data are kept maximum 24 months (26 months for Google Analytics statistics).</p>
-                    <p>Only help desk data are kept longer.</p>
 
                     <h2>Cookies</h2>
-                    <p>The user is informed that cookies may be stored on the hard drive of his/her/its computer
-                        to record information about his/her/its visits to this portal.</p>
-                    <p>Cookies are used to identify the user and to facilitate and customize this portal's
-                        use by memorizing certain parameters. Cookies are used, in particular,
-                        to obtain information on the visits to the pages of this portal and
-                        the date and time of consultation.</p>
-                    <p>The user can at any time prevent the recording and storage of cookies on
-                        her/his/its computer by disabling the option in her/his/its browser. However,
-                        some features of this portal may require the mandatory use of cookies
-                        (customization, warnings, etc.). Otherwise the use of this portal may be impaired
-                        or even impossible.</p>
-
-                    <h2>The joint Data Controllers provide these rights regarding your personal data</h2>
-                    <p>You have the right to:</p>
-                    <ol>
-                        <li>Not be subject to decisions based solely on an automated processing of data
-                            (i.e. without human intervention) without you having your views taken into consideration.</li>
-                        <li>Request at reasonable intervals and without excessive delay or expense,
-                            information about the personal data processed about you. Under your request
-                            we will inform you in writing about, for example, the origin of the personal
-                            data or the preservation period.</li>
-                        <li>Request information to understand data processing activities when the results
-                            of these activities are applied to you.</li>
-                        <li>Object at any time to the processing of your personal data unless we can demonstrate
-                            that we have legitimate reasons to process your personal data.</li>
-                        <li>Request free of charge and without excessive delay rectification or erasure
-                            of your personal data if we have not been processing it respecting the data
-                            protection policies of the respective controllers.</li>
-                        <li>Requests and objections can be sent using 'Contact us' link in the footer of this page.</li>
-                    </ol>
-                    <p>It must be clarified that rights 4 and 5 are only available whenever
-                        the processing of your personal data is not necessary to:</p>
+                    <p>The user is informed that cookies may be stored on the hard drive of his/her/its computer to record information about his/her/its visits to this portal. Cookies are used to identify the user and to facilitate and customize this portal's use by memorizing certain parameters. Cookies are used, in particular, to obtain information on the visits to the pages of this portal and the date and time of consultation.</p>
+                    <p>The user can at any time prevent the recording and storage of cookies on her/his/its computer by disabling the option in her/his/its browser. However, some features of this portal may require the mandatory use of cookies (customization, warnings, etc.). Otherwise, the use of this portal may be impaired or even impossible.</p>
+                    <p>BeeBiome uses Google Analytics as a third-party analytics service to collect information about website performance and how users navigate through and use our site to help us design better interfaces. The list below provides a summary of the type of data Google Analytics collects:</p>
                     <ul>
-                        <li>Comply with a legal obligation.</li>
-                        <li>Perform a task carried out in the public interest.</li>
-                        <li>Exercise authority as a data controller.</li>
-                        <li>Archive for purposes in the public interest, or for historical research purposes, or for statistical purposes.</li>
-                        <li>Establish, exercise or defend legal claims.</li>
+                        <li>Geographical origin</li>
+                        <li>Pages viewed and behavior flow</li>
+                        <li>Date and time of a visit to the service</li>
+                        <li>Operating system</li>
+                        <li>Browser</li>
                     </ul>
+                    <p>We do not use Google Analytics to track you individually or collect personal data. Personal data send to Google Analytics are anonymized upstream.</p>
+
+                    <h2>How long do we keep your personal data?</h2>
+                    <p>Personal data are destroyed or made anonymous as soon as it is no longer necessary for the purpose for which they were collected.</p>
+
+                    <h2>How to modify and delete your personal data?</h2>
+                    <p>In accordance with Article 25 LPrD, anyone may ask to see the data it holds on them and, if necessary, request that they are updated, rectified or erased.</p>
+                    <p>Any requests of this kind should be sent by e-mail to:</p>
+                    <p>
+                        Philipp Engel, BeeBiome Principal Investigator and Professor at University of Lausanne (
+                        <Obfuscate email= {process.env.REACT_APP_PI1_EMAIL}
+                                   headers={{subject: '[beebiome data portal] Privacy notice'}}>e-mail</Obfuscate>)<br />
+                        Department of Fundamental Microbiology<br />
+                        University of Lausanne, 1015 Lausanne, Switzerland
+                    </p>
+
+                    <h2>Contact</h2>
+                    <p>You can contact the BeeBtiome team with any questions you may have about this policy by sending an&nbsp;
+                        <Obfuscate email= {process.env.REACT_APP_CONTACT_EMAIL}
+                                   headers={{subject: '[beebiome data portal] Privacy notice'}}>e-mail</Obfuscate>.</p>
+
                     <p>Additional terms: privacy policy</p>
                 </div>
             </div>);
