@@ -73,6 +73,8 @@ use Net::FTP;
 use XML::Simple;
 use Storable 'dclone';
 use File::Slurp;
+use File::Copy;
+use File::Path;
 
 my $delay = 0;
 my $maxdelay = 3;
@@ -91,7 +93,7 @@ my $taxonomy_level_formatted = $taxonomy_level =~ s/\s/_/rg;
 my $datadir = $ARGV[0] . "/" . $taxonomy_level_formatted;
 if (-d $datadir . ".bck") {
     printWithTimestamp("Remove directory ". $datadir . ".bck");
-    rmdir($datadir . ".bck");
+    rmtree($datadir . ".bck");
 }
 if (-d $datadir) {
     printWithTimestamp("Move directory ". $datadir . " to " . $datadir . ".bck");
