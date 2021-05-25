@@ -8,6 +8,10 @@ public interface EntityDAO {
 
     List<Entity> findAll();
 
-    List<Entity> findByBiosampleId(String id);
+    List<Entity> findByBiosampleAcc(String id);
+
+    List<Entity> find(String biosampleAcc, String bioProjectAcc, String assayTypes, String centerName, 
+                      String platforms, String libraryLayouts, String librarySources, String organism,
+                      String host, String geoLocName, String collectionDate);
 
 }
