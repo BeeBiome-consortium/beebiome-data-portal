@@ -1,6 +1,7 @@
 {
   "name": "data-portal-web",
   "version": "0.0.5",
+  "license" : "GPL-3.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.3",
