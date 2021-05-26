@@ -32,7 +32,7 @@ public class EntityController {
     }
     
     @CrossOrigin
-    @GetMapping("/sample/multi-search")
+    @RequestMapping(value={"/sample/advanced-search"}, method={RequestMethod.GET, RequestMethod.POST})
     public List<Entity> getSample(@RequestParam(required = false) String bioSampleAcc,
                                   @RequestParam(required = false) String bioProjectAcc,
                                   @RequestParam(required = false) String organism,
