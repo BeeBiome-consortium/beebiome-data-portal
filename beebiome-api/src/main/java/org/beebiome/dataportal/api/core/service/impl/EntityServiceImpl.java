@@ -28,9 +28,11 @@ public class EntityServiceImpl implements EntityService {
     public List<Entity> getEntities(String biosampleAcc, String bioProjectAcc, String assayTypes,
                                     String centerName, String instruments, String libraryLayouts,
                                     String librarySources, String organism, String host,
-                                    String geoLocName, String collectionDate) {
+                                    String geoLocName, String collectionDate,
+                                    String biosamplePackageAcc, String biosamplePackageName) {
         return dao.find(biosampleAcc, bioProjectAcc, assayTypes, centerName, instruments,
-                libraryLayouts, librarySources, organism, host, geoLocName, collectionDate);
+                libraryLayouts, librarySources, organism, host, geoLocName, collectionDate,
+                biosamplePackageAcc, biosamplePackageName);
     }
 
 
