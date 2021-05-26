@@ -9,7 +9,7 @@ export TAXON_LEVEL="Apoidea" # warning: use underscore to replace spaces such as
 export STARTING_TIMEPOINT=$(date "+%Y%m%d-%H%M")
 
 ## Retrieve data from NCBI
-perl $SCRIPT_DIR/retrieve_metadata.pl $OUTPUT_DIR $TAXON_LEVEL 1 $STARTING_TIMEPOINT > $LOG_DIR/retrieve_beebiome_metadata.$STARTING_TIMEPOINT.log
+perl $SCRIPT_DIR/retrieve_metadata.pl $OUTPUT_DIR $TAXON_LEVEL 1 > $LOG_DIR/retrieve_beebiome_metadata.$STARTING_TIMEPOINT.log
 
 ## Build option for the curl from file list to be parsed to fill the db
 i=1

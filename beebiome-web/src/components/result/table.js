@@ -2,22 +2,33 @@ import React, {Component} from 'react';
 import './table.css';
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import "datatables.net-buttons-dt/css/buttons.dataTables.min.css"
+import "datatables.net-responsive-dt/css/responsive.dataTables.css"
 import cc0_logo from "../../assets/images/cc-zero_logo.png";
 
 const $ = require('jquery');
 require( 'datatables.net-dt' );
 require( 'datatables.net-buttons-dt' );
 require( 'datatables.net-buttons/js/buttons.html5.min.js' );
+require( 'datatables.net-responsive' );
 
 const columns = [
+    { 
+        className: 'control',
+        orderable: false,
+        data: null,
+        render: function ( data, type, full ) {
+            return '';
+        },
+        targets:   -1
+    },
     { title : 'BioProject acc', data: 'bioprojectAcc',
-        render: function ( data, type, row ) {
+        render: function ( data, type, full ) {
             return '<a href="https://www.ncbi.nlm.nih.gov/bioproject/' + data + '" target="_blank">'
                 + data + '</a>';
         }
     },
     { title : 'BioSample acc', data: 'biosampleAcc',
-        render: function ( data, type, full, row ) {
+        render: function ( data, type, full ) {
             return '<a href="https://www.ncbi.nlm.nih.gov/biosample/' + data + '" target="_blank">'
                 + data + '</a>';
         }
@@ -40,16 +51,16 @@ const columns = [
             return '0';
         }
     },
-    { title : 'Assay types', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
-    { title : 'Center name', data: 'submittingOrganizationName'},
-    { title : 'Instruments', data: 'platforms'},
-    { title : 'Library layouts', data: 'libraryLayouts[, ]'}, // paired single
-    { title : 'Library sources', data: 'librarySources[, ]'}, // genomic, metagenomic... 
-    { title : 'Organism', data: 'organism.scientificName'},
     { title : 'Host', data: 'host.scientificName'},
-    { title : 'Platform', data: 'platforms'},
+    { title : 'Organism', data: 'organism.scientificName'},
+    { title : 'Collection date', data: 'collectionDate'},
     { title : 'Geo. loc. name', data: 'geoLocName'},
-    { title : 'Collection date', data: 'collectionDate'}
+    { title : 'Library source(s)', data: 'librarySources[, ]'}, // genomic, metagenomic... 
+    { title : 'Library layout(s)', data: 'libraryLayouts[, ]'}, // paired or single
+    { title : 'Assay type(s)', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
+    { title : 'Instrument(s)', data: 'platforms[, ]'},
+    { title : 'Center name', data: 'submittingOrganizationName'},
+    { title : 'BioSample package acc.', data: 'biosamplePackage.id'}
 ];
 
 function reloadTableData(samples) {
@@ -83,15 +94,19 @@ class Table extends Component {
     
     componentDidMount() {
         let table = $(this.refs.main).DataTable({
-            order: [[ 0, 'asc'], [ 1, 'asc']],
+            order: [[1, 'asc'], [2, 'asc']],
             dom:"<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4 browse-search'f>>" +
                 "<'row'<'data-table-wrapper col-sm-12'tr>>" +
                 "<'row'<'col-sm-6 btn-download'B><'col-sm-6'p>>",
-
-            scrollX: true,
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
             data: this.props.data,
             columns,
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr'
+                }
+            },
             ordering: true,
             buttons: [
                 {
@@ -134,8 +149,8 @@ class Table extends Component {
             <div>
                 <p>Results are ordered by 'BioProject acc', then 'BioSample acc'.
                     The order could be changed by clicking on one column, then press shift and click on another column.</p>
-                <table className={'table table-sm table-striped table-bordered table-hover '} ref="main" />
-                <div class={"copyright"}>
+                <table id="result" className={'table table-sm table-striped table-bordered table-hover '} ref="main" />
+                <div className={"copyright"}>
                     <p>
                         This work is published under the <a href={"https://creativecommons.org/publicdomain/zero/1.0/"} 
                                                             target='_blank' rel='noopener noreferrer'>

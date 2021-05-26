@@ -1,3 +1,7 @@
 .no-data-message {
     font-weight: bold;
 }
+
+.col-form-label {
+    padding-top: 0;
+}
