@@ -36,6 +36,7 @@ class Search extends Component {
         params = this.addParam("instruments", self.state.instruments, params);
         params = this.addParam("biosamplePackageAcc", self.state.bioSamplePackageAcc, params);
 
+        // TODO: update to post request 
         fetch(process.env.REACT_APP_API_URL + "/sample/advanced-search?" + params)
             .then(results => { return results.json()} )
             .then(data => {
