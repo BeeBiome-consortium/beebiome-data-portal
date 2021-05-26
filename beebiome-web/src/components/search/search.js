@@ -182,7 +182,7 @@ class Search extends Component {
                                                this.handleChange('instruments', e.target.value) }} />
                                 </div>
                                 <div className="form-group row">
-                                    <button className="btn btn-sm btn-secondary col-sm-10 offset-sm-1"
+                                    <button className="btn btn-sm btn-secondary col-sm-2 offset-sm-5"
                                             type='submit'>Submit</button>
 
                                 </div>
