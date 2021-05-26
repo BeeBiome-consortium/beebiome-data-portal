@@ -59,7 +59,8 @@ const columns = [
     { title : 'Library layout(s)', data: 'libraryLayouts[, ]'}, // paired or single
     { title : 'Assay type(s)', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
     { title : 'Instrument(s)', data: 'platforms[, ]'},
-    { title : 'Center name', data: 'submittingOrganizationName'}
+    { title : 'Center name', data: 'submittingOrganizationName'},
+    { title : 'BioSample package acc.', data: 'biosamplePackage.id'}
 ];
 
 function reloadTableData(samples) {
@@ -150,7 +151,7 @@ class Table extends Component {
             <div>
                 <p>Results are ordered by 'BioProject acc', then 'BioSample acc'.
                     The order could be changed by clicking on one column, then press shift and click on another column.</p>
-                <table className={'table table-sm table-striped table-bordered table-hover '} ref="main" />
+                <table id="result" className={'table table-sm table-striped table-bordered table-hover '} ref="main" />
                 <div className={"copyright"}>
                     <p>
                         This work is published under the <a href={"https://creativecommons.org/publicdomain/zero/1.0/"} 
