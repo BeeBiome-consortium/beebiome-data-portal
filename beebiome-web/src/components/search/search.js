@@ -151,7 +151,8 @@ class Search extends Component {
                                 <div className="form-group row">
                                     <button className="btn btn-sm btn-secondary col-sm-2 offset-sm-5"
                                             type='submit'>Submit</button>
-
+                                    <button className="btn btn-sm btn-link col-sm-1"
+                                            type='reset'>Clear form</button>
                                 </div>
                             </form>
                         </div>
