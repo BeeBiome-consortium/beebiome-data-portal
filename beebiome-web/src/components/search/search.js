@@ -80,12 +80,20 @@ class Search extends Component {
         } else if (this.state.isFetching) {
             result = <Loading/>
         }
+        let doc_link = "/help/data";
+        if (process.env.REACT_APP_ROUTER_BASE) {
+            doc_link = process.env.REACT_APP_ROUTER_BASE + doc_link;
+        }
 
         return (
             <div>
                 <h1>Advanced search</h1>
                 <div className='row'>
                     <div className='col-10 offset-1'>
+                        <div>
+                            <p>This advanced search interface allows to do a text-based search on each fields and combine them using a 'AND' boolean logic.
+                                More details on each fields are available in our <a href={doc_link}>documentation page</a>.</p>
+                        </div>
                         <div className="mb-3">
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group row">
@@ -111,6 +119,7 @@ class Search extends Component {
                                 <div className="form-group row">
                                     <label htmlFor={'collectionDate'} className="col-form-label col-md-2 text-md-right offset-md-1">Collection date</label>
                                     <input id='collectionDate' className="form-control form-control-sm col-md-3" type="text"
+                                           placeholder={"YYYY-MM-DD"}
                                            onChange={(e) => {
                                                this.handleChange('collectionDate', e.target.value) }} />
                                     <label htmlFor={'geoLocName'} className="col-form-label col-md-2 text-md-right">Geo. loc. name</label>

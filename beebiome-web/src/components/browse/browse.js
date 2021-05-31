@@ -42,11 +42,26 @@ class Browse extends Component {
         } else {
             result = <Loading/>
         }
+        let search_link = "/search";
+        if (process.env.REACT_APP_ROUTER_BASE) {
+            search_link = process.env.REACT_APP_ROUTER_BASE + search_link;
+        }
+
+        let doc_link = "/help/data";
+        if (process.env.REACT_APP_ROUTER_BASE) {
+            doc_link = process.env.REACT_APP_ROUTER_BASE + doc_link;
+        }
         return (
             <div>
                 <h1>Browse</h1>
                 <div className='row'>
                     <div className='col-sm-10 offset-sm-1'>
+                        <div>
+                            <p>This browse interface allows to discover BeeBiome data. A basic search (on all fields) is available at top right of the table.
+                                An <a href={search_link}>advanced search</a> is available to do a search on each fields. 
+                                More details on each fields are available in our <a href={doc_link}>documentation page</a>.
+                            </p>
+                        </div>
                         {result}
                     </div>
                 </div>

@@ -21,13 +21,13 @@ const columns = [
         },
         targets:   -1
     },
-    { title : 'BioProject acc', data: 'bioprojectAcc',
+    { title : 'BioProject acc.', data: 'bioprojectAcc',
         render: function ( data, type, full ) {
             return '<a href="https://www.ncbi.nlm.nih.gov/bioproject/' + data + '" target="_blank">'
                 + data + '</a>';
         }
     },
-    { title : 'BioSample acc', data: 'biosampleAcc',
+    { title : 'BioSample acc.', data: 'biosampleAcc',
         render: function ( data, type, full ) {
             return '<a href="https://www.ncbi.nlm.nih.gov/biosample/' + data + '" target="_blank">'
                 + data + '</a>';
@@ -147,8 +147,11 @@ class Table extends Component {
         }
         return (
             <div>
-                <p>Results are ordered by 'BioProject acc', then 'BioSample acc'.
-                    The order could be changed by clicking on one column, then press shift and click on another column.</p>
+                <div className={"result-info mb-3"}>
+                    <p>Results are ordered by 'BioProject acc.', then 'BioSample acc.'.
+                        The order could be changed by clicking on one column, then press shift and click on another column.</p>
+                    <p>Clicking on the '+' sign shows the full information for each sample.</p>
+                </div>
                 <table id="result" className={'table table-sm table-striped table-bordered table-hover '} ref="main" />
                 <div className={"copyright"}>
                     <p>

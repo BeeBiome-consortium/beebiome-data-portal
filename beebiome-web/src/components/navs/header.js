@@ -37,19 +37,29 @@ function Header() {
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
-                               role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                               role="button" aria-haspopup="true" aria-expanded="false">Documentation</a>
                             <div className="dropdown-menu">
-                                <Link to="/about/data-portal" className="dropdown-item">BeeBiome data portal</Link>
-                                <Link to="/about/citing-beebiome" className="dropdown-item">Citing us</Link>
-                                <Link to="/about/privacy-notice" className="dropdown-item">Privacy notice</Link>
+                                <Link to="/help/data" className="dropdown-item">Browse and search</Link>
+                                <a className="dropdown-item" target="_blank"
+                                   href="https://github.com/BeeBiome-consortium/beebiome-data-portal/tree/master/beebiome-api">API</a>
                             </div>
                         </li>
+
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
                                role="button" aria-haspopup="true" aria-expanded="false">Consortium</a>
                             <div className="dropdown-menu">
                                 <Link to="/consortium/aims" className="dropdown-item">Consortium aims</Link>
                                 <Link to="/consortium/members" className="dropdown-item">Consortium members</Link>
+                            </div>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
+                               role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                            <div className="dropdown-menu">
+                                <Link to="/about/data-portal" className="dropdown-item">BeeBiome data portal</Link>
+                                <Link to="/about/citing-beebiome" className="dropdown-item">Citing us</Link>
+                                <Link to="/about/privacy-notice" className="dropdown-item">Privacy notice</Link>
                             </div>
                         </li>
 
