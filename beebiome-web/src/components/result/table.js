@@ -57,7 +57,7 @@ const columns = [
     { title : 'Geo. loc. name', data: 'geoLocName'},
     { title : 'Library source(s)', data: 'librarySources[, ]'}, // genomic, metagenomic... 
     { title : 'Library layout(s)', data: 'libraryLayouts[, ]'}, // paired or single
-    { title : 'Assay type(s)', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
+    { title : 'Library strategy(ies)', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
     { title : 'Instrument(s)', data: 'platforms[, ]'},
     { title : 'Center name', data: 'submittingOrganizationName'},
     { title : 'BioSample package acc.', data: 'biosamplePackage.id'}

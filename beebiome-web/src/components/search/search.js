@@ -31,7 +31,7 @@ class Search extends Component {
         params = this.addParam("geoLocName", self.state.geoLocName, params);
         params = this.addParam("librarySources", self.state.librarySources, params);
         params = this.addParam("libraryLayouts", self.state.libraryLayouts, params);
-        params = this.addParam("assayTypes", self.state.assayTypes, params);
+        params = this.addParam("libraryStrategies", self.state.libraryStrategies, params);
         params = this.addParam("centerName", self.state.centerName, params);
         params = this.addParam("instruments", self.state.instruments, params);
         params = this.addParam("biosamplePackageAcc", self.state.bioSamplePackageAcc, params);
@@ -129,10 +129,10 @@ class Search extends Component {
                                                this.handleChange('libraryLayouts', e.target.value) }} />
                                 </div>
                                 <div className="form-group row">
-                                    <label htmlFor={'assayTypes'} className="col-form-label col-md-2 text-md-right offset-md-1">Assay types</label>
-                                    <input id='assayTypes' className="form-control form-control-sm col-md-3" type="text"
+                                    <label htmlFor={'libraryStrategies'} className="col-form-label col-md-2 text-md-right offset-md-1">Library strategies</label>
+                                    <input id='libraryStrategies' className="form-control form-control-sm col-md-3" type="text"
                                            onChange={(e) => {
-                                               this.handleChange('assayTypes', e.target.value) }} />
+                                               this.handleChange('libraryStrategies', e.target.value) }} />
                                     <label htmlFor={'centerName'} className="col-form-label col-md-2 text-md-right">Center name</label>
                                     <input id='centerName' className="form-control form-control-sm col-md-3" type="text"
                                            onChange={(e) => {

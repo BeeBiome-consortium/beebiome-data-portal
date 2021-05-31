@@ -35,7 +35,7 @@ public class EntityDAOImpl implements EntityDAO {
     }
 
     @Override
-    public List<Entity> find(String biosampleAcc, String bioProjectAcc, String assayTypes,
+    public List<Entity> find(String biosampleAcc, String bioProjectAcc, String libraryStrategies,
                              String centerName, String platforms, String libraryLayouts,
                              String librarySources, String organism, String host,
                              String geoLocName, String collectionDate,
@@ -50,9 +50,9 @@ public class EntityDAOImpl implements EntityDAO {
             map.put("bioProjectAcc", "%" + bioProjectAcc + "%");
             columnNames.put("bioProjectAcc", "bioProjectAcc");
         }
-        if (StringUtils.isNotBlank(assayTypes)) {
-            map.put("assayTypes", "%" + assayTypes + "%");
-            columnNames.put("assayTypes", "libraryStrategies");
+        if (StringUtils.isNotBlank(libraryStrategies)) {
+            map.put("libraryStrategies", "%" + libraryStrategies + "%");
+            columnNames.put("libraryStrategies", "libraryStrategies");
         }
         if (StringUtils.isNotBlank(centerName)) {
             map.put("centerName", "%" + centerName + "%");
