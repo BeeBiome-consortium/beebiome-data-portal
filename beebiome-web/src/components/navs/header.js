@@ -40,7 +40,7 @@ function Header() {
                                role="button" aria-haspopup="true" aria-expanded="false">Documentation</a>
                             <div className="dropdown-menu">
                                 <Link to="/help/data" className="dropdown-item">Browse and search</Link>
-                                <a className="dropdown-item" target="_blank"
+                                <a className="dropdown-item" target="_blank" rel={"noopener noreferrer"}
                                    href="https://github.com/BeeBiome-consortium/beebiome-data-portal/tree/master/beebiome-api">API</a>
                             </div>
                         </li>
