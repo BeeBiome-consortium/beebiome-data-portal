@@ -15,6 +15,7 @@ import Footer from "./components/navs/footer";
 import CookieConsent from "react-cookie-consent";
 import MarkdownPage from "./components/markdown/markdown";
 import PrivacyNotice from "./components/privacy-notice/privacy-notice";
+import Map from "./components/map/map";
 
 const routing = (
     <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
@@ -28,6 +29,7 @@ const routing = (
             <Route path='/help/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/about/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/consortium/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
+            <Route exact path="/map" component={Map} />
             <Route component={Notfound} />
         </Switch>
         <Footer />

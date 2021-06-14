@@ -28,7 +28,7 @@ class Search extends Component {
         params = this.addParam("host", self.state.host, params);
         params = this.addParam("organism", self.state.organism, params);
         params = this.addParam("collectionDate", self.state.collectionDate, params);
-        params = this.addParam("geoLocName", self.state.geoLocName, params);
+        params = this.addParam("geoLocationName", self.state.geoLocationName, params);
         params = this.addParam("librarySources", self.state.librarySources, params);
         params = this.addParam("libraryLayouts", self.state.libraryLayouts, params);
         params = this.addParam("libraryStrategies", self.state.libraryStrategies, params);

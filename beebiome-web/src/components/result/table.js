@@ -54,7 +54,14 @@ const columns = [
     { title : 'Host', data: 'host.scientificName'},
     { title : 'Organism', data: 'organism.scientificName'},
     { title : 'Collection date', data: 'collectionDate'},
-    { title : 'Geo. loc. name', data: 'geoLocName'},
+    { title : 'Geo. location name', data: 'geoLocation',
+        render: function ( data, type, full ) {
+            if (data) {
+                return data.name;
+            }
+            return '';
+        }
+    },
     { title : 'Library source(s)', data: 'librarySources[, ]'}, // genomic, metagenomic... 
     { title : 'Library layout(s)', data: 'libraryLayouts[, ]'}, // paired or single
     { title : 'Library strategy(ies)', data: 'libraryStrategies[, ]'}, // such as amplicon, wgs.. https://www.ebi.ac.uk/ena/submit/reads-library-strategy
