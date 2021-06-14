@@ -87,13 +87,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JDBC logging library -->
-		<dependency>
-			<groupId>org.bgee.log4jdbc-log4j2</groupId>
-			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-			<version>1.17-SNAPSHOT</version>
-		</dependency>
-
 		<!-- The JDBC connector -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
