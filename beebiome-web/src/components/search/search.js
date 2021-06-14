@@ -107,25 +107,24 @@ class Search extends Component {
                                                this.handleChange('bioProjectAcc', e.target.value) }} />
                                 </div>
                                 <div className="form-group row">
-                                    <label htmlFor={'organism'} className="col-form-label col-md-2 text-md-right offset-md-1">Organism</label>
-                                    <input id='organism' className="form-control form-control-sm col-md-3" type="text"
-                                           onChange={(e) => {
-                                               this.handleChange('organism', e.target.value) }} />
-                                    <label htmlFor={'host'} className="col-form-label col-md-2 text-md-right">Host</label>
+                                    <label htmlFor={'host'} className="col-form-label col-md-2 text-md-right offset-md-1">Host</label>
                                     <input id='host' className="form-control form-control-sm col-md-3" type="text"
                                            onChange={(e) => {
                                                this.handleChange('host', e.target.value) }} />
+                                    <label htmlFor={'organism'} className="col-form-label col-md-2 text-md-right">Organism</label>
+                                    <input id='organism' className="form-control form-control-sm col-md-3" type="text"
+                                           onChange={(e) => {
+                                               this.handleChange('organism', e.target.value) }} />
                                 </div>
                                 <div className="form-group row">
                                     <label htmlFor={'collectionDate'} className="col-form-label col-md-2 text-md-right offset-md-1">Collection date</label>
                                     <input id='collectionDate' className="form-control form-control-sm col-md-3" type="text"
-                                           placeholder={"YYYY-MM-DD"}
                                            onChange={(e) => {
                                                this.handleChange('collectionDate', e.target.value) }} />
-                                    <label htmlFor={'geoLocName'} className="col-form-label col-md-2 text-md-right">Geo. loc. name</label>
-                                    <input id='geoLocName' className="form-control form-control-sm col-md-3" type="text"
+                                    <label htmlFor={'geoLocationName'} className="col-form-label col-md-2 text-md-right">Geo. location name</label>
+                                    <input id='geoLocationName' className="form-control form-control-sm col-md-3" type="text"
                                            onChange={(e) => {
-                                               this.handleChange('geoLocName', e.target.value) }} />
+                                               this.handleChange('geoLocationName', e.target.value) }} />
                                 </div>
                                 <div className="form-group row">
                                     <label htmlFor={'librarySources'} className="col-form-label col-md-2 text-md-right offset-md-1">Library sources</label>
@@ -142,17 +141,17 @@ class Search extends Component {
                                     <input id='libraryStrategies' className="form-control form-control-sm col-md-3" type="text"
                                            onChange={(e) => {
                                                this.handleChange('libraryStrategies', e.target.value) }} />
-                                    <label htmlFor={'centerName'} className="col-form-label col-md-2 text-md-right">Center name</label>
-                                    <input id='centerName' className="form-control form-control-sm col-md-3" type="text"
-                                           onChange={(e) => {
-                                               this.handleChange('centerName', e.target.value) }} />
-                                </div>
-                                <div className="form-group row">
-                                    <label htmlFor={'instruments'} className="col-form-label col-md-2 text-md-right offset-md-1">Instruments</label>
+                                    <label htmlFor={'instruments'} className="col-form-label col-md-2 text-md-right">Instruments</label>
                                     <input id='instruments' className="form-control form-control-sm col-md-3" type="text"
                                            onChange={(e) => {
                                                this.handleChange('instruments', e.target.value) }} />
-                                    <label htmlFor={'bioSamplePackageAcc'} className="col-form-label  col-md-2 text-md-right">BioSample package accession</label>
+                                </div>
+                                <div className="form-group row">
+                                    <label htmlFor={'centerName'} className="col-form-label col-md-2 text-md-right offset-md-1">Center name</label>
+                                    <input id='centerName' className="form-control form-control-sm col-md-3" type="text"
+                                           onChange={(e) => {
+                                               this.handleChange('centerName', e.target.value) }} />
+                                               <label htmlFor={'bioSamplePackageAcc'} className="col-form-label col-md-2 text-md-right">BioSample package accession</label>
                                     <input id='bioSamplePackageAcc' className="form-control form-control-sm col-md-3" type="text"
                                            onChange={(e) => {
                                                this.handleChange('bioSamplePackageAcc', e.target.value) }} />
