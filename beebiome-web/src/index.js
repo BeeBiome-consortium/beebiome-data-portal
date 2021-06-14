@@ -15,7 +15,6 @@ import Footer from "./components/navs/footer";
 import CookieConsent from "react-cookie-consent";
 import MarkdownPage from "./components/markdown/markdown";
 import PrivacyNotice from "./components/privacy-notice/privacy-notice";
-import DataHelp from "./components/help/data-help";
 
 const routing = (
     <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
@@ -26,7 +25,7 @@ const routing = (
             <Route path="/search" component={Search} />
             <Route path='/wiki/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route exact path="/about/privacy-notice" component={PrivacyNotice} />
-            <Route exact path="/help/data" component={DataHelp} />
+            <Route path='/help/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/about/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/consortium/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route component={Notfound} />

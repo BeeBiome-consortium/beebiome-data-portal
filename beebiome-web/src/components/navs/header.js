@@ -37,9 +37,9 @@ function Header() {
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
-                               role="button" aria-haspopup="true" aria-expanded="false">Documentation</a>
+                               role="button" aria-haspopup="true" aria-expanded="false">Help</a>
                             <div className="dropdown-menu">
-                                <Link to="/help/data" className="dropdown-item">Browse and search</Link>
+                                <Link to="/help/browse-search" className="dropdown-item">Browse and search</Link>
                                 <a className="dropdown-item" target="_blank" rel={"noopener noreferrer"}
                                    href="https://github.com/BeeBiome-consortium/beebiome-data-portal/tree/master/beebiome-api">API</a>
                             </div>

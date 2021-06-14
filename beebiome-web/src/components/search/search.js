@@ -91,8 +91,8 @@ class Search extends Component {
                 <div className='row'>
                     <div className='col-10 offset-1'>
                         <div>
-                            <p>This advanced search interface allows to do a text-based search on each fields and combine them using a 'AND' boolean logic.
-                                More details on each fields are available in our <a href={doc_link}>documentation page</a>.</p>
+                            <p>This advanced search interface allows to do a text-based search on each field and combine them using a 'AND' boolean logic.
+                                More details on each field are available in our <a href={doc_link}>help page</a>.</p>
                         </div>
                         <div className="mb-3">
                             <form onSubmit={this.handleSubmit}>

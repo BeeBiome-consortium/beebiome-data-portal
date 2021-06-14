@@ -58,8 +58,8 @@ class Browse extends Component {
                     <div className='col-sm-10 offset-sm-1'>
                         <div>
                             <p>This browse interface allows to discover BeeBiome data. A basic search (on all fields) is available at top right of the table.
-                                An <a href={search_link}>advanced search</a> is available to do a search on each fields. 
-                                More details on each fields are available in our <a href={doc_link}>documentation page</a>.
+                                An <a href={search_link}>advanced search</a> is available to do a search on each field. 
+                                More details on each field are available in our <a href={doc_link}>help page</a>.
                             </p>
                         </div>
                         {result}
