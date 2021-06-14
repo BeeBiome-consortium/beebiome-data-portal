@@ -23,7 +23,7 @@
 
 These properties can be set after the decompression of the war and before the deployment in Tomcat.
 
-2. Build the war: `mvn -DskipTests clean install`
+2. Build the war from beebiome-api directory: `cd beebiome-api ; mvn -DskipTests clean install`
 
 # Some links to retrieve data
 - `<api_url>/sample/all`: to retrieve all metadata.
