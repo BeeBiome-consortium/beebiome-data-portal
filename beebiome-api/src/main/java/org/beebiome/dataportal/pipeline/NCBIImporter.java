@@ -1,5 +1,6 @@
 package org.beebiome.dataportal.pipeline;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.beebiome.dataportal.api.core.model.FileInfo;
@@ -59,11 +60,18 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class NCBIImporter {
 
     private final static Logger log = LogManager.getLogger(NCBIImporter.class.getName());
+
+    private final static Pattern GEO_COORDINATES_PATTERN = Pattern.compile("^(\\d+\\.?\\d*)\\s*([NS])\\s*(\\d+\\.?\\d*)\\s*([WE])$");
+
+    private final static Set<String> UNKNOWN_GEO_COORDINATES = new HashSet<>(
+            Arrays.asList("missing", "not collected", "n/a", "na", "unknown"));
 
     public static void main(String[] args) throws JAXBException, IOException {
         log.traceEntry("Parameter: {}", (Object[]) args);
@@ -200,7 +208,7 @@ public class NCBIImporter {
         Set<String> rejectedBiosamples = new HashSet<>();
         for (BioSampleType bioSample : bioSampleSet.getBioSample()) {
             Integer hostSpeciesId = null;
-            String geoLocName = null;
+            String localisationName = null;
             String latitudeLongitude = null;
             String collectionDate = null;
             for (AttributeType attribute : bioSample.getAttributes().getAttribute()) {
@@ -223,7 +231,7 @@ public class NCBIImporter {
                         }
                         break;
                     case "geo_loc_name":
-                        geoLocName = attribute.getValue();
+                        localisationName = attribute.getValue();
                         break;
                     case "lat_lon":
                         latitudeLongitude = attribute.getValue();
@@ -238,12 +246,9 @@ public class NCBIImporter {
                 continue;
             }
 
-            String geoLocationId = latitudeLongitude;
-            if (geoLocationId == null) {
-                geoLocationId = geoLocName;
-            }
-            if (geoLocationId != null) {
-                geoLocationTOs.add(new GeoLocationTO(geoLocationId, null, null, geoLocName));
+            GeoLocationTO geoLocationTO = getGeoLocationTO(localisationName, latitudeLongitude);
+            if (geoLocationTO != null) {
+                geoLocationTOs.add(geoLocationTO);
             }
 
             Integer orgId = bioSample.getDescription().getOrganism().getTaxonomyId();
@@ -260,7 +265,7 @@ public class NCBIImporter {
                     Integer.valueOf(bioSample.getId()),
                     bioSample.getAccession(),
                     bioSample.getPackage().getValue(),
-                    geoLocationId,
+                    geoLocationTO != null ? geoLocationTO.getId() : null,
                     bioSample.getDescription().getOrganism().getTaxonomyId(),
                     hostSpeciesId,
                     collectionDate,
@@ -405,6 +410,31 @@ public class NCBIImporter {
                 sampleTOs, projectToSampleTOs,
                 //                sampleToRecommendationTOs, 
                 experimentTOs, sampleToExperimentTOs));
+    }
+
+    protected GeoLocationTO getGeoLocationTO(String localisationName, String latitudeLongitude) {
+        if (StringUtils.isBlank(localisationName) && StringUtils.isBlank(latitudeLongitude)) {
+            return null;
+        }
+        if (StringUtils.isBlank(latitudeLongitude)) {
+            return new GeoLocationTO(localisationName, null, null, localisationName);
+        }
+        Matcher matcher = GEO_COORDINATES_PATTERN.matcher(latitudeLongitude);
+        if (matcher.find()) {
+            String latitude = matcher.group(1);
+            if (matcher.group(2).equals("S")) {
+                latitude = "-" + latitude;
+            }
+            String longitude = matcher.group(3);
+            if (matcher.group(4).equals("W")) {
+                longitude = "-" + longitude;
+            }
+            return new GeoLocationTO(latitudeLongitude, latitude, longitude, localisationName);
+        }
+        if (!UNKNOWN_GEO_COORDINATES.contains(latitudeLongitude.toLowerCase())) {
+            log.error("Unparsed latitude-longitude attr: " + latitudeLongitude);
+        }
+        return new GeoLocationTO(latitudeLongitude, null, null, null);
     }
 
     private void logList(Set<String> set, String text) {

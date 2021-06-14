@@ -2,6 +2,7 @@ package org.beebiome.dataportal.pipeline;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.beebiome.dataportal.api.repository.dt.GeoLocationTO;
 import org.beebiome.dataportal.api.repository.dt.ImportTO;
 import org.beebiome.dataportal.api.repository.dt.ProjectToSampleTO;
 import org.beebiome.dataportal.api.repository.dt.SampleTO;
@@ -116,6 +117,31 @@ public class NCBIImporterTest {
         Assert.assertEquals("1986-08", importer.getLocalDate("1986-08"));
         Assert.assertEquals("1986-08", importer.getLocalDate("08-1986"));
         Assert.assertEquals("1986", importer.getLocalDate("1986"));
+    }
+
+    @Test
+    public void testGetGeoLocationTO() {
+        NCBIImporter importer = new NCBIImporter();
+        
+        Assert.assertEquals(new GeoLocationTO("51.60 N 1.24 W", "51.60", "-1.24", "United Kingdom: England"),
+                importer.getGeoLocationTO("United Kingdom: England", "51.60 N 1.24 W"));
+        
+        Assert.assertEquals(new GeoLocationTO("21.48565 S 46.7087166666667 W", "-21.48565", "-46.7087166666667", "Brazil: Pocos de Caldas, Minas Gerais"),
+                importer.getGeoLocationTO("Brazil: Pocos de Caldas, Minas Gerais", "21.48565 S 46.7087166666667 W"));
+
+        Assert.assertEquals(new GeoLocationTO("39.54 N 116.34 E", "39.54", "116.34", "China:Beijing"),
+                importer.getGeoLocationTO("China:Beijing", "39.54 N 116.34 E"));
+
+        Assert.assertEquals(new GeoLocationTO("United Kingdom: England", null, null, "United Kingdom: England"),
+                importer.getGeoLocationTO("United Kingdom: England", null));
+        
+        Assert.assertEquals(new GeoLocationTO("51.80 S 2.30 E", "-51.80", "2.30", null),
+                importer.getGeoLocationTO(null, "51.80 S 2.30 E"));
+        
+        Assert.assertEquals(null, importer.getGeoLocationTO(null, null));
+
+        Assert.assertEquals(new GeoLocationTO("39 N 116 E", "39", "-116", "China:Beijing"),
+                importer.getGeoLocationTO("China:Beijing", "39 N 116 E"));
     }
     
     //    @Test

@@ -16,7 +16,7 @@ public class Entity {
     private final Species organism;
     private final Species host;
     private final Set<String> platforms;
-    private final String geoLocName;
+    private final GeoLocation geoLocation;
     private final String collectionDate;
     private final Set<String> experimentAccs;
     private final Integer nucleotideCount;
@@ -24,8 +24,8 @@ public class Entity {
     public Entity(String biosampleAcc, String bioprojectAcc, BioSamplePackage biosamplePackage,
                   Set<LibraryStrategy> libraryStrategies, String submittingOrganizationName,
                   Set<LibraryLayout> libraryLayouts, Set<LibrarySource> librarySources, Species organism,
-                  Species host, Set<String> platforms,
-                  String geoLocName, String collectionDate, Set<String> experimentAccs, Integer nucleotideCount) {
+                  Species host, Set<String> platforms, GeoLocation geoLocation,
+                  String collectionDate, Set<String> experimentAccs, Integer nucleotideCount) {
         this.biosampleAcc = biosampleAcc;
         this.bioprojectAcc = bioprojectAcc;
         this.biosamplePackage = biosamplePackage;
@@ -36,7 +36,7 @@ public class Entity {
         this.organism = organism;
         this.host = host;
         this.platforms = platforms;
-        this.geoLocName = geoLocName;
+        this.geoLocation = geoLocation;
         this.collectionDate = collectionDate;
         this.experimentAccs = Collections.unmodifiableSet(experimentAccs == null ? new HashSet<>(): new HashSet<>(experimentAccs));
         this.nucleotideCount = nucleotideCount;
@@ -82,8 +82,8 @@ public class Entity {
         return platforms;
     }
 
-    public String getGeoLocName() {
-        return geoLocName;
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
     }
 
     public String getCollectionDate() {

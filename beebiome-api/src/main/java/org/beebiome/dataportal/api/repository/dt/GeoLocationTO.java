@@ -1,6 +1,7 @@
 package org.beebiome.dataportal.api.repository.dt;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class GeoLocationTO {
     private final String id;
@@ -46,5 +47,15 @@ public class GeoLocationTO {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GeoLocationTO.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("latitude='" + latitude + "'")
+                .add("longitude='" + longitude + "'")
+                .add("name='" + name + "'")
+                .toString();
     }
 }

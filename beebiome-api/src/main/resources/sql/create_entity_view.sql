@@ -1,4 +1,5 @@
-CREATE OR REPLACE VIEW entity AS 
+DROP VIEW entity;
+CREATE VIEW entity AS 
 (
 SELECT s.biosampleAcc AS biosampleAcc,
        p.bioprojectAcc AS bioprojectAcc,
@@ -13,7 +14,9 @@ SELECT s.biosampleAcc AS biosampleAcc,
        h.id AS hostId,
        h.scientificName AS hostScientificName,
        string_agg(DISTINCT e.platform, ';') AS platforms,
-       l.name AS geoLocName,
+       l.name AS geoLocationName,
+       l.latitude AS geoLocationLatitude,
+       l.longitude AS geoLocationLongitude,
        s.collectionDate AS collectionDate,
        string_agg(DISTINCT e.sraAcc, ';') AS experimentAccs,
        s.nucleotideCount AS nucleotideCount
@@ -31,5 +34,5 @@ FROM sample s
 WHERE se.biosampleAcc IS NOT NULL 
 AND e.sraAcc IS NOT NULL
 
-GROUP BY s.biosampleId, p.bioprojectId, bp.id, sp.id, h.id, l.name, s.collectionDate
+GROUP BY s.biosampleId, p.bioprojectId, bp.id, sp.id, h.id, l.name, l.latitude, l.longitude, s.collectionDate
 );
