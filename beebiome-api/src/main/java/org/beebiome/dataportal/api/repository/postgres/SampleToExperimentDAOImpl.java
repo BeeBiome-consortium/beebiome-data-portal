@@ -17,6 +17,8 @@ public class SampleToExperimentDAOImpl implements SampleToExperimentDAO {
 
     NamedParameterJdbcTemplate template;
 
+    // We don't remove a link between a sample and an experiment.
+    // Do to that, it would be necessary to set up a more complex db update.
     private final String INSERTION_SQL = "INSERT INTO sampleToExperiment(biosampleAcc, sraAcc) " +
             "VALUES (:biosampleAcc, :sraAcc) " +
             "ON CONFLICT DO NOTHING";

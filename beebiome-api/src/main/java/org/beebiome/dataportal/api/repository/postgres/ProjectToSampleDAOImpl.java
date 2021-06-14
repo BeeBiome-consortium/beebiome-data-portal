@@ -17,6 +17,8 @@ public class ProjectToSampleDAOImpl implements ProjectToSampleDAO {
     
     NamedParameterJdbcTemplate template;
 
+    // We don't remove a link between a project and a sample.
+    // Do to that, it would be necessary to set up a more complex db update.
     private final String INSERTION_SQL = "INSERT INTO projectToSample(bioprojectId, biosampleId) " +
             "VALUES (:bioprojectId, :biosampleId) " +
             "ON CONFLICT DO NOTHING";

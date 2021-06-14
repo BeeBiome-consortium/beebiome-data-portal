@@ -21,7 +21,10 @@ public class SampleDAOImpl implements SampleDAO {
             "locationId, speciesId, hostSpeciesId, collectionDate, nucleotideCount) " +
             "VALUES (:biosampleId, :biosampleAcc, :biosamplePackageId, :locationId, :speciesId, " +
             ":hostSpeciesId, :collectionDate, :nucleotideCount) " +
-            "ON CONFLICT DO NOTHING";
+            "ON CONFLICT (biosampleId) DO UPDATE SET biosampleAcc = EXCLUDED.biosampleAcc, " +
+            "               biosamplePackageId = EXCLUDED.biosamplePackageId, locationId = EXCLUDED.locationId, " +
+            "               speciesId = EXCLUDED.speciesId, hostSpeciesId = EXCLUDED.hostSpeciesId, " +
+            "               collectionDate = EXCLUDED.collectionDate, nucleotideCount = EXCLUDED.nucleotideCount";
 
     public SampleDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

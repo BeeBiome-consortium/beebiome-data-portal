@@ -19,7 +19,7 @@ public class TaxonDAOImpl implements TaxonDAO {
 
     private final static String INSERTION_SQL = "INSERT INTO taxon(id, name) " +
             "VALUES (:id, :name) " +
-            "ON CONFLICT DO NOTHING";
+            "ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name";
 
     public TaxonDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;
