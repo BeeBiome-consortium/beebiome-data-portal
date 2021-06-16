@@ -68,10 +68,11 @@ public class NCBIImporter {
 
     private final static Logger log = LogManager.getLogger(NCBIImporter.class.getName());
 
-    private final static Pattern GEO_COORDINATES_PATTERN = Pattern.compile("^(\\d+\\.?\\d*)\\s*([NS])\\s*(\\d+\\.?\\d*)\\s*([WE])$");
+    private final static Pattern GEO_COORDINATES_PATTERN = Pattern.compile("^(\\d+\\.?\\d*)\\s*([NS]),?\\s*(\\d+\\.?\\d*)\\s*([WE])$");
 
     private final static Set<String> UNKNOWN_GEO_COORDINATES = new HashSet<>(
-            Arrays.asList("missing", "not collected", "n/a", "na", "unknown"));
+            Arrays.asList("missing", "not collected", "n/a", "na", "'not applicable'",
+                    "unknown", "not determined", "not recorded", "not available", "not clear"));
 
     public static void main(String[] args) throws JAXBException, IOException {
         log.traceEntry("Parameter: {}", (Object[]) args);
@@ -413,11 +414,15 @@ public class NCBIImporter {
     }
 
     protected GeoLocationTO getGeoLocationTO(String localisationName, String latitudeLongitude) {
-        if (StringUtils.isBlank(localisationName) && StringUtils.isBlank(latitudeLongitude)) {
+        String name = localisationName;
+        if (StringUtils.isBlank(name) || UNKNOWN_GEO_COORDINATES.contains(name.toLowerCase())) {
+            name = null;
+        }
+        if (name == null && StringUtils.isBlank(latitudeLongitude)) {
             return null;
         }
         if (StringUtils.isBlank(latitudeLongitude)) {
-            return new GeoLocationTO(localisationName, null, null, localisationName);
+            return new GeoLocationTO(name, null, null, name);
         }
         Matcher matcher = GEO_COORDINATES_PATTERN.matcher(latitudeLongitude);
         if (matcher.find()) {
@@ -429,7 +434,8 @@ public class NCBIImporter {
             if (matcher.group(4).equals("W")) {
                 longitude = "-" + longitude;
             }
-            return new GeoLocationTO(latitudeLongitude, latitude, longitude, localisationName);
+            String id = latitude + "_" + longitude + (name == null ? "" : "_" + name);
+            return new GeoLocationTO(id, latitude, longitude, localisationName);
         }
         if (!UNKNOWN_GEO_COORDINATES.contains(latitudeLongitude.toLowerCase())) {
             log.error("Unparsed latitude-longitude attr: " + latitudeLongitude);

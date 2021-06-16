@@ -32,9 +32,9 @@ CREATE TABLE speciesToName
 CREATE TABLE location
 (
     -- geography geography(POINT) NOT NULL PRIMARY KEY,
-    id varchar(50) PRIMARY KEY, -- id=lat_long - it's temporary, while waiting to use PostGIS 
-    latitude varchar(125), -- it's temporary, while waiting to use PostGIS
-    longitude varchar(125), -- it's temporary, while waiting to use PostGIS
+    id varchar(255) PRIMARY KEY, -- id=lat_long - it's temporary, while waiting to use PostGIS 
+    latitude varchar(20), -- it's temporary, while waiting to use PostGIS
+    longitude varchar(20), -- it's temporary, while waiting to use PostGIS
     name text
 );
 
