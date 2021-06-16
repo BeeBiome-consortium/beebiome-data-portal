@@ -98,6 +98,9 @@ class Table extends Component {
             dom:"<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4 browse-search'f>>" +
                 "<'row'<'data-table-wrapper col-sm-12'tr>>" +
                 "<'row'<'col-sm-6 btn-download'B><'col-sm-6'p>>",
+            oLanguage: {
+                sSearch: "Filter:"
+            },
             lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
             data: this.props.data,
             columns,
