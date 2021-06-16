@@ -1,7 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import React, {Component} from 'react';
-import ReactGA from "react-ga";
 
 export default class WorldMap extends Component {
     constructor() {
@@ -13,8 +12,6 @@ export default class WorldMap extends Component {
     }
 
     componentDidMount() {
-        ReactGA.pageview(window.location.pathname + window.location.search);
-
         var markGroups = {};
         var samplesWithoutCoord = [];
         for (const entity of this.props.data) {
