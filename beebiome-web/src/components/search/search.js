@@ -3,6 +3,7 @@ import Table from '../result/table';
 import './search.css';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
+import WorldMap from "../map/map";
 
 class Search extends Component {
     constructor() {
@@ -74,7 +75,12 @@ class Search extends Component {
     render() {
         let result = "";
         if (this.state.isLoaded) {
-            result = <Table data={this.state.data}/>
+            result = <div>
+                <h2 id={"result-table"}>Result in table (see result in map <a href={"#result-map"}>below</a>)</h2>
+                <Table data={this.state.data}/>
+                <h2 id={"result-map"} >Result in map (see result in table <a href={"#result-table"}>below</a>)</h2>
+                <WorldMap data={this.state.data}/>
+            </div>
         } else if (this.state.errorMessage !== null) {
             result = <p>{this.state.errorMessage}</p>
         } else if (this.state.isFetching) {
