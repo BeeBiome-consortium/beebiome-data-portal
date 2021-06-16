@@ -52,6 +52,8 @@ function Header() {
                                 <Link to="/about/citing-beebiome" className="dropdown-item">Citing us</Link>
                                 <Link to="/consortium/aims" className="dropdown-item">Consortium aims</Link>
                                 <Link to="/consortium/members" className="dropdown-item">Consortium members</Link>
+                                <a className="dropdown-item" target="_blank" rel={"noopener noreferrer"}
+                                   href="https://github.com/BeeBiome-consortium/beebiome-data-portal">Source code</a>
                                 <Link to="/about/privacy-notice" className="dropdown-item">Privacy notice</Link>
                             </div>
                         </li>
