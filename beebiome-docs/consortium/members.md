@@ -9,8 +9,8 @@ The coordination team is composed of Benjamin Dainat, Jay D Evans, Philipp Engel
 
 ## Currently, we have 42 members in our consortium!
 
-Name | Affiliation
-- | -
+| Name | Affiliation | 
+| - | - |
 Kirk Anderson | USDA, Tucson, USA
 Mark Barnett | University of Edinburgh, UK
 Seth Barribeau | University of Liverpool, UK
