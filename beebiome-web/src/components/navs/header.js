@@ -42,6 +42,7 @@ function Header() {
                                 <Link to="/help/browse-search" className="dropdown-item">Browse and search</Link>
                                 <a className="dropdown-item" target="_blank" rel={"noopener noreferrer"}
                                    href="https://github.com/BeeBiome-consortium/beebiome-data-portal/tree/master/beebiome-api">API</a>
+                                <Link to="/about/hosts-overview" className="dropdown-item">Hosts overview</Link>
                             </div>
                         </li>
                         <li className="nav-item dropdown">
