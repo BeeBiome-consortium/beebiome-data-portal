@@ -8,6 +8,8 @@ export SCRIPT_DIR=$HOME_DIR/beebiome-data-portal/beebiome-scripts
 export TAXON_LEVEL="Apoidea" # warning: use underscore to replace spaces such as Bombus_impatiens
 export STARTING_TIMEPOINT=$(date "+%Y%m%d-%H%M")
 
+echo "Start BeeBiome database update..."
+
 ## Retrieve data from NCBI
 perl $SCRIPT_DIR/retrieve_metadata.pl $OUTPUT_DIR $TAXON_LEVEL 1 > $LOG_DIR/retrieve_beebiome_metadata.$STARTING_TIMEPOINT.log
 
@@ -31,6 +33,10 @@ do
     curl -X POST $options https://beebiome.org/beebiome/import >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
     i=$((i + 1))
 done
+
+curl -X POST https://beebiome.org/beebiome/import/new-version >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
+
+echo "End BeeBiome database update"
 
 MAIL="beebiome@unil.ch"
 echo "Dear BeeBiome maintainers,\n\nBeeBiome database has been updated.\n\nThe BeeBiome team" | mailx -s "BeeBiome update" "$MAIL"

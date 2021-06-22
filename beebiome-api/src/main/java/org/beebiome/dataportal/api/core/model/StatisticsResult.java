@@ -4,16 +4,23 @@ import java.util.StringJoiner;
 
 public class StatisticsResult {
 
+    private final BeeBiomeVersion version;
     private final Integer projectCount;
     private final Integer sampleCount;
     private final Integer experimentCount;
     private final Integer hostCount;
 
-    public StatisticsResult(Integer projectCount, Integer sampleCount, Integer experimentCount, Integer hostCount) {
+    public StatisticsResult(BeeBiomeVersion version, Integer projectCount, Integer sampleCount,
+                            Integer experimentCount, Integer hostCount) {
+        this.version = version;
         this.projectCount = projectCount;
         this.sampleCount = sampleCount;
         this.experimentCount = experimentCount;
         this.hostCount = hostCount;
+    }
+
+    public BeeBiomeVersion getVersion() {
+        return version;
     }
 
     public Integer getProjectCount() {

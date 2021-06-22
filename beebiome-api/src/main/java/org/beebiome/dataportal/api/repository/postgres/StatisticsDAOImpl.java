@@ -1,10 +1,15 @@
 package org.beebiome.dataportal.api.repository.postgres;
 
+import org.beebiome.dataportal.api.core.model.BeeBiomeVersion;
 import org.beebiome.dataportal.api.repository.dao.StatisticsDAO;
+import org.beebiome.dataportal.api.repository.postgres.mapper.BeeBiomeVersionRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map;
 
 @Repository
 public class StatisticsDAOImpl implements StatisticsDAO {
@@ -35,6 +40,20 @@ public class StatisticsDAOImpl implements StatisticsDAO {
 
     @Override
     public int findHostCount() {
-        return template.queryForObject("select count(distinct hostid) from entity", new HashMap<>(), Integer.class);
+        return template.queryForObject("SELECT count(distinct hostid) FROM entity", new HashMap<>(), Integer.class);
+    }
+
+    @Override
+    public BeeBiomeVersion findBeeBiomeVersion() {
+        return template.queryForObject("SELECT * FROM beebiomeVersion ORDER BY date DESC LIMIT 1", new HashMap<>(), new BeeBiomeVersionRowMapper());
+    }
+
+    @Override
+    public int insertNewBeeBiomeVersion() {
+        // Currently, version name is the date.
+        Map<String,Object> map = new HashMap<>();
+        map.put("name", "BeeBiome " + LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
+
+        return template.update("INSERT INTO beebiomeVersion (date, name) VALUES (now(), :name)", map);
     }
 }

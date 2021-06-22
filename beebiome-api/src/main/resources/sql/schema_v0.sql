@@ -154,3 +154,10 @@ CREATE TABLE sampleToRecommendation
     FOREIGN KEY(biosampleId) REFERENCES sample(biosampleId) ON DELETE CASCADE,
     FOREIGN KEY(recommendationId) REFERENCES recommendation(id) ON DELETE CASCADE
 );
+
+CREATE TABLE beebiomeVersion
+(
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMP,
+    name varchar(20) -- version name is the date. Currently, it will be the date of the last update. Format yyyy-mm-dd
+);
