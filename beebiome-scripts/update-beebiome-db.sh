@@ -44,7 +44,7 @@ do
 done
 
 echo "New release done. Import release version:"
-curl https://beebiome.org/beebiome/import/new-version?pwd=$pwd >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
+curl https://beebiome.org/beebiome/import/new-release-version?pwd=$pwd >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
 
 echo "\nEnd BeeBiome database update"
 
