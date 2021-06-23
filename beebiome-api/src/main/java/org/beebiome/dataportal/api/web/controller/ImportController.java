@@ -20,14 +20,15 @@ public class ImportController {
 
     @PostMapping("/import")
     @ResponseBody
-    public ImportResult importData(@RequestParam("files") MultipartFile[] files) {
-        return importService.importData(files);
+    public ImportResult importData(@RequestParam("files") MultipartFile[] files,
+                                   @RequestParam("pwd") String pwd) {
+        return importService.importData(files, pwd);
     }
 
     @CrossOrigin
     @GetMapping("/import/new-version")
     @ResponseBody
-    public BeeBiomeVersion addBeeBiomeVersion() {
-        return importService.addNewBeeBiomeVersion();
+    public BeeBiomeVersion addBeeBiomeVersion(@RequestParam("pwd") String pwd) {
+        return importService.addNewBeeBiomeVersion(pwd);
     }
 }

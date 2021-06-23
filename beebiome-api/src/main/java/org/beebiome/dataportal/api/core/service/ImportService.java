@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ImportService {
 
-    ImportResult importData(MultipartFile[] files);
+    ImportResult importData(MultipartFile[] files, String pwd);
 
-    BeeBiomeVersion addNewBeeBiomeVersion();
+    BeeBiomeVersion addNewBeeBiomeVersion(String pwd);
 }

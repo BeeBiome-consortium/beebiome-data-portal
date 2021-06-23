@@ -1,12 +1,16 @@
 #!/bin/sh
 
-export HOME_DIR=/home/beebiome 
+export HOME_DIR=$1
 export WORK_DIR=$HOME_DIR/beebiome-update 
 export LOG_DIR=$WORK_DIR/logs
 export OUTPUT_DIR=$WORK_DIR/data
 export SCRIPT_DIR=$HOME_DIR/beebiome-data-portal/beebiome-scripts
 export TAXON_LEVEL="Apoidea" # warning: use underscore to replace spaces such as Bombus_impatiens
 export STARTING_TIMEPOINT=$(date "+%Y%m%d-%H%M")
+
+export PROPERTIES_FILE=$2
+
+pwd=`cat ${PROPERTIES_FILE} | grep 'import.password' | cut -d'=' -f2`
 
 echo "Start BeeBiome database update..."
 
@@ -29,14 +33,20 @@ do
     then
         break;
     fi
-    options=$options' -F files=@'$OUTPUT_DIR'/'$TAXON_LEVEL'/'$TAXON_LEVEL'_taxonomy.xml' 
+    
+    options=$options' -F files=@'$OUTPUT_DIR'/'$TAXON_LEVEL'/'$TAXON_LEVEL'_taxonomy.xml -F pwd='$pwd
+
+    echo "Start load set $i"
     curl -X POST $options https://beebiome.org/beebiome/import >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
+    echo "End load set $i"
+    
     i=$((i + 1))
 done
 
-curl -X POST https://beebiome.org/beebiome/import/new-version >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
+echo "New release done. Import release version:"
+curl https://beebiome.org/beebiome/import/new-version?pwd=$pwd >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
 
-echo "End BeeBiome database update"
+echo "\nEnd BeeBiome database update"
 
 MAIL="beebiome@unil.ch"
 echo "Dear BeeBiome maintainers,\n\nBeeBiome database has been updated.\n\nThe BeeBiome team" | mailx -s "BeeBiome update" "$MAIL"

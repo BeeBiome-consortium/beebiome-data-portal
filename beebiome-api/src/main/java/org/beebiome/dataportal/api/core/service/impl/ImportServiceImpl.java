@@ -23,6 +23,7 @@ import org.beebiome.dataportal.api.repository.dao.TaxonDAO;
 import org.beebiome.dataportal.api.repository.dt.ImportTO;
 import org.beebiome.dataportal.pipeline.NCBIImporter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,8 +51,14 @@ public class ImportServiceImpl implements ImportService {
     @Autowired private SampleToExperimentDAO sampleToExperimentDAO;
     @Autowired private StatisticsDAO statisticsDAO;
 
+    @Value("${import.password}")
+    private final String password = null;
+
     @Override
-    public ImportResult importData(MultipartFile[] files) {
+    public ImportResult importData(MultipartFile[] files, String pwd) {
+        
+        checkPassword(pwd);
+        
         log.info("Start data import...");
 
         Set<FileInfo> fileInfos = new HashSet<>();
@@ -94,12 +101,20 @@ public class ImportServiceImpl implements ImportService {
     }
 
     @Override
-    public BeeBiomeVersion addNewBeeBiomeVersion() {
+    public BeeBiomeVersion addNewBeeBiomeVersion(String pwd) {
+
+        checkPassword(pwd);
         
         int rows = statisticsDAO.insertNewBeeBiomeVersion();
         if (rows == 1) {
             return statisticsDAO.findBeeBiomeVersion();
         }
         throw new BeebiomeException("Error during insertion of new version");
+    }
+
+    private void checkPassword(String pwd) {
+        if (pwd == null || !pwd.equals(password)) {
+            throw new BeebiomeException("Wrong password");
+        }
     }
 }
