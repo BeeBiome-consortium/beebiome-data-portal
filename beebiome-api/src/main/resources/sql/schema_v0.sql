@@ -155,7 +155,7 @@ CREATE TABLE sampleToRecommendation
     FOREIGN KEY(recommendationId) REFERENCES recommendation(id) ON DELETE CASCADE
 );
 
-CREATE TABLE beebiomeVersion
+CREATE TABLE releaseVersion
 (
     id SERIAL PRIMARY KEY,
     date TIMESTAMP,

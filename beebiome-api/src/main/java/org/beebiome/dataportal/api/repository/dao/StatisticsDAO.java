@@ -1,6 +1,6 @@
 package org.beebiome.dataportal.api.repository.dao;
 
-import org.beebiome.dataportal.api.core.model.BeeBiomeVersion;
+import org.beebiome.dataportal.api.core.model.ReleaseVersion;
 
 public interface StatisticsDAO {
 
@@ -12,8 +12,8 @@ public interface StatisticsDAO {
     
     int findHostCount();
 
-    BeeBiomeVersion findBeeBiomeVersion();
+    ReleaseVersion findReleaseVersion();
 
-    int insertNewBeeBiomeVersion();
+    int insertNewReleaseVersion();
 
 }

@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.beebiome.dataportal.api.core.exception.BeebiomeException;
 import org.beebiome.dataportal.api.core.model.FileInfo;
 import org.beebiome.dataportal.api.core.model.ImportResult;
-import org.beebiome.dataportal.api.core.model.BeeBiomeVersion;
+import org.beebiome.dataportal.api.core.model.ReleaseVersion;
 import org.beebiome.dataportal.api.core.service.ImportService;
 import org.beebiome.dataportal.api.repository.dao.BiosamplePackageDAO;
 import org.beebiome.dataportal.api.repository.dao.ExperimentDAO;
@@ -101,15 +101,15 @@ public class ImportServiceImpl implements ImportService {
     }
 
     @Override
-    public BeeBiomeVersion addNewBeeBiomeVersion(String pwd) {
+    public ReleaseVersion addNewReleaseVersion(String pwd) {
 
         checkPassword(pwd);
         
-        int rows = statisticsDAO.insertNewBeeBiomeVersion();
+        int rows = statisticsDAO.insertNewReleaseVersion();
         if (rows == 1) {
-            return statisticsDAO.findBeeBiomeVersion();
+            return statisticsDAO.findReleaseVersion();
         }
-        throw new BeebiomeException("Error during insertion of new version");
+        throw new BeebiomeException("Error during insertion of a new release version");
     }
 
     private void checkPassword(String pwd) {

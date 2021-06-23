@@ -1,7 +1,7 @@
 package org.beebiome.dataportal.api.web.controller;
 
 import org.beebiome.dataportal.api.core.model.ImportResult;
-import org.beebiome.dataportal.api.core.model.BeeBiomeVersion;
+import org.beebiome.dataportal.api.core.model.ReleaseVersion;
 import org.beebiome.dataportal.api.core.service.ImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +26,9 @@ public class ImportController {
     }
 
     @CrossOrigin
-    @GetMapping("/import/new-version")
+    @GetMapping("/import/new-release-version")
     @ResponseBody
-    public BeeBiomeVersion addBeeBiomeVersion(@RequestParam("pwd") String pwd) {
-        return importService.addNewBeeBiomeVersion(pwd);
+    public ReleaseVersion addNewReleaseVersion(@RequestParam("pwd") String pwd) {
+        return importService.addNewReleaseVersion(pwd);
     }
 }
