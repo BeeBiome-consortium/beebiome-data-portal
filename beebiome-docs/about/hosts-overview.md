@@ -7,7 +7,6 @@
 Apoidea hosts | Total BioSamples
 - | -
   Agapostemon splendens | 8
-  Anthophora abrupta | 6
 
 
 ##  Reference
