@@ -3,7 +3,7 @@ import Table from '../result/table';
 import './search.css';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
-import WorldMap from "../map/map";
+import WorldMap from "../result/map";
 import Copyright from "../result/copyright";
 
 const examples = {

@@ -3,10 +3,11 @@ import Table from '../result/table';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
 import Copyright from "../result/copyright";
+import WorldMap from "../result/map";
 
 class Browse extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: null,
             searchQuery: "",
@@ -37,11 +38,13 @@ class Browse extends Component {
     render() {
         let result = "";
         if (this.state.isLoaded) {
-            result =
-                <div>
-                    <Table data={this.state.data} searchQuery={this.state.searchQuery}/>
-                    <Copyright />
-                </div>
+            let content;
+            if (this.props.location.pathname.search("map") !== -1) {
+                content = <WorldMap data={this.state.data}/>
+            } else {
+                content = <Table data={this.state.data} searchQuery={this.state.searchQuery}/>;
+            }
+            result =<div>{content}<Copyright /></div>
         } else if (this.state.errorMessage !== null) {
             result = <p>{this.state.errorMessage}</p>
         } else {

@@ -15,21 +15,20 @@ import Footer from "./components/navs/footer";
 import CookieConsent from "react-cookie-consent";
 import MarkdownPage from "./components/markdown/markdown";
 import PrivacyNotice from "./components/privacy-notice/privacy-notice";
-import Map from "./components/map/map";
 
 const routing = (
     <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
         <Header />
         <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/browse" component={Browse} />
+            <Route path="/browse" component={Browse} /> {/* We keep 'browse' for the legacy */}
+            <Route path="/browse/:type" component={(props) => <Browse {...props}  key={window.location.pathname} />} />
             <Route path="/search" component={Search} />
             <Route path='/wiki/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route exact path="/about/privacy-notice" component={PrivacyNotice} />
             <Route path='/help/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/about/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/consortium/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
-            <Route exact path="/map" component={Map} />
             <Route component={Notfound} />
         </Switch>
         <Footer />
