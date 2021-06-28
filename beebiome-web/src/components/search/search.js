@@ -3,6 +3,8 @@ import Table from '../result/table';
 import './search.css';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
+import WorldMap from "../map/map";
+import Copyright from "../result/copyright";
 
 const examples = {
     bioProjectAcc: ['PRJNA392822'],
@@ -43,7 +45,7 @@ class Search extends Component {
         params = this.addParam("host", self.state.host, params);
         params = this.addParam("organism", self.state.organism, params);
         params = this.addParam("collectionDate", self.state.collectionDate, params);
-        params = this.addParam("geoLocName", self.state.geoLocName, params);
+        params = this.addParam("geoLocationName", self.state.geoLocationName, params);
         params = this.addParam("librarySources", self.state.librarySources, params);
         params = this.addParam("libraryLayouts", self.state.libraryLayouts, params);
         params = this.addParam("libraryStrategies", self.state.libraryStrategies, params);
@@ -113,14 +115,7 @@ class Search extends Component {
     }
     
     render() {
-        let result = "";
-        if (this.state.isLoaded) {
-            result = <Table data={this.state.data}/>
-        } else if (this.state.errorMessage !== null) {
-            result = <p>{this.state.errorMessage}</p>
-        } else if (this.state.isFetching) {
-            result = <Loading/>
-        }
+        let result = this.getResultDisplay();
         let doc_link = "/help/data";
         if (process.env.REACT_APP_ROUTER_BASE) {
             doc_link = process.env.REACT_APP_ROUTER_BASE + doc_link;
@@ -172,6 +167,65 @@ class Search extends Component {
                 </div>
             </div>
         );
+    }
+
+    getResultDisplay() {
+        let result = "";
+        if (this.state.isLoaded) {
+            if (this.state.data && this.state.data.length > 0) {
+                result =
+                    <div>
+                        <div id="accordion">
+                            <div className={"alert alert-success"}>
+                                Results are displayed in a <a href={"#result-table"}>table</a> or
+                                a <a
+                                href={"#result-map"}>world map</a>.
+                                It is possible to hide the desired format by clicking on the title
+                            </div>
+                            <div className="card mb-1">
+                                <div className="card-header pt-0 pb-0" id="headingTable">
+                                    <button className="btn btn-link" data-toggle="collapse"
+                                            data-target="#result-table" aria-expanded="true"
+                                            aria-controls="result-table">Table</button>
+                                </div>
+                                <div id="result-table" className="collapse show"
+                                     aria-labelledby="headingTable"
+                                     data-parent="#accordion">
+                                    <div className="card-body mt-0 ">
+                                        <Table data={this.state.data}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <div className="card-header pt-0 pb-0" id="headingMap">
+                                    <button className="btn btn-link collapsed"
+                                            data-toggle="collapse"
+                                            data-target="#result-map" aria-expanded="true"
+                                            aria-controls="result-map">Map</button>
+                                </div>
+                                <div id="result-map" className="collapse show"
+                                     aria-labelledby="headingMap"
+                                     data-parent="#accordion">
+                                    <div className="card-body">
+                                        <WorldMap data={this.state.data}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <Copyright/>
+                    </div>
+            } else {
+                result =
+                    <div className={"alert alert-danger"}>
+                        Sorry, no results found for your search.
+                    </div>
+            }
+        } else if (this.state.errorMessage !== null) {
+            result = <p>{this.state.errorMessage}</p>
+        } else if (this.state.isFetching) {
+            result = <Loading/>
+        }
+        return result;
     }
 }
 

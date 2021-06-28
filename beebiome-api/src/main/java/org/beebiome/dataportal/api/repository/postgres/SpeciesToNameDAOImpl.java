@@ -17,6 +17,8 @@ public class SpeciesToNameDAOImpl implements SpeciesToNameDAO {
 
     NamedParameterJdbcTemplate template;
 
+    // We don't remove a link between a species and a name/synonym.
+    // Do to that, it would be necessary to set up a more complex db update.
     private final String INSERTION_SQL = "INSERT INTO speciesToName(speciesId, name) " +
             "VALUES (:speciesId, :name) " +
             "ON CONFLICT DO NOTHING";

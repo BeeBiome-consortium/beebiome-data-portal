@@ -20,7 +20,9 @@ public class ExperimentDAOImpl implements ExperimentDAO {
     private final String INSERTION_SQL = "INSERT INTO experiment(sraAcc, title, platform, " +
             "libraryStrategy, libraryLayout, librarySource) " +
             "VALUES (:sraAcc, :title, :platform, :libraryStrategy, :libraryLayout, :librarySource) " +
-            "ON CONFLICT DO NOTHING";
+            "ON CONFLICT (sraAcc) DO UPDATE SET title = EXCLUDED.title, platform = EXCLUDED.platform, " +
+            "               librarystrategy = EXCLUDED.libraryStrategy, libraryLayout = EXCLUDED.librarylayout, " +
+            "               librarySource = EXCLUDED.librarysource";
 
     public ExperimentDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

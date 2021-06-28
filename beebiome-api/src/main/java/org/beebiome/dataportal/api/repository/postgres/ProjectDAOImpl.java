@@ -23,7 +23,11 @@ public class ProjectDAOImpl implements ProjectDAO {
             "VALUES (:bioprojectId, :bioprojectAcc, :title, :description, " +
             ":submissionDate, :updateDate, :submittingOrganizationName, " +
             ":grantId, :grantTitle, :grantAgency) " +
-            "ON CONFLICT DO NOTHING";
+            "ON CONFLICT (bioprojectId) DO UPDATE SET bioprojectAcc = EXCLUDED.bioprojectAcc, " +
+            "               title = EXCLUDED.title, description = EXCLUDED.description, " +
+            "               submissionDate = EXCLUDED.submissiondate, updateDate = EXCLUDED.updateDate, " +
+            "               submittingOrganizationName = EXCLUDED.submittingOrganizationName, " +
+            "               grantId = EXCLUDED.grantId, grantTitle = EXCLUDED.grantTitle, grantAgency = EXCLUDED.grantAgency";
 
     public ProjectDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

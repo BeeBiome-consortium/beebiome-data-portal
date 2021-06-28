@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Table from '../result/table';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
+import Copyright from "../result/copyright";
 
 class Browse extends Component {
     constructor() {
@@ -36,7 +37,11 @@ class Browse extends Component {
     render() {
         let result = "";
         if (this.state.isLoaded) {
-            result = <Table data={this.state.data} searchQuery={this.state.searchQuery}/>
+            result =
+                <div>
+                    <Table data={this.state.data} searchQuery={this.state.searchQuery}/>
+                    <Copyright />
+                </div>
         } else if (this.state.errorMessage !== null) {
             result = <p>{this.state.errorMessage}</p>
         } else {

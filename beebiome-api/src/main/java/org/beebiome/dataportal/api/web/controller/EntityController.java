@@ -38,7 +38,7 @@ public class EntityController {
                                   @RequestParam(required = false) String organism,
                                   @RequestParam(required = false) String host,
                                   @RequestParam(required = false) String collectionDate,
-                                  @RequestParam(required = false) String geoLocName,
+                                  @RequestParam(required = false) String geoLocationName,
                                   @RequestParam(required = false) String librarySources,
                                   @RequestParam(required = false) String libraryLayouts,
                                   @RequestParam(required = false) String libraryStrategies,
@@ -47,7 +47,8 @@ public class EntityController {
                                   @RequestParam(required = false) String biosamplePackageAcc,
                                   @RequestParam(required = false) String biosamplePackageName) {
         return entityService.getEntities(bioSampleAcc, bioProjectAcc, libraryStrategies, centerName,
-                instruments, libraryLayouts, librarySources, organism, host, geoLocName, collectionDate,
+                instruments, libraryLayouts, librarySources, organism, host,
+                geoLocationName, collectionDate,
                 biosamplePackageAcc, biosamplePackageName);
     }
 }
