@@ -3,7 +3,6 @@ import './table.css';
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import "datatables.net-buttons-dt/css/buttons.dataTables.min.css"
 import "datatables.net-responsive-dt/css/responsive.dataTables.css"
-import cc0_logo from "../../assets/images/cc-zero_logo.png";
 
 const $ = require('jquery');
 require( 'datatables.net-dt' );
@@ -151,37 +150,19 @@ class Table extends Component {
     }
 
     render() {
-        let link = "/about/citing-beebiome";
-        if (process.env.REACT_APP_ROUTER_BASE) {
-            link = process.env.REACT_APP_ROUTER_BASE + link;
-        }
         return (
             <div>
                 <div className={"result-info mb-3"}>
                     <p>Results are ordered by 'BioProject acc.', then 'BioSample acc.'.
-                        The order could be changed by clicking on one column, then press shift and click on another column.</p>
+                        The order could be changed by clicking on one column, then press shift and
+                        click on another column.</p>
                     <p>Clicking on the '+' sign shows the full information for each sample.</p>
                 </div>
-                <table id="result" className={'table table-sm table-striped table-bordered table-hover '} ref="main" />
-                <div className={"copyright"}>
-                    <p>
-                        This work is published under the <a href={"https://creativecommons.org/publicdomain/zero/1.0/"} 
-                                                            target='_blank' rel='noopener noreferrer'>
-                        Creative Commons Zero license (CC0)</a> from Switzerland. 
-                        Although CC0 doesn’t legally require users of the data to cite the source,
-                        if you intend to use data from BeeBiome, it would be nice to cite us (see <a href={link}>Citing us</a> page).
-                    </p>
-                    <p>
-                        <a rel="license noopener noreferrer"
-                           href="https://creativecommons.org/publicdomain/zero/1.0/"
-                           target="_blank">
-                            <img src={cc0_logo} alt="CC0"/>
-                        </a>
-                    </p>
-                </div>
+                <table id="result"
+                       className={'table table-sm table-striped table-bordered table-hover '}
+                       ref="main"/>
             </div>
         )
-                
     }
 }
 

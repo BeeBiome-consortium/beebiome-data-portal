@@ -4,6 +4,7 @@ import './search.css';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
 import WorldMap from "../map/map";
+import Copyright from "../result/copyright";
 
 class Search extends Component {
     constructor() {
@@ -73,19 +74,7 @@ class Search extends Component {
     }
 
     render() {
-        let result = "";
-        if (this.state.isLoaded) {
-            result = <div>
-                <h2 id={"result-table"}>Result in table (see result in map <a href={"#result-map"}>below</a>)</h2>
-                <Table data={this.state.data}/>
-                <h2 id={"result-map"} >Result in map (see result in table <a href={"#result-table"}>below</a>)</h2>
-                <WorldMap data={this.state.data}/>
-            </div>
-        } else if (this.state.errorMessage !== null) {
-            result = <p>{this.state.errorMessage}</p>
-        } else if (this.state.isFetching) {
-            result = <Loading/>
-        }
+        let result = this.getResultDisplay();
         let doc_link = "/help/data";
         if (process.env.REACT_APP_ROUTER_BASE) {
             doc_link = process.env.REACT_APP_ROUTER_BASE + doc_link;
@@ -175,6 +164,65 @@ class Search extends Component {
                 </div>
             </div>
         );
+    }
+
+    getResultDisplay() {
+        let result = "";
+        if (this.state.isLoaded) {
+            if (this.state.data && this.state.data.length > 0) {
+                result =
+                    <div>
+                        <div id="accordion">
+                            <div className={"alert alert-success"}>
+                                Results are displayed in a <a href={"#result-table"}>table</a> or
+                                a <a
+                                href={"#result-map"}>world map</a>.
+                                It is possible to hide the desired format by clicking on the title
+                            </div>
+                            <div className="card mb-1">
+                                <div className="card-header pt-0 pb-0" id="headingTable">
+                                    <button className="btn btn-link" data-toggle="collapse"
+                                            data-target="#result-table" aria-expanded="true"
+                                            aria-controls="result-table">Table</button>
+                                </div>
+                                <div id="result-table" className="collapse show"
+                                     aria-labelledby="headingTable"
+                                     data-parent="#accordion">
+                                    <div className="card-body mt-0 ">
+                                        <Table data={this.state.data}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <div className="card-header pt-0 pb-0" id="headingMap">
+                                    <button className="btn btn-link collapsed"
+                                            data-toggle="collapse"
+                                            data-target="#result-map" aria-expanded="true"
+                                            aria-controls="result-map">Map</button>
+                                </div>
+                                <div id="result-map" className="collapse show"
+                                     aria-labelledby="headingMap"
+                                     data-parent="#accordion">
+                                    <div className="card-body">
+                                        <WorldMap data={this.state.data}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <Copyright/>
+                    </div>
+            } else {
+                result =
+                    <div className={"alert alert-danger"}>
+                        Sorry, no results found for your search.
+                    </div>
+            }
+        } else if (this.state.errorMessage !== null) {
+            result = <p>{this.state.errorMessage}</p>
+        } else if (this.state.isFetching) {
+            result = <Loading/>
+        }
+        return result;
     }
 }
 

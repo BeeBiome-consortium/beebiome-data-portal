@@ -43,10 +43,9 @@ export default class WorldMap extends Component {
         return {key, obj};
     }
     
-    getLocationFromSearch(acc, name, x, y) {
-        let key = x + "_" + y
-        let obj = {name: acc, geoLocName: name, geoLocLat: x, geoLocLong: y};
-        return {key, obj};
+    getBiosampleLink(acc) {
+        let url = "https://www.ncbi.nlm.nih.gov/biosample/" + acc;
+        return <a href={url} rel="noopener noreferrer" target="_blank">{acc}</a>
     }
 
     render() {
@@ -67,13 +66,27 @@ export default class WorldMap extends Component {
             }
         }
 
-        var noCoordSamples = "";
-        if (this.state.samplesWithoutCoord) {
-            if(this.state.samplesWithoutCoord.length === 1) {
-                noCoordSamples = <p>There is 1 BioSample without precise geo. coordinates: {this.state.samplesWithoutCoord}</p>;    
+        return (
+            <div className="map_container">
+                {this.getNoCoordMessage(this.state.samplesWithoutCoord)}
+                <MapContainer center={[0, 0]} zoom={2} className={'col-sm-12'} style={{height: "60vh"}}>
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    {markers}
+                </MapContainer>
+            </div>);
+    }
+
+    getNoCoordMessage(samplesWithoutCoord) {
+        if (samplesWithoutCoord) {
+            if (this.state.samplesWithoutCoord.length === 1) {
+                return <p>There is 1 BioSample without precise geographical coordinates: {this.getBiosampleLink(this.state.samplesWithoutCoord)}</p>;
             } else {
-                noCoordSamples = <div>
-                    <p>There are {this.state.samplesWithoutCoord.length} BioSamples without precise geo. coordinates&nbsp;
+                return <div>
+                    <p>There are {this.state.samplesWithoutCoord.length} BioSamples without
+                        precise geographical coordinates&nbsp;
                         <a data-toggle="collapse"
                            href="#samplesWithoutCoord" role="button" aria-expanded="false"
                            aria-controls="samplesWithoutCoord">
@@ -82,24 +95,20 @@ export default class WorldMap extends Component {
 
                     </p>
                     <div id="samplesWithoutCoord" className="collapse">
-                        <div className="card card-body mb-3">
-                            {this.state.samplesWithoutCoord.join(', ')}
+                        <div className="alert alert-warning mb-3">
+                            {this.state.samplesWithoutCoord.map((value, index) => {
+                                var sep = "";
+                                if (index < this.state.samplesWithoutCoord.length - 1) {
+                                    sep = ", ";
+                                } 
+                                return <span key={index}>{this.getBiosampleLink(value)}{sep}</span>
+                            })}
                         </div>
                     </div>
                 </div>
             }
         }
-        return (
-            <div className="map_container">
-                {noCoordSamples}
-                <MapContainer center={[0, 0]} zoom={2} className={'col-sm-12'} style={{ height: "60vh" }}>
-                    <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    {markers}
-                </MapContainer>
-            </div>);
+        return "";
     }
 }
 
