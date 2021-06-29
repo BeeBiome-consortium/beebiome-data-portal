@@ -69,7 +69,7 @@ export default class WorldMap extends Component {
         return (
             <div className="map_container">
                 {this.getNoCoordMessage(this.state.samplesWithoutCoord)}
-                <MapContainer center={[0, 0]} zoom={2} className={'col-sm-12'} style={{height: "60vh"}}>
+                <MapContainer center={[20, 20]} zoom={2} className={'col-sm-12'} style={{height: "60vh"}}>
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
