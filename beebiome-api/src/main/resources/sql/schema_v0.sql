@@ -38,12 +38,6 @@ CREATE TABLE location
     name text
 );
 
--- CREATE TABLE location_test
--- (
---     geography geography(POINT) NOT NULL PRIMARY KEY,
---     name text
--- );
-
 CREATE TYPE publicationSource AS ENUM ('PUBMED', 'DOI');
 
 CREATE TABLE publication
@@ -86,7 +80,7 @@ CREATE TABLE sample
     biosampleId integer PRIMARY KEY,
     biosampleAcc varchar(20) UNIQUE,
     biosamplePackageId varchar(50) NOT NULL,
-    locationId varchar(50), -- id=lat_long - see location table
+    locationId varchar(255), -- id=lat_long - see location table
     speciesId integer NOT NULL,
     hostSpeciesId integer NOT NULL,
     collectionDate varchar(10),
