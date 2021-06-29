@@ -20,10 +20,10 @@ function Header() {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
-                               role="button" aria-haspopup="true" aria-expanded="false">Browse</a>
+                               role="button" aria-haspopup="true" aria-expanded="false">All data</a>
                             <div className="dropdown-menu">
-                                <Link to="/browse/table" className="nav-link">Table</Link>
-                                <Link to="/browse/map" className="nav-link">Map</Link>
+                                <Link to="/browse/table" className="nav-link">Browse table</Link>
+                                <Link to="/browse/map" className="nav-link">View map</Link>
                             </div>
                         </li>
                         <li className="nav-item">
