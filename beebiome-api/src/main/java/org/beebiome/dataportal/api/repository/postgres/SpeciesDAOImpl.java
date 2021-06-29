@@ -21,8 +21,9 @@ public class SpeciesDAOImpl implements SpeciesDAO {
     private final String INSERTION_SQL =
             "INSERT INTO species(id, scientificName, parentTaxId, parentSpeciesId, isApoidea) " +
             "VALUES(:id, :scientificName, :parentTaxId, :parentSpeciesId, :isApoidea) " +
-            "ON CONFLICT DO NOTHING";
-
+            "ON CONFLICT (id) DO UPDATE SET scientificName = EXCLUDED.scientificName, " +
+            "               parentTaxId = EXCLUDED.parentTaxId, parentSpeciesId = EXCLUDED.parentSpeciesId, " +
+            "               isApoidea = EXCLUDED.isApoidea";
 
     public SpeciesDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

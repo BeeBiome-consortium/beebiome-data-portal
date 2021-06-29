@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.beebiome.dataportal.api.core.exception.BeebiomeException;
 import org.beebiome.dataportal.api.core.model.FileInfo;
 import org.beebiome.dataportal.api.core.model.ImportResult;
+import org.beebiome.dataportal.api.core.model.ReleaseVersion;
 import org.beebiome.dataportal.api.core.service.ImportService;
 import org.beebiome.dataportal.api.repository.dao.BiosamplePackageDAO;
 import org.beebiome.dataportal.api.repository.dao.ExperimentDAO;
@@ -17,10 +18,12 @@ import org.beebiome.dataportal.api.repository.dao.SampleDAO;
 import org.beebiome.dataportal.api.repository.dao.SampleToExperimentDAO;
 import org.beebiome.dataportal.api.repository.dao.SpeciesDAO;
 import org.beebiome.dataportal.api.repository.dao.SpeciesToNameDAO;
+import org.beebiome.dataportal.api.repository.dao.StatisticsDAO;
 import org.beebiome.dataportal.api.repository.dao.TaxonDAO;
 import org.beebiome.dataportal.api.repository.dt.ImportTO;
 import org.beebiome.dataportal.pipeline.NCBIImporter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,9 +49,16 @@ public class ImportServiceImpl implements ImportService {
     @Autowired private ProjectToSampleDAO projectToSampleDAO;
     @Autowired private ExperimentDAO experimentDAO;
     @Autowired private SampleToExperimentDAO sampleToExperimentDAO;
+    @Autowired private StatisticsDAO statisticsDAO;
+
+    @Value("${import.password}")
+    private final String password = null;
 
     @Override
-    public ImportResult importData(MultipartFile[] files) {
+    public ImportResult importData(MultipartFile[] files, String pwd) {
+        
+        checkPassword(pwd);
+        
         log.info("Start data import...");
 
         Set<FileInfo> fileInfos = new HashSet<>();
@@ -88,5 +98,23 @@ public class ImportServiceImpl implements ImportService {
 
         return new ImportResult(importTO.getProjectTOs().size(),
                 importTO.getSampleTOs().size(),importTO.getExperimentTOs().size());
+    }
+
+    @Override
+    public ReleaseVersion addNewReleaseVersion(String pwd) {
+
+        checkPassword(pwd);
+        
+        int rows = statisticsDAO.insertNewReleaseVersion();
+        if (rows == 1) {
+            return statisticsDAO.findReleaseVersion();
+        }
+        throw new BeebiomeException("Error during insertion of a new release version");
+    }
+
+    private void checkPassword(String pwd) {
+        if (pwd == null || !pwd.equals(password)) {
+            throw new BeebiomeException("Wrong password");
+        }
     }
 }

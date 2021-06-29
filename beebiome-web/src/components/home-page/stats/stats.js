@@ -33,7 +33,7 @@ export default class Stats extends React.Component {
                 "encompassing " + this.state.data.projectCount + " Bioprojects " +
                 "and " + this.state.data.experimentCount + " SRA experiments. " +
                 "This represents data for " + this.state.data.hostCount + " Apoidea hosts. " +
-                "If you use our data, please note the date of access, as data can change."
+                "The current release was updated on " + this.state.data.releaseVersion.date + "."
             text = <p>{tmp}</p>
         } else if (this.state.errorMessage !== null) {
             text = <p>{this.state.errorMessage}</p>

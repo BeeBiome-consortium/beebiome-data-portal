@@ -2,6 +2,10 @@
 
 In the project directory, you can run:
 
+#### Install BeeBiome package and any packages that it depends on
+
+`npm install`
+
 #### Runs the app in the development mode
 
 1. `npm start`  

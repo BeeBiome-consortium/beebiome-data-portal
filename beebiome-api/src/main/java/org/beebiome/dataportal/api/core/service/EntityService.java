@@ -10,10 +10,10 @@ public interface EntityService {
 
     public List<Entity> getEntitiesByBiosampleAcc(String id);
 
-    public List<Entity> getEntities(String biosampleAcc, String bioProjectAcc, String assayTypes,
+    public List<Entity> getEntities(String biosampleAcc, String bioProjectAcc, String libraryStrategies,
                                     String centerName, String instruments, String libraryLayouts,
                                     String librarySources, String organism, String host,
-                                    String geoLocName, String collectionDate,
+                                    String geoLocationName, String collectionDate,
                                     String biosamplePackageAcc, String biosamplePackageName);
 
 }

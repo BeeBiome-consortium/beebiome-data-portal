@@ -1,7 +1,9 @@
-.no-data-message {
-    font-weight: bold;
-}
-
 .col-form-label {
     padding-top: 0;
+}
+
+button.no-style {
+    font-size: 100%;
+    padding: 0;
+    vertical-align: baseline;
 }

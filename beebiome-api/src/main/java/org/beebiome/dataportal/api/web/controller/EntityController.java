@@ -38,16 +38,17 @@ public class EntityController {
                                   @RequestParam(required = false) String organism,
                                   @RequestParam(required = false) String host,
                                   @RequestParam(required = false) String collectionDate,
-                                  @RequestParam(required = false) String geoLocName,
+                                  @RequestParam(required = false) String geoLocationName,
                                   @RequestParam(required = false) String librarySources,
                                   @RequestParam(required = false) String libraryLayouts,
-                                  @RequestParam(required = false) String assayTypes,
+                                  @RequestParam(required = false) String libraryStrategies,
                                   @RequestParam(required = false) String centerName,
                                   @RequestParam(required = false) String instruments,
                                   @RequestParam(required = false) String biosamplePackageAcc,
                                   @RequestParam(required = false) String biosamplePackageName) {
-        return entityService.getEntities(bioSampleAcc, bioProjectAcc, assayTypes, centerName,
-                instruments, libraryLayouts, librarySources, organism, host, geoLocName, collectionDate,
+        return entityService.getEntities(bioSampleAcc, bioProjectAcc, libraryStrategies, centerName,
+                instruments, libraryLayouts, librarySources, organism, host,
+                geoLocationName, collectionDate,
                 biosamplePackageAcc, biosamplePackageName);
     }
 }

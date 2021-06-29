@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import Table from '../result/table';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
+import Copyright from "../result/copyright";
+import WorldMap from "../result/map";
 
 class Browse extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: null,
             searchQuery: "",
@@ -36,17 +38,38 @@ class Browse extends Component {
     render() {
         let result = "";
         if (this.state.isLoaded) {
-            result = <Table data={this.state.data} searchQuery={this.state.searchQuery}/>
+            let content;
+            if (this.props.location.pathname.search("map") !== -1) {
+                content = <WorldMap data={this.state.data}/>
+            } else {
+                content = <Table data={this.state.data} searchQuery={this.state.searchQuery}/>;
+            }
+            result =<div>{content}<Copyright /></div>
         } else if (this.state.errorMessage !== null) {
             result = <p>{this.state.errorMessage}</p>
         } else {
             result = <Loading/>
+        }
+        let search_link = "/search";
+        if (process.env.REACT_APP_ROUTER_BASE) {
+            search_link = process.env.REACT_APP_ROUTER_BASE + search_link;
+        }
+
+        let doc_link = "/help/data";
+        if (process.env.REACT_APP_ROUTER_BASE) {
+            doc_link = process.env.REACT_APP_ROUTER_BASE + doc_link;
         }
         return (
             <div>
                 <h1>Browse</h1>
                 <div className='row'>
                     <div className='col-sm-10 offset-sm-1'>
+                        <div>
+                            <p>This browse interface allows to discover BeeBiome data. A basic search (on all fields) is available at top right of the table.
+                                An <a href={search_link}>advanced search</a> is available to do a search on each field. 
+                                More details on each field are available in our <a href={doc_link}>help page</a>.
+                            </p>
+                        </div>
                         {result}
                     </div>
                 </div>

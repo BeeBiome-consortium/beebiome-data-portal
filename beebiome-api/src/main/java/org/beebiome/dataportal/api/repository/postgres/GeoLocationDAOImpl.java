@@ -17,7 +17,8 @@ public class GeoLocationDAOImpl implements GeoLocationDAO {
 
     private final String INSERTION_SQL = "INSERT INTO location(id, latitude, longitude, name) " +
             "VALUES (:id, :latitude, :longitude, :name) " +
-            "ON CONFLICT DO NOTHING";
+            "ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, " +
+            "               latitude = EXCLUDED.latitude, longitude = EXCLUDED.longitude";
 
     public GeoLocationDAOImpl(NamedParameterJdbcTemplate template) {
         this.template = template;

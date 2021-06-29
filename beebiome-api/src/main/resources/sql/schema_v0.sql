@@ -32,17 +32,11 @@ CREATE TABLE speciesToName
 CREATE TABLE location
 (
     -- geography geography(POINT) NOT NULL PRIMARY KEY,
-    id varchar(50) PRIMARY KEY, -- id=lat_long - it's temporary, while waiting to use PostGIS 
-    latitude varchar(125), -- it's temporary, while waiting to use PostGIS
-    longitude varchar(125), -- it's temporary, while waiting to use PostGIS
+    id varchar(255) PRIMARY KEY, -- id=lat_long - it's temporary, while waiting to use PostGIS 
+    latitude varchar(20), -- it's temporary, while waiting to use PostGIS
+    longitude varchar(20), -- it's temporary, while waiting to use PostGIS
     name text
 );
-
--- CREATE TABLE location_test
--- (
---     geography geography(POINT) NOT NULL PRIMARY KEY,
---     name text
--- );
 
 CREATE TYPE publicationSource AS ENUM ('PUBMED', 'DOI');
 
@@ -86,7 +80,7 @@ CREATE TABLE sample
     biosampleId integer PRIMARY KEY,
     biosampleAcc varchar(20) UNIQUE,
     biosamplePackageId varchar(50) NOT NULL,
-    locationId varchar(50), -- id=lat_long - see location table
+    locationId varchar(255), -- id=lat_long - see location table
     speciesId integer NOT NULL,
     hostSpeciesId integer NOT NULL,
     collectionDate varchar(10),
@@ -153,4 +147,11 @@ CREATE TABLE sampleToRecommendation
     PRIMARY KEY (biosampleId, recommendationId),
     FOREIGN KEY(biosampleId) REFERENCES sample(biosampleId) ON DELETE CASCADE,
     FOREIGN KEY(recommendationId) REFERENCES recommendation(id) ON DELETE CASCADE
+);
+
+CREATE TABLE releaseVersion
+(
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMP,
+    name varchar(20) -- version name is the date. Currently, it will be the date of the last update. Format yyyy-mm-dd
 );

@@ -23,9 +23,23 @@
 
 These properties can be set after the decompression of the war and before the deployment in Tomcat.
 
-2. Build the war: `mvn -DskipTests clean install`
+2. Build the war from beebiome-api directory: `cd beebiome-api ; mvn -DskipTests clean install`
 
 # Some links to retrieve data
-- `<api_url>/sample/all`: to retrieve all metadata
-- `<api_url>/sample/1234`: to retrieve metadata with the Biosample accession containing 1234
+- `<api_url>/sample/all`: to retrieve all metadata.
+- `<api_url>/sample/1234`: to retrieve metadata with the Biosample accession containing '1234'.
+- `<api_url>/sample/advanced-search`: to retrieve metadata with filters using a 'AND' boolean logic. Filters (see https://beebiome.org/beta/help/data for definitions):
+    * bioSampleAcc
+    * bioProjectAcc
+    * organism
+    * host
+    * collectionDate
+    * geoLocationName
+    * librarySources
+    * libraryLayouts
+    * libraryStrategies
+    * centerName
+    * instruments
+    * biosamplePackageAcc
+    * biosamplePackageName
 

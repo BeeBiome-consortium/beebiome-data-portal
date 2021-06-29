@@ -10,3 +10,8 @@ div.copyright {
 #result {
     width: 100% !important;
 }
+
+.result-info p {
+    color: grey;
+    margin-bottom: 0;
+}

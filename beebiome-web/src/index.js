@@ -21,10 +21,12 @@ const routing = (
         <Header />
         <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/browse" component={Browse} />
+            <Route path="/browse" component={Browse} /> {/* We keep 'browse' for the legacy */}
+            <Route path="/browse/:type" component={(props) => <Browse {...props}  key={window.location.pathname} />} />
             <Route path="/search" component={Search} />
             <Route path='/wiki/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route exact path="/about/privacy-notice" component={PrivacyNotice} />
+            <Route path='/help/:page' component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/about/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route path="/consortium/:page" component={(props) => <MarkdownPage {...props} key={window.location.pathname} />} />
             <Route component={Notfound} />
