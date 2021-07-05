@@ -3,11 +3,12 @@
 ## Contents of BeeBiome Data Portal
 
 BeeBiome Data Portal contains metadata of datasets from NCBI having a host which is a species under the NCBI taxonomic level '
-[Apoidea](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=34735)'. Only BioSamples linked with at least one SRA experiment are displayed.
+[Apoidea](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=34735)'. Only BioSamples linked to at least one SRA experiment are displayed.
 
 Based on this set of metadata, you can find the following pages:
 
-* [Browse page](/beta/browse) where you can see and download all metadata with a basic text-search;
+* [Browse table page](/beta/browse/table) where you can see and download all metadata with a basic text-search;
+* [View map page](/beta/browse/map) where you can see all geographical collection points of datasets;
 * [Advanced search page](/beta/search) where you can see and download metadata from a request based on a text-based search on each field and combine them using a 'AND' boolean logic.
 
 ## Definition of metadata fields
