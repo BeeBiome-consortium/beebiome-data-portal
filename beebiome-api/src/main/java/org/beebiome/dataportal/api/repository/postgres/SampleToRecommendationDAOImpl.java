@@ -17,6 +17,8 @@ public class SampleToRecommendationDAOImpl implements SampleToRecommendationDAO 
 
     NamedParameterJdbcTemplate template;
 
+    // We don't remove a link between a sample and a recommendation.
+    // Do to that, it would be necessary to set up a more complex db update.
     private final String INSERTION_SQL = "INSERT INTO sampleToRecommendation(biosampleId, recommendationId) " +
             "VALUES (:biosampleId, :recommendationId) " +
             "ON CONFLICT DO NOTHING";

@@ -1,5 +1,7 @@
 package org.beebiome.dataportal.api.repository.dao;
 
+import org.beebiome.dataportal.api.core.model.ReleaseVersion;
+
 public interface StatisticsDAO {
 
     int findSampleCount();
@@ -10,5 +12,8 @@ public interface StatisticsDAO {
     
     int findHostCount();
 
+    ReleaseVersion findReleaseVersion();
+
+    int insertNewReleaseVersion();
 
 }

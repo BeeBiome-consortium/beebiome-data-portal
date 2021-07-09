@@ -34,7 +34,7 @@ These properties can be set after the decompression of the war and before the de
     * organism
     * host
     * collectionDate
-    * geoLocName
+    * geoLocationName
     * librarySources
     * libraryLayouts
     * libraryStrategies

@@ -38,7 +38,7 @@ public class EntityDAOImpl implements EntityDAO {
     public List<Entity> find(String biosampleAcc, String bioProjectAcc, String libraryStrategies,
                              String centerName, String platforms, String libraryLayouts,
                              String librarySources, String organism, String host,
-                             String geoLocName, String collectionDate,
+                             String geoLocationName, String collectionDate,
                              String biosamplePackageAcc, String biosamplePackageName) {
         Map<String,Object> map = new HashMap<>();
         Map<String, String> columnNames = new HashMap<>();
@@ -78,9 +78,9 @@ public class EntityDAOImpl implements EntityDAO {
             map.put("platforms", "%" + platforms + "%");
             columnNames.put("platforms", "platforms");
         }
-        if (StringUtils.isNotBlank(geoLocName)) {
-            map.put("geoLocName", "%" + geoLocName + "%");
-            columnNames.put("geoLocName", "geoLocName");
+        if (StringUtils.isNotBlank(geoLocationName)) {
+            map.put("geoLocationName", "%" + geoLocationName + "%");
+            columnNames.put("geoLocationName", "geoLocationName");
         }
         if (StringUtils.isNotBlank(collectionDate)) {
             map.put("collectionDate", "%" + collectionDate + "%");

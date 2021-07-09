@@ -7,7 +7,7 @@ Here is the first picture of the BeeBiome consortium gathered at Nescent in Durh
 
 The coordination team is composed of Benjamin Dainat, Jay D Evans, Philipp Engel, Joachim de Miranda and Vincent Doublet (further details in contact).
 
-## Currently, we have 42 members in our consortium!
+## Currently, we have 44 members in our consortium!
 
 | Name | Affiliation | 
 | - | - |
@@ -37,6 +37,7 @@ Waldan Kwong | University of British Columbia, USA
 Vince Martinson | University of Rochester, USA
 Florent Mazel | University of British Columbia, Canada
 Quinn McFrederick | University of California, Riverside, USA
+Lilia Mesina | Agriculture and Agri-Food Canada / Government of Canada
 Nancy Moran | University of Texas, Austin, USA
 Monica Munoz Torres | Lawrence Livermore Labs, Berkeley, USA
 Irene Newton | Indiana University, USA
@@ -44,6 +45,7 @@ Rodrigo Ortega Polo | Agriculture and Agri-Food Canada / Government of Canada
 Robert Paxton | Martin-Luther University of Halle-Wittenberg, Germany
 Eli Powell | University of Texas, Austin, USA
 Kasie Raymann | University of North Carolina, Greensboro, USA
+Valentine Rech de Laval | Agroscope, University of Lausanne, University of Geneva, Switzerland
 Tim Regan | University of Edinburgh, UK
 Benjamin Rubin | Princeton University, USA
 Ben Sadd | Illinois State University, USA

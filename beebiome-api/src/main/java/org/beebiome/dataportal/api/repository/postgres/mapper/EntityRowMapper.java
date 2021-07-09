@@ -3,6 +3,7 @@ package org.beebiome.dataportal.api.repository.postgres.mapper;
 import org.apache.commons.lang3.StringUtils;
 import org.beebiome.dataportal.api.core.model.BioSamplePackage;
 import org.beebiome.dataportal.api.core.model.Entity;
+import org.beebiome.dataportal.api.core.model.GeoLocation;
 import org.beebiome.dataportal.api.core.model.LibraryLayout;
 import org.beebiome.dataportal.api.core.model.LibrarySource;
 import org.beebiome.dataportal.api.core.model.LibraryStrategy;
@@ -39,12 +40,21 @@ public class EntityRowMapper implements RowMapper<Entity> {
         if (StringUtils.isNotEmpty(biosamplePackageId) && StringUtils.isNotEmpty(biosamplePackageName)) {
             bioSamplePackage = new BioSamplePackage(biosamplePackageId, biosamplePackageName);
         }
+
+        GeoLocation localisation = null;
+        String geoLocationLatitude = rs.getString("geoLocationLatitude");
+        String geoLocationLongitude = rs.getString("geoLocationLongitude");
+        String geoLocationName = rs.getString("geoLocationName");
+        if (StringUtils.isNotEmpty(geoLocationLatitude) || StringUtils.isNotEmpty(geoLocationLongitude)
+                || StringUtils.isNotEmpty(geoLocationName)) {
+            localisation = new GeoLocation(geoLocationLatitude, geoLocationLongitude, geoLocationName);
+        }
         Species species = getSpecies(rs, "speciesId", "speciesScientificName");
         Species host = getSpecies(rs, "hostId", "hostScientificName");
 
         return new Entity(rs.getString("biosampleAcc"), rs.getString("bioprojectAcc"), bioSamplePackage,
                 libraryStrategySet, rs.getString("submittingOrganizationName"), libraryLayoutSet,
-                librarySourceSet, species, host, platforms, rs.getString("geoLocName"),
+                librarySourceSet, species, host, platforms, localisation,
                 rs.getString("collectionDate"), experimentAccs, rs.getInt("nucleotideCount"));
     }
 

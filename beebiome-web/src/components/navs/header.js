@@ -18,8 +18,13 @@ function Header() {
                 </Link>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <Link to="/browse" className="nav-link">Browse</Link>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/"
+                               role="button" aria-haspopup="true" aria-expanded="false">All data</a>
+                            <div className="dropdown-menu">
+                                <Link to="/browse/table" className="nav-link">Browse table</Link>
+                                <Link to="/browse/map" className="nav-link">View map</Link>
+                            </div>
                         </li>
                         <li className="nav-item">
                             <Link to="/search" className="nav-link">Advanced search</Link>

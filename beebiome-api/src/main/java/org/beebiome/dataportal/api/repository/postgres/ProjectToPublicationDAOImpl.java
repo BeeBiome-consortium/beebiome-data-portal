@@ -17,6 +17,8 @@ public class ProjectToPublicationDAOImpl implements ProjectToPublicationDAO {
 
     NamedParameterJdbcTemplate template;
 
+    // We don't remove a link between a project and a publication
+    // Do to that, it would be necessary to set up a more complex db update.
     private final String INSERTION_SQL = "INSERT INTO projectToPublication(bioprojectId, publicationAcc) " +
             "VALUES (:bioprojectId, :publicationAcc) " +
             "ON CONFLICT DO NOTHING";

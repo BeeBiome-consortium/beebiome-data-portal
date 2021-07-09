@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import Table from '../result/table';
 import Loading from "../result/loading";
 import ReactGA from "react-ga";
+import Copyright from "../result/copyright";
+import WorldMap from "../result/map";
 
 class Browse extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: null,
             searchQuery: "",
@@ -35,8 +37,17 @@ class Browse extends Component {
 
     render() {
         let result = "";
+        let title = "";
         if (this.state.isLoaded) {
-            result = <Table data={this.state.data} searchQuery={this.state.searchQuery}/>
+            let content;
+            if (this.props.location.pathname.search("map") !== -1) {
+                content = <WorldMap data={this.state.data}/>
+                title = "BeeBiome world map";
+            } else {
+                content = <Table data={this.state.data} searchQuery={this.state.searchQuery}/>;
+                title = "BeeBiome browse table";
+            }
+            result =<div>{content}<Copyright /></div>
         } else if (this.state.errorMessage !== null) {
             result = <p>{this.state.errorMessage}</p>
         } else {
@@ -53,7 +64,7 @@ class Browse extends Component {
         }
         return (
             <div>
-                <h1>Browse</h1>
+                <h1>{title}</h1>
                 <div className='row'>
                     <div className='col-sm-10 offset-sm-1'>
                         <div>

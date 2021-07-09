@@ -1,9 +1,12 @@
 package org.beebiome.dataportal.api.web.controller;
 
 import org.beebiome.dataportal.api.core.model.ImportResult;
+import org.beebiome.dataportal.api.core.model.ReleaseVersion;
 import org.beebiome.dataportal.api.core.service.ImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +20,15 @@ public class ImportController {
 
     @PostMapping("/import")
     @ResponseBody
-    public ImportResult importData(@RequestParam("files") MultipartFile[] files) {
-        return importService.importData(files);
+    public ImportResult importData(@RequestParam("files") MultipartFile[] files,
+                                   @RequestParam("pwd") String pwd) {
+        return importService.importData(files, pwd);
+    }
+
+    @CrossOrigin
+    @GetMapping("/import/new-release-version")
+    @ResponseBody
+    public ReleaseVersion addNewReleaseVersion(@RequestParam("pwd") String pwd) {
+        return importService.addNewReleaseVersion(pwd);
     }
 }
