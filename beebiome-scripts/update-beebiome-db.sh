@@ -19,8 +19,8 @@ echo "Start BeeBiome database update..."
 
 perl $SCRIPT_DIR/retrieve_metadata.pl $OUTPUT_DIR $TAXON_LEVEL 1 > $LOG_DIR/retrieve_beebiome_metadata.$STARTING_TIMEPOINT.log
 
-retrieve_success=`grep 'End retrieve data.' $LOG_DIR/retrieve_beebiome_metadata.$STARTING_TIMEPOINT.log`
-if [ ! -z "$retrieve_success" ]
+retrieve_success=`grep 'End retrieve data\.' $LOG_DIR/retrieve_beebiome_metadata.$STARTING_TIMEPOINT.log`
+if [ -z "$retrieve_success" ]
 then 
     echo "Dear BeeBiome maintainers,\n\nData recovery for BeeBiome database encountered an error.\n\nThe BeeBiome team" | mailx -s "BeeBiome update - ERROR" "$MAIL"
     exit 1;
