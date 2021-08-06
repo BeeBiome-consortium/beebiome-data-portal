@@ -11,7 +11,7 @@ Beebiome Data portal is developed by :
 - [The Evolutionary Bioinformatics group](https://bioinfo.unil.ch/) at the University of Lausanne and the SIB Swiss Institute of Bioinformatics;  
 - [The Swiss Bee Research Centre](https://www.agroscope.admin.ch/agroscope/en/home/topics/livestock/bees.html) belongs to Agroscope.  
 
-## Funding source
+## Funding sources
 BeeBiome Data Portal is supported by funding from the [Genome Alberta](https://www.genomealberta.ca/) for its development.  
 ![Genome Alberta logo](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/genome_alberta_logo.jpg)
 
