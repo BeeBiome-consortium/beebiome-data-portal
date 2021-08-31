@@ -17,6 +17,7 @@ Beebiome Data portal is developed by :
 
 ## Funding source
 BeeBiome Data Portal is supported by funding from [Genome Alberta](https://www.genomealberta.ca/) for its development.  
+
 ![Genome Alberta logo](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/genome_alberta_logo.jpg)
 
 BeeBiome Data Portal also received funding from the [Eva Crane Trust](https://www.evacranetrust.org/page/eva-crane) for its development.  
