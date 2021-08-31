@@ -8,3 +8,7 @@ table.markdown-table {
     margin-right: auto;
     display: block;
 }
+
+#about-data-portal img {
+    width: 130px;
+}

@@ -47,10 +47,11 @@ export default class MarkdownPage extends Component {
     }
     
     render() {
+        let id = this.props.location.pathname.replaceAll("/", "-").substring(1);
         let text = "";
         if (this.state.errorMessage == null && this.state.content != null) {
             text =
-                <div className={'row markdown-page'}>
+                <div id={id} className={'row markdown-page'}>
                     <Markdown className={'col-sm-10 offset-sm-1'}>{this.state.content}</Markdown>
                 </div>
         } else if (this.state.errorMessage != null) {

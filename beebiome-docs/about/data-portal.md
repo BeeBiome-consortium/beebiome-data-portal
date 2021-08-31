@@ -15,10 +15,13 @@ Beebiome Data portal is developed by :
 
 - [The Swiss Bee Research Centre](https://www.agroscope.admin.ch/agroscope/en/home/topics/livestock/bees.html) which belongs to Agroscope.  
 
-## Funding source
-BeeBiome Data Portal is supported by funding from [Genome Alberta](https://www.genomealberta.ca/) for its development.  
+## Funding sources
+
+* 2019: BeeBiome Data Portal received funding from the [Eva Crane Trust](https://www.evacranetrust.org/page/eva-crane) for its development.  
+
+![Eva Crane logo](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/eva_crane_logo.jpg)
+
+* 2020: BeeBiome Data Portal is supported by funding from [Genome Alberta](https://www.genomealberta.ca/) for its development.  
 
 ![Genome Alberta logo](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/genome_alberta_logo.jpg)
 
-BeeBiome Data Portal also received funding from the [Eva Crane Trust](https://www.evacranetrust.org/page/eva-crane) for its development.  
-![Eva Crane logo](https://github.com/BeeBiome-consortium/beebiome-data-portal/raw/${GITHUB_BRANCH}/beebiome-docs/assets/eva_crane_logo.jpg)
