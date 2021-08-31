@@ -7,9 +7,9 @@ BeeBiome Data Portal contains metadata of datasets from NCBI having a host which
 
 Based on this set of metadata, you can find the following pages:
 
-* [Browse table page](/beta/browse/table) where you can see and download all metadata with a basic text-search;
-* [View map page](/beta/browse/map) where you can see all geographical collection points of datasets;
-* [Advanced search page](/beta/search) where you can see and download metadata from a request based on a text-based search on each field and combine them using a 'AND' boolean logic.
+* [Browse table page](/browse/table) where you can see and download all metadata with a basic text-search;
+* [View map page](/browse/map) where you can see all geographical collection points of datasets;
+* [Advanced search page](/search) where you can see and download metadata from a request based on a text-based search on each field and combine them using a 'AND' boolean logic.
 
 ## Definition of metadata fields
 * **BioProject acc.**: Accession from [NCBI BioProject](https://www.ncbi.nlm.nih.gov/bioproject) (a collection of biological data related to a single initiative).

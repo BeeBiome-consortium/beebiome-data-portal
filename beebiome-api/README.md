@@ -28,7 +28,7 @@ These properties can be set after the decompression of the war and before the de
 # Some links to retrieve data
 - `<api_url>/sample/all`: to retrieve all metadata.
 - `<api_url>/sample/1234`: to retrieve metadata with the Biosample accession containing '1234'.
-- `<api_url>/sample/advanced-search`: to retrieve metadata with filters using a 'AND' boolean logic. Filters (see https://beebiome.org/beta/help/browse-search for definitions):
+- `<api_url>/sample/advanced-search`: to retrieve metadata with filters using a 'AND' boolean logic. Filters (see https://beebiome.org/help/browse-search for definitions):
     * bioSampleAcc
     * bioProjectAcc
     * organism
