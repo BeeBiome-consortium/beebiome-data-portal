@@ -116,7 +116,7 @@ class Search extends Component {
     
     render() {
         let result = this.getResultDisplay();
-        let doc_link = "/help/data";
+        let doc_link = "/help/browse-search";
         if (process.env.REACT_APP_ROUTER_BASE) {
             doc_link = process.env.REACT_APP_ROUTER_BASE + doc_link;
         }
