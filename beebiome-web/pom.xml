@@ -13,7 +13,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <npm.output.directory>build</npm.output.directory>
-        <router.base.name></router.base.name>
     </properties>
 
     <build>
@@ -79,8 +78,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <configuration>
                             <environmentVariables>
-                                <PUBLIC_URL>http://localhost:8080/${router.base.name}</PUBLIC_URL>
-                                <REACT_APP_ROUTER_BASE>/${router.base.name}</REACT_APP_ROUTER_BASE>
+                                <PUBLIC_URL>http://localhost:8080</PUBLIC_URL>
                             </environmentVariables>
                         </configuration>
                     </plugin>
@@ -97,8 +95,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <configuration>
                             <environmentVariables>
-                                <PUBLIC_URL>/${router.base.name}</PUBLIC_URL>
-                                <REACT_APP_ROUTER_BASE>/${router.base.name}</REACT_APP_ROUTER_BASE>
+                                <PUBLIC_URL>https://beebiome.org</PUBLIC_URL>
                             </environmentVariables>
                         </configuration>
                     </plugin>
