@@ -1,7 +1,5 @@
 #!/bin/sh
 
-MAIL="beebiome@unil.ch"
-
 export HOME_DIR=$1
 export PROPERTIES_FILE=$2
 export WORK_DIR=$HOME_DIR/beebiome-update 
@@ -12,6 +10,8 @@ export TAXON_LEVEL="Apoidea" # warning: use underscore to replace spaces such as
 export STARTING_TIMEPOINT=$(date "+%Y%m%d-%H%M")
 
 pwd=`cat ${PROPERTIES_FILE} | grep 'import.password' | cut -d'=' -f2`
+
+MAIL=`cat ${PROPERTIES_FILE} | grep 'team.email' | cut -d'=' -f2`
 
 echo "Start BeeBiome database update..."
 
