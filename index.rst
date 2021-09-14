@@ -8,7 +8,7 @@ A resource for scientists and the general public on bee-associated microbes/viru
 
 The dedicated BeeBiome web site is available here: https://beebiome.org/
 
-.. figure:: ../beebiome-web/src/assets/images/
+.. figure:: beebiome-web/src/assets/images/
 
 
 Contents
@@ -18,18 +18,18 @@ Contents
    :maxdepth: 2
    :caption: consortium:
    
-   ../consortium/aims.md
-   ../consortium/members.md
-   ../consortium/how_to_cite.md
-   ../about/citing-beebiome.md
-   ../about/data-portal.md
+   beebiome-docs/consortium/aims.md
+   beebiome-docs/consortium/members.md
+   beebiome-docs/consortium/how_to_cite.md
+   beebiome-docs/about/citing-beebiome.md
+   beebiome-docs/about/data-portal.md
 
 
 .. toctree::
    :maxdepth: 2
    :caption: help:
 
-   ../help/browse-search.md
+   beebiome-docs/help/browse-search.md
 
 
 .. toctree::
@@ -38,10 +38,10 @@ Contents
 
    A comprehensive catalogue of Apis and non-Apis diseases and microbes, providing an overview of most of the microorganisms known to date, can be found here:
 
-   ../wiki/apis-bee-disease-overview.md
-   ../wiki/apis-bee-microbe-overview.md 
-   ../wiki/non-apis-bee-disease-overview.md
-   ../wiki/non-apis-bee-microorganism-overview.md
+   beebiome-docs/wiki/apis-bee-disease-overview.md
+   beebiome-docs/wiki/apis-bee-microbe-overview.md 
+   beebiome-docs/wiki/non-apis-bee-disease-overview.md
+   beebiome-docs/wiki/non-apis-bee-microorganism-overview.md
    
 
 
