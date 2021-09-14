@@ -8,7 +8,7 @@ A resource for scientists and the general public on bee-associated microbes/viru
 
 The dedicated BeeBiome web site is available here: https://beebiome.org/
 
-.. figure:: assets/beebiome_logo
+.. figure:: assets/beebiome_logo.png
 
 
 Contents
