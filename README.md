@@ -24,7 +24,7 @@ beebiome-data-portal/   The repository of BeeBiome Data Portal project
 ....beebiome-web/       The view layer of the application written in React. 
                         The war file generated from this module will be used to deploy the web app on a server.
 ```
-
+ 
 ## Procedure to deploy WARs
 
     <details>
