@@ -34,7 +34,7 @@ Juliette Hayer | Swedish University of Agricultural Sciences, Uppsala, Sweden
 Hauke Koch | Royal Botanic Gardens KEW, UK
 Sarah Kocher | Princeton University, USA
 Waldan Kwong | University of British Columbia, USA
-Vince Martinson | University of Rochester, USA
+Vince Martinson | University of New Mexico, Albuquerque, USA
 Florent Mazel | University of British Columbia, Canada
 Quinn McFrederick | University of California, Riverside, USA
 Lilia Mesina | Agriculture and Agri-Food Canada / Government of Canada
