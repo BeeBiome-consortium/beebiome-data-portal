@@ -28,14 +28,14 @@ Laurent Farinelli | Fasteris, Geneva, Switzerland
 Michelle Flenniken | Montana State University, USA
 Laurent Gauthier | Montpellier, France
 Fredrik Granberg | Swedish University of Agricultural Sciences, Uppsala, Sweden
-Juris A. Grasis | San Diego State University, USA
+Juris A. Grasis | University of California, Merced, USA
 Marta Guarna | Agriculture and Agri-Food Canada / Government of Canada
 Juliette Hayer | Swedish University of Agricultural Sciences, Uppsala, Sweden
 Hauke Koch | Royal Botanic Gardens KEW, UK
 Sarah Kocher | Princeton University, USA
-Waldan Kwong | University of British Columbia, USA
+Waldan Kwong | Instituto Gulbenkian de Ciência, Portugal
 Vince Martinson | University of New Mexico, Albuquerque, USA
-Florent Mazel | University of British Columbia, Canada
+Florent Mazel | University of Lausanne, Switzerland
 Quinn McFrederick | University of California, Riverside, USA
 Lilia Mesina | Agriculture and Agri-Food Canada / Government of Canada
 Nancy Moran | University of Texas, Austin, USA
