@@ -19,7 +19,7 @@ Angus Chandler | University of California, Berkeley, USA
 Scott Cornman | Fort Collins Science Center, USA
 Benjamin Dainat | Agroscope, Bern, Switzerland
 Jacques Dainat | Sys2Diag - ALCEDIAG / CNRS UMR9005, Montpellier, France
-Joachim R. de miranda | Swedish University of Agricultural Sciences, Uppsala, Sweden
+Joachim R. de Miranda | Swedish University of Agricultural Sciences, Uppsala, Sweden
 Vincent Doublet | University of Ulm, Germany
 Olivier Emery | University of Lausanne, Switzerland
 Philipp Engel | University of Lausanne, Switzerland
