@@ -18,7 +18,7 @@ Remy Bruggmann | University of Bern, Switzerland
 Angus Chandler | University of California, Berkeley, USA
 Scott Cornman | Fort Collins Science Center, USA
 Benjamin Dainat | Agroscope, Bern, Switzerland
-Jacques Dainat | BILS Linköpings Universitet, Linköping, Sweden
+Jacques Dainat | Sys2Diag - ALCEDIAG / CNRS UMR9005, Montpellier, France
 Joachim R. de miranda | Swedish University of Agricultural Sciences, Uppsala, Sweden
 Vincent Doublet | University of Ulm, Germany
 Olivier Emery | University of Lausanne, Switzerland
@@ -30,7 +30,7 @@ Laurent Gauthier | Montpellier, France
 Fredrik Granberg | Swedish University of Agricultural Sciences, Uppsala, Sweden
 Juris A. Grasis | University of California, Merced, USA
 Marta Guarna | Agriculture and Agri-Food Canada / Government of Canada
-Juliette Hayer | Swedish University of Agricultural Sciences, Uppsala, Sweden
+Juliette Hayer | UMR IRD 224-CNRS 5290-UM MIVEGEC, IRD Montpellier, France
 Hauke Koch | Royal Botanic Gardens KEW, UK
 Sarah Kocher | Princeton University, USA
 Waldan Kwong | Instituto Gulbenkian de Ciência, Portugal
