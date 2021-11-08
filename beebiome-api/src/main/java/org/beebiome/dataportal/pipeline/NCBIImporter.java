@@ -302,7 +302,7 @@ public class NCBIImporter {
             if (platform.getLS454() != null) {
                 platformName = platform.getLS454().getINSTRUMENTMODEL();
             } else if (platform.getILLUMINA() != null) {
-                platformName = platform.getILLUMINA().getINSTRUMENTMODEL().value();
+                platformName = platform.getILLUMINA().getINSTRUMENTMODEL();
             } else if (platform.getHELICOS() != null) {
                 platformName = platform.getHELICOS().getINSTRUMENTMODEL().value();
             } else if (platform.getABISOLID() != null) {
