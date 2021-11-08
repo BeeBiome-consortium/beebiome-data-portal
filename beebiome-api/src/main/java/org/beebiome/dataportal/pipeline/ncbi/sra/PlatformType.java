@@ -723,17 +723,16 @@ public class PlatformType {
 
         @XmlElement(name = "INSTRUMENT_MODEL", required = true)
         @XmlSchemaType(name = "string")
-        protected TypeIlluminaModel instrumentmodel;
+        protected String instrumentmodel;
 
         /**
          * Obtient la valeur de la propriété instrumentmodel.
          * 
          * @return
-         *     possible object is
-         *     {@link TypeIlluminaModel }
+         *     possible object is {@code String}
          *     
          */
-        public TypeIlluminaModel getINSTRUMENTMODEL() {
+        public String getINSTRUMENTMODEL() {
             return instrumentmodel;
         }
 
@@ -741,11 +740,10 @@ public class PlatformType {
          * Définit la valeur de la propriété instrumentmodel.
          * 
          * @param value
-         *     allowed object is
-         *     {@link TypeIlluminaModel }
+         *     allowed object is {@code String} to allow new instrument model
          *     
          */
-        public void setINSTRUMENTMODEL(TypeIlluminaModel value) {
+        public void setINSTRUMENTMODEL(String value) {
             this.instrumentmodel = value;
         }
 
