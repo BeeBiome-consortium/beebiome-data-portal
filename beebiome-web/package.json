@@ -41,6 +41,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "datatables.net": "^1.10.21"
+    "datatables.net": "^1.11.3"
   }
 }
