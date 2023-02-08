@@ -45,6 +45,11 @@ do
     
     options=$options' -F files=@'$OUTPUT_DIR'/'$TAXON_LEVEL'/'$TAXON_LEVEL'_taxonomy.xml -F pwd='$pwd
 
+    # Fix SRA files containing several xml tags.
+    echo "Start correction of SRA file $i"
+    perl -i -0pe 's/<\/EXPERIMENT_PACKAGE_SET>\n<\?xml version="1.0" encoding="UTF-8"  \?>\n<EXPERIMENT_PACKAGE_SET>//g' "$OUTPUT_DIR"/"$TAXON_LEVEL"/"$TAXON_LEVEL"_sra.$i.xml
+    echo "End correction of SRA file $i"
+
     echo "Start load set $i"
     curl -X POST $options https://beebiome.org/beebiome/import >> $LOG_DIR/save_beebiome_metadata.$STARTING_TIMEPOINT.log
     echo "End load set $i"
