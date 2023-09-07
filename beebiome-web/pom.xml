@@ -5,7 +5,7 @@
 
     <groupId>org.beebiome.dataportal</groupId>
     <artifactId>beebiome-web</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.0.6</version>
     <name>beebiome-web</name>
     <description>A webapp to access and search for Beebiome data</description>
     <packaging>war</packaging>
@@ -21,7 +21,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <version>3.3.1</version>
                 <configuration>
                     <webResources>
                         <resource>
