@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-import ReactGA from "react-ga";
 import Obfuscate from "react-obfuscate";
 
 export default class PrivacyNotice extends Component {
-
-    componentDidMount() {
-        ReactGA.pageview(window.location.pathname + window.location.search);
-    }
 
     render() {
         return (
