@@ -1,11 +1,6 @@
 import React from 'react'
-import ReactGA from "react-ga";
 
 class Notfound extends React.Component {
-
-    componentDidMount() {
-        ReactGA.pageview(window.location.pathname + window.location.search);
-    }
 
     render() {
         return <div>

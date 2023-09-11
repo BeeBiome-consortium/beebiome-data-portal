@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './markdown.css';
 import Markdown from 'markdown-to-jsx';
-import ReactGA from "react-ga";
 import Notfound from "../notfound";
 
 export default class MarkdownPage extends Component {
@@ -15,8 +14,6 @@ export default class MarkdownPage extends Component {
     }
     
     componentDidMount() {
-        ReactGA.pageview(window.location.pathname + window.location.search);
-
         this.setState({content: null, errorMessage: null});
 
         fetch(process.env.REACT_APP_API_URL + "/contents" + this.props.location.pathname)
