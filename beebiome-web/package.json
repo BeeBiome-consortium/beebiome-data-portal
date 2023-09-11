@@ -22,7 +22,6 @@
     "react-obfuscate": "^3.6.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-    "react-twitter-embed": "^2.0.8",
     "typescript": "^3.9.7"
   },
   "scripts": {
