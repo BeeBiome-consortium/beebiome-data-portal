@@ -53,7 +53,7 @@ export default class PrivacyNotice extends Component {
                     <h2>Cookies</h2>
                     <p>The user is informed that cookies may be stored on the hard drive of his/her/its computer to record information about his/her/its visits to this portal. Cookies are used to identify the user and to facilitate and customize this portal's use by memorizing certain parameters. Cookies are used, in particular, to obtain information on the visits to the pages of this portal and the date and time of consultation.</p>
                     <p>The user can at any time prevent the recording and storage of cookies on her/his/its computer by disabling the option in her/his/its browser. However, some features of this portal may require the mandatory use of cookies (customization, warnings, etc.). Otherwise, the use of this portal may be impaired or even impossible.</p>
-                    <p>BeeBiome uses Google Analytics as a third-party analytics service to collect information about website performance and how users navigate through and use our site to help us design better interfaces. The list below provides a summary of the type of data Google Analytics collects:</p>
+                    <p>BeeBiome uses Matomo as a third-party analytics service to collect information about website performance and how users navigate through and use our site to help us design better interfaces. The list below provides a summary of the type of data Matomo collects:</p>
                     <ul>
                         <li>Geographical origin</li>
                         <li>Pages viewed and behavior flow</li>
@@ -61,7 +61,7 @@ export default class PrivacyNotice extends Component {
                         <li>Operating system</li>
                         <li>Browser</li>
                     </ul>
-                    <p>We do not use Google Analytics to track you individually or collect personal data. Personal data send to Google Analytics are anonymized upstream.</p>
+                    <p>We do not use Matomo to track you individually or collect personal data. Personal data send to Matomo are anonymized upstream.</p>
 
                     <h2>How long do we keep your personal data?</h2>
                     <p>Personal data are destroyed or made anonymous as soon as it is no longer necessary for the purpose for which they were collected.</p>
