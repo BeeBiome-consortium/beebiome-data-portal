@@ -285,7 +285,7 @@ sub buildQueries {
     my @queries = ();
     while ( ($k,$v) = each %seen ) {
         if (($idx % $batchSize) == 0 ) {
-            push @queries, "host[Attribute Name]+AND+(${biosample_subquery})";
+            push @queries, "host[Attribute Name]+AND+(${biosample_subquery})+NOT+Metazoa[organism]+NOT+Viridiplantae[organism]";
             $biosample_subquery = "";
             $isFirst = 1;
         }
@@ -295,11 +295,11 @@ sub buildQueries {
         
         my $tmp = $k =~ s/[():,\.\/]//rg;
         my $new = $tmp =~ s/\s/\+/rg;
-        $biosample_subquery = "${biosample_subquery}(${new}+NOT+${new}\[Organism\])";
+        $biosample_subquery = "${biosample_subquery}${new}";
         $isFirst = 0;
         $idx++;
     }
-    push @queries, "host[Attribute Name]+AND+(${biosample_subquery})";
+    push @queries, "host[Attribute Name]+AND+(${biosample_subquery})+NOT+Metazoa[organism]+NOT+Viridiplantae[organism]";
     return @queries;
 }
 
