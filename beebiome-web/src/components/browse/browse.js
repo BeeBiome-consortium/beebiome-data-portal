@@ -3,6 +3,7 @@ import Table from '../result/table';
 import Loading from "../result/loading";
 import Copyright from "../result/copyright";
 import WorldMap from "../result/map";
+import ChangePageTitle from "../change-page-title";
 
 class Browse extends Component {
     constructor(props) {
@@ -61,6 +62,8 @@ class Browse extends Component {
         }
         return (
             <div>
+                <ChangePageTitle pageTitle={title} />
+
                 <h1>{title}</h1>
                 <div className='row'>
                     <div className='col-sm-10 offset-sm-1'>

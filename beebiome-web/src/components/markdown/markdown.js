@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './markdown.css';
 import Markdown from 'markdown-to-jsx';
 import Notfound from "../notfound";
+import ChangePageTitle from "../change-page-title";
 
 export default class MarkdownPage extends Component {
     
@@ -47,8 +48,10 @@ export default class MarkdownPage extends Component {
         let id = this.props.location.pathname.replaceAll("/", "-").substring(1);
         let text = "";
         if (this.state.errorMessage == null && this.state.content != null) {
+            let title = "BeeBiome - " + this.state.content.substring(this.state.content.search(/[A-Za-z]/), this.state.content.search(/\n/));
             text =
                 <div id={id} className={'row markdown-page'}>
+                    <ChangePageTitle pageTitle={title} />
                     <Markdown className={'col-sm-10 offset-sm-1'}>{this.state.content}</Markdown>
                 </div>
         } else if (this.state.errorMessage != null) {
