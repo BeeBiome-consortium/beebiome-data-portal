@@ -1,9 +1,11 @@
 import React from 'react'
+import ChangePageTitle from "./change-page-title";
 
 class Notfound extends React.Component {
 
     render() {
         return <div>
+            <ChangePageTitle pageTitle="BeeBiome - Page not found" />
             <h1>404 - Page not found</h1>
             <div className={'row'}>
                 <div className={'col-sm-10 offset-sm-1'}>

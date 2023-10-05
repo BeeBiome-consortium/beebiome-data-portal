@@ -4,6 +4,7 @@ import './search.css';
 import Loading from "../result/loading";
 import WorldMap from "../result/map";
 import Copyright from "../result/copyright";
+import ChangePageTitle from "../change-page-title";
 
 const examples = {
     bioProjectAcc: ['PRJNA392822'],
@@ -118,6 +119,7 @@ class Search extends Component {
 
         return (
             <div>
+                <ChangePageTitle pageTitle="BeeBiome - Advanced search" />
                 <h1>Advanced search</h1>
                 <div className='row'>
                     <div className='col-10 offset-1'>

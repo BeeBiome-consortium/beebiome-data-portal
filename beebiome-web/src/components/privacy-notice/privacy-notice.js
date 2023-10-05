@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import Obfuscate from "react-obfuscate";
+import ChangePageTitle from "../change-page-title";
 
 export default class PrivacyNotice extends Component {
 
     render() {
         return (
             <div className={'row'}>
+                <ChangePageTitle pageTitle="BeeBiome - Privacy notice" />
                 <div className={'col-sm-10 offset-sm-1'}>
                     <h1>BeeBiome privacy notice</h1>
 
