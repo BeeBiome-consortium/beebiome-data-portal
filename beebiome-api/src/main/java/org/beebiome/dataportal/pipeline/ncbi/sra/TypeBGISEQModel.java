@@ -29,6 +29,8 @@ public enum TypeBGISEQModel {
 
     @XmlEnumValue("BGISEQ-500")
     BGISEQ_500("BGISEQ-500"),
+    @XmlEnumValue("BGISEQ-50")
+    BGISEQ_50("BGISEQ-50"),
     @XmlEnumValue("DNBSEQ-G400")
     DNBSEQ_G_400("DNBSEQ-G400"),
     @XmlEnumValue("DNBSEQ-T7")
