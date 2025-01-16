@@ -5,7 +5,7 @@
 
     <groupId>org.beebiome.dataportal</groupId>
     <artifactId>beebiome-web</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.3-SNAPSHOT</version>
     <name>beebiome-web</name>
     <description>A webapp to access and search for Beebiome data</description>
     <packaging>war</packaging>
