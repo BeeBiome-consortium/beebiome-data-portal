@@ -18,7 +18,7 @@ const examples = {
     libraryStrategies: ['WGS'],
     instruments: ['Illumina'],
     centerName: ['University of Lausanne'],
-    bioSamplePackageAcc: ['MIGS.ba.host-associated.5.0']
+    bioSamplePackageAcc: ['MIGS.ba.host-associated']
 };
 
 class Search extends Component {

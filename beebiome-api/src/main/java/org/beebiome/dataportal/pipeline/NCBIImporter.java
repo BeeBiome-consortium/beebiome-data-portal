@@ -310,7 +310,7 @@ public class NCBIImporter {
             } else if (platform.getCOMPLETEGENOMICS() != null) {
                 platformName = platform.getCOMPLETEGENOMICS().getINSTRUMENTMODEL().value();
             } else if (platform.getBGISEQ() != null) {
-                platformName = platform.getBGISEQ().getINSTRUMENTMODEL().value();
+                platformName = platform.getBGISEQ().getINSTRUMENTMODEL();
             } else if (platform.getOXFORDNANOPORE() != null) {
                 platformName = platform.getOXFORDNANOPORE().getINSTRUMENTMODEL().value();
             } else if (platform.getPACBIOSMRT() != null) {

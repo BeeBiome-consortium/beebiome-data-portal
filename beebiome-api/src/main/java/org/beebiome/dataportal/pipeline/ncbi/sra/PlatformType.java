@@ -499,17 +499,17 @@ public class PlatformType {
 
         @XmlElement(name = "INSTRUMENT_MODEL", required = true)
         @XmlSchemaType(name = "string")
-        protected TypeBGISEQModel instrumentmodel;
+        protected String instrumentmodel;
 
         /**
          * Obtient la valeur de la propriété instrumentmodel.
          * 
          * @return
          *     possible object is
-         *     {@link TypeBGISEQModel }
+         *     {@link String }
          *     
          */
-        public TypeBGISEQModel getINSTRUMENTMODEL() {
+        public String getINSTRUMENTMODEL() {
             return instrumentmodel;
         }
 
@@ -518,10 +518,10 @@ public class PlatformType {
          * 
          * @param value
          *     allowed object is
-         *     {@link TypeBGISEQModel }
+         *     {@link String }
          *     
          */
-        public void setINSTRUMENTMODEL(TypeBGISEQModel value) {
+        public void setINSTRUMENTMODEL(String value) {
             this.instrumentmodel = value;
         }
 

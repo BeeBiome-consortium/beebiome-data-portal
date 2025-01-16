@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import HomePage from "./components/home-page/home-page";
 import Browse from "./components/browse/browse";
 import Notfound from "./components/notfound";
+// import Maintenance from "./components/maintenance/maintenance";
 import Search from "./components/search/search";
 import Header from "./components/navs/header";
 import Footer from "./components/navs/footer";
@@ -19,6 +20,7 @@ const routing = (
     <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
         <Header />
         <Switch>
+            {/*<Route component={Maintenance} />*/}
             <Route exact path="/" component={HomePage} />
             <Route path="/browse" component={Browse} /> {/* We keep 'browse' for the legacy */}
             <Route path="/browse/:type" component={(props) => <Browse {...props}  key={window.location.pathname} />} />
