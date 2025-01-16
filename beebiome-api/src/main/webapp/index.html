@@ -2,12 +2,258 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BeeBiomeAPI</title>
+    <title>BeeBiome API</title>
+    <style>
+        a {
+            color: #007bff;
+        }
+        h1 {
+            margin-bottom: 0;
+        }
+        dd {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .method {
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+
+        }
+        .get {
+            background-color: #007bff;
+        }
+        .post {
+            background-color: #28a745;
+        }
+        .service_url, .parameter {
+            font-family: monospace;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        thead {
+            background-color: lightgrey;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .parameter_def {
+            text-decoration: underline;
+        }
+
+    </style>
 </head>
 <body>
 <div>
-    <h1>Description of the API</h1>
-    <p>TODO</p>
+    <h1>BeeBiome API</h1>
+
+    <a href="https://beebiome.org/beebiome/" class="service_url" rel="noopener noreferrer" target="_blank">
+        https://beebiome.org/beebiome/
+    </a>
+
+    <p>BeeBiome is a resource providing a comprehensive catalogue of currently available sequence datasets about bee-associated microbes and virus.</p>
+
+    <p>This BeeBiome API facilitates access to the BeeBiome data.</p>
+
+    <p>Data retrieved through the API is available under the 
+        <a href="https://creativecommons.org/publicdomain/zero/1.0/"
+            target='_blank' rel='noopener noreferrer'>Creative Commons Zero license (CC0)</a>
+        from Switzerland promoting ease of use in scientific and bioinformatics projects.<br />
+        Although CC0 doesn’t legally require users of the data to cite the source,
+        if you intend to use data from BeeBiome API, it would be nice to cite us (see 
+        <a href="https://beebiome.org/about/citing-beebiome" target='_blank' rel='noopener noreferrer'>BeeBiome citing us</a> page).
+    </p>
+
+    <h2>Methods to retrieve statistics</h2>
+
+    <dl>
+        <dt><span class="get method">GET</span> <span class="service_url">/statistics/all</span></dt>
+        <dd>Retrieve data statistics about the current BeeBiome release</dd>
+    </dl>
+
+    <h2>Methods to retrieve entries</h2>
+
+    <dl>
+        <dt><span class="get method">GET</span> <span class="service_url">/sample/all</span></dt>
+        <dd>Retrieve all Beebiome entries</dd>
+
+
+        <dt><span class="get method">GET</span> <span class="service_url">/sample/{acc}</span></dt>
+        <dd>Retrieve Beebiome entries with a BioSample accession containing {acc}</dd>
+
+        <dt><span class="post method">POST</span> <span class="service_url">/sample/advanced-search</span></dt>
+        <dd>
+            <div>Retrieve Beebiome entries filtered by parameters provided in the request.</div>
+            <div>Parameters can be combined. In that case, filters are applied using 'AND' boolean logic. Example:
+                <a class="service_url" href="https://beebiome.org/beebiome/sample/advanced-search?host=mellifera&organism=Lactobacillus"
+                   target="_blank" rel="noopener noreferrer">
+                    https://beebiome.org/beebiome/sample/advanced-search?host=mellifera&organism=Lactobacillus</a>
+                will return entries for which the host is <i>mellifera</i> and the organism is <i>Lactobacillus</i>.
+            </div>
+            <div>You can use the following parameters:</div>
+            <table>
+                <thead>
+                <tr><td>Parameter</td><td>Field to which the parameter value must match</td><td>Example</td></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="parameter">bioSampleAcc</td>
+                    <td>BioSample accession</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?bioSampleAcc=SAMN07311030"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?bioSampleAcc=SAMN07311030
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">bioProjectAcc</td>
+                    <td>BioProject accession</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?bioProjectAcc=PRJNA392822"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?bioProjectAcc=PRJNA392822
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">host</td>
+                    <td>Scientific name of the natural host (as opposed to laboratory) to the
+                        organism from which the sample was obtained</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?host=mellifera"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?host=mellifera
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">organism</td>
+                    <td>Scientific name of the organism that harbours the host</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?organism=Lactobacillus"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?organism=Lactobacillus
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">collectionDate</td>
+                    <td>Date on which the sample was collected</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?collectionDate=2014-12-14"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?collectionDate=2014-12-14
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">geoLocationName</td>
+                    <td>Geographical location name where the sample was collected</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?geoLocationName=Switzerland"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?geoLocationName=Switzerland
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">librarySources</td>
+                    <td>Type of source material that is being sequenced</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?librarySources=GENOMIC"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?librarySources=GENOMIC
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">libraryLayouts</td>
+                    <td>Library layouts (SINGLE or PAIRED end reads)</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?libraryLayouts=PAIRED"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?libraryLayouts=PAIRED
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">libraryStrategies</td>
+                    <td>Sequencing technique intended for the library</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?libraryStrategies=WGS"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?libraryStrategies=WGS
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">instruments</td>
+                    <td>Sequencing instrument for library</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?instruments=Illumina"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?instruments=Illumina
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">centerName</td>
+                    <td>Organization name involved into the project</td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?centerName=University of Lausanne"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?centerName=University of Lausanne
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">biosamplePackageAcc</td>
+                    <td>BioSample package accession
+                        (<a href="https://www.ncbi.nlm.nih.gov/biosample/docs/packages/"
+                            target="_blank" rel="noopener noreferrer">more details</a>)
+                    </td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?biosamplePackageAcc=MIGS.ba.host-associated"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?biosamplePackageAcc=MIGS.ba.host-associated
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter">biosamplePackageName</td>
+                    <td>BioSample package name
+                        (<a href="https://www.ncbi.nlm.nih.gov/biosample/docs/packages/"
+                            target="_blank" rel="noopener noreferrer">more details</a>)
+                    </td>
+                    <td class="service_url">
+                        <a href="https://beebiome.org/beebiome/sample/advanced-search?biosamplePackageName=bacteria/archaea"
+                           target="_blank" rel="noopener noreferrer">
+                            https://beebiome.org/beebiome/sample/advanced-search?biosamplePackageName=bacteria/archaea
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </dd>
+    </dl>
 </div>
 </body>
 </html>
