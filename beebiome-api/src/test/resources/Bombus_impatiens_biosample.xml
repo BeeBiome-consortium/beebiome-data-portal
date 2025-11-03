@@ -27367,4 +27367,48 @@
         </Links>
         <Status status="live" when="2016-07-26T06:44:54.520"/>
     </BioSample>
+    <BioSample access="public" publication_date="2025-10-30T12:40:30.143" last_update="2025-10-30T12:40:30.143" submission_date="2024-12-18T08:53:05.933" id="45892404" accession="SAMN45892404">
+        <Ids>
+            <Id db="BioSample" is_primary="1">SAMN45892404</Id>
+            <Id db_label="Sample name">V_Uy_Lyb11_RA1</Id>
+            <Id db="SRA">SRS23577665</Id>
+        </Ids>
+        <Description>
+            <Title>Uy_Lyb11_RA1</Title>
+            <Organism taxonomy_id="910258" taxonomy_name="bee metagenome">
+                <OrganismName>bee metagenome</OrganismName>
+            </Organism>
+            <Comment>
+                <Paragraph>Pool from resistant colonies in Autumn (105-107)</Paragraph>
+            </Comment>
+        </Description>
+        <Owner>
+            <Name url="https://www.gub.uy/ministerio-educacion-cultura/iibce">IIBCE</Name>
+            <Contacts>
+                <Contact>
+                    <Name>
+                        <First>Daniela</First>
+                        <Last>Arredondo</Last>
+                    </Name>
+                </Contact>
+            </Contacts>
+        </Owner>
+        <Models>
+            <Model>Metagenome or environmental</Model>
+        </Models>
+        <Package display_name="Metagenome or environmental; version 1.0">Metagenome.environmental.1.0</Package>
+        <Attributes>
+            <Attribute attribute_name="host" harmonized_name="host" display_name="host">Bombus impatiens</Attribute>
+            <Attribute attribute_name="isolation_source" harmonized_name="isolation_source" display_name="isolation source">whole body</Attribute>
+            <Attribute attribute_name="collection_date" harmonized_name="collection_date" display_name="collection date">2020</Attribute>
+            <Attribute attribute_name="geo_loc_name" harmonized_name="geo_loc_name" display_name="geographic location">Uruguay</Attribute>
+            <Attribute attribute_name="lat_lon" harmonized_name="lat_lon" display_name="latitude and longitude">33.25208 S 54.42805 W</Attribute>
+            <Attribute attribute_name="samp_size" harmonized_name="samp_size" display_name="sample size">40 bees from 2 colonies ( 20 and 20)</Attribute>
+            <Attribute attribute_name="Library name">11</Attribute>
+        </Attributes>
+        <Links>
+            <Link type="entrez" target="bioproject" label="PRJNA1199515">1199515</Link>
+        </Links>
+        <Status status="live" when="2025-10-30T12:40:30.143"/>
+    </BioSample>
 </BioSampleSet>
