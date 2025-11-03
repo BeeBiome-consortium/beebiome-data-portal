@@ -355,7 +355,7 @@ public class NCBIImporter {
                 .flatMap(Set::stream)
                 .collect(Collectors.toSet());
         
-        Set<Integer> validBioProjectIds = projectToSampleTOs.stream()
+        Set<Integer> associatedBioProjectIds = projectToSampleTOs.stream()
                 .map(ProjectToSampleTO::getBioprojectId)
                 .collect(Collectors.toSet());
 
@@ -372,7 +372,7 @@ public class NCBIImporter {
             }
             String bioprojectAcc = p.getProjectID().getArchiveID().getAccession();
             Integer bioprojectId = p.getProjectID().getArchiveID().getId().intValue();
-            if (!validBioProjectIds.contains(bioprojectId)) {
+            if (!associatedBioProjectIds.contains(bioprojectId)) {
                 rejectedProjects.add(bioprojectAcc);
                 continue;
             }
@@ -402,6 +402,32 @@ public class NCBIImporter {
             }
         }
         logList(rejectedProjects, "rejected projects due to the absence in samples");
+        
+        Set<Integer> existingBioprojectIds = projectTOs.stream()
+                .map(ProjectTO::getBioprojectId)
+                .collect(Collectors.toSet());
+        
+        Set<Integer> sampleIdToRemove = projectToSampleTOs.stream()
+                .filter(s -> !existingBioprojectIds.contains(s.getBioprojectId()))
+                .map(ProjectToSampleTO::getBiosampleId)
+                .collect(Collectors.toSet());
+        
+        Set<String> sampleAccToRemove = sampleTOs.stream()
+                .filter(sample -> sampleIdToRemove.contains(sample.getBiosampleId()))
+                .map(s -> s.getBiosampleAcc())
+                .collect(Collectors.toSet());
+        
+        Set<String> experimentAccToRemove = sampleToExperimentTOs.stream()
+                .filter(s -> sampleAccToRemove.contains(s.getBiosampleAcc()))
+                .map(SampleToExperimentTO::getSraAcc)
+                .collect(Collectors.toSet());
+        
+        sampleTOs.removeIf(sample -> sampleIdToRemove.contains(sample.getBiosampleId()));
+        projectToSampleTOs.removeIf(projectToSample -> sampleIdToRemove.contains(projectToSample.getBiosampleId()));
+        sampleToExperimentTOs.removeIf(sampleToExperiment -> experimentAccToRemove.contains(sampleToExperiment.getSraAcc()));
+        experimentTOs.removeIf(experiment -> experimentAccToRemove.contains(experiment.getSraAcc()));
+        logList(sampleAccToRemove.stream().map(String::valueOf).collect(Collectors.toSet()),
+                "rejected samples due to the absence in project");
         
         log.info("Done converting data.");
 

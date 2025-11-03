@@ -21011,5 +21011,7 @@
             <Action action_id="SUB1187161-bp0"/>
         </Submission>
     </DocumentSummary>
-
+    <DocumentSummary uid="1199515">
+        <error>The following ID is not public in BioProject: 1199515</error>
+    </DocumentSummary>
 </RecordSet>
