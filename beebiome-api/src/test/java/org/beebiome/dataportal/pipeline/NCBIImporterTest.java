@@ -45,7 +45,7 @@ public class NCBIImporterTest {
         Assert.assertFalse("Should not be saved because related biosample has been rejected",
                 isInBioprojectTOs(importTO, "PRJNA344894"));
 
-        // Rejected BioSamples (and suddenly, the Bioproject) due to unknown host attribute
+        // Rejected BioSamples (and suddenly, the Bioproject) due to an unknown host attribute
         Assert.assertFalse("Should not be saved because their host is unknown",
                 isInBiosampleTOs(importTO, Arrays.asList("SAMN07634939", "SAMN07634944")));
         Assert.assertFalse("Should not be saved because both related biosamples has been rejected",
@@ -58,10 +58,18 @@ public class NCBIImporterTest {
 
         Assert.assertEquals("Should find only one sample with nucleotide",
                 new HashSet<>(Arrays.asList(
-                        new ProjectToSampleTO(224116,5179609),
-                        new ProjectToSampleTO(323464, 5179609))), 
+                        new ProjectToSampleTO(224116, 5179609),
+                        new ProjectToSampleTO(323464, 5179609))
+//                        new ProjectToSampleTO(1199515,45892404) // Should not be saved because the project is not public
+                ), 
                 importTO.getProjectToSampleTOs());
 
+        Assert.assertFalse("Should not be saved because project is not public",
+                isInBiosampleTOs(importTO, "SAMN45892404"));
+        Assert.assertFalse("Should not be saved because related sample has been rejected",
+                importTO.getSampleToExperimentTOs().stream().anyMatch(se -> se.getSraAcc().equals("SRX29723727")));
+        Assert.assertFalse("Should not be saved because related biosample has been rejected",
+                isInExperimentTOs(importTO, "SRX29723727"));
     }
 
     private boolean isInBiosampleTOs(ImportTO importTO, String biosampleAcc) {
