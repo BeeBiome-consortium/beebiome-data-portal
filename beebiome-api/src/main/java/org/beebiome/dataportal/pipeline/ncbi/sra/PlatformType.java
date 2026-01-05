@@ -944,17 +944,17 @@ public class PlatformType {
 
         @XmlElement(name = "INSTRUMENT_MODEL", required = true)
         @XmlSchemaType(name = "string")
-        protected TypePacBioModel instrumentmodel;
+        protected String instrumentmodel;
 
         /**
          * Obtient la valeur de la propriété instrumentmodel.
          * 
          * @return
          *     possible object is
-         *     {@link TypePacBioModel }
+         *     {@link String }
          *     
          */
-        public TypePacBioModel getINSTRUMENTMODEL() {
+        public String getINSTRUMENTMODEL() {
             return instrumentmodel;
         }
 
@@ -963,10 +963,10 @@ public class PlatformType {
          * 
          * @param value
          *     allowed object is
-         *     {@link TypePacBioModel }
+         *     {@link String }
          *     
          */
-        public void setINSTRUMENTMODEL(TypePacBioModel value) {
+        public void setINSTRUMENTMODEL(String value) {
             this.instrumentmodel = value;
         }
 
