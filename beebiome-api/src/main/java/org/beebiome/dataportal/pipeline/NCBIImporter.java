@@ -314,7 +314,7 @@ public class NCBIImporter {
             } else if (platform.getOXFORDNANOPORE() != null) {
                 platformName = platform.getOXFORDNANOPORE().getINSTRUMENTMODEL().value();
             } else if (platform.getPACBIOSMRT() != null) {
-                platformName = platform.getPACBIOSMRT().getINSTRUMENTMODEL().value();
+                platformName = platform.getPACBIOSMRT().getINSTRUMENTMODEL();
             } else if (platform.getIONTORRENT() != null) {
                 platformName  =platform.getIONTORRENT().getINSTRUMENTMODEL().value();
             } else if (platform.getCAPILLARY() != null) {
