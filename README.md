@@ -4,9 +4,11 @@ A resource for scientists and the general public on bee-associated microbes/viru
 The dedicated BeeBiome web site is available here: [https://beebiome.org/](https://beebiome.org/)
 
 See also
-> **The Bee Microbiome: Impact on Bee Health and Model for Evolution and Ecology of Host-Microbe Interactions**  
-> Philipp Engel, Waldan K. Kwong, Quinn McFrederick, Kirk E. Anderson, Seth Michael Barribeau, James Angus Chandler, R. Scott Cornman, Jacques Dainat, Joachim R. de Miranda, Vincent Doublet, Olivier Emery, Jay D. Evans, Laurent Farinelli, Michelle L. Flenniken, Fredrik Granberg, Juris A. Grasis, Laurent Gauthier, Juliette Hayer, Hauke Koch, Sarah Kocher, Vincent G. Martinson, Nancy Moran, Monica Munoz-Torres, Irene Newton, Robert J. Paxton, Eli Powell, Ben M. Sadd, Paul Schmid-Hempel, Regula Schmid-Hempel, Se Jin Song, Ryan S. Schwarz, Dennis vanEngelsdorp, Benjamin Dainat.  
-> mBio Apr 2016, 7 (2) e02164-15; DOI: 10.1128/mBio.02164-15 - https://mbio.asm.org/content/7/2/e02164-15
+> **The BeeBiome data portal provides easy access to bee microbiome information.**
+> Rech de Laval V, Dainat B, Engel P, Robinson-Rechavi M. 
+> BMC Bioinformatics. 2025 Jul 29;26(1):198.
+> PMID: [40731321](https://pubmed.ncbi.nlm.nih.gov/40731321/); PMCID: [PMC12309204](https://pmc.ncbi.nlm.nih.gov/articles/PMC12309204/).
+> doi: 10.1186/s12859-025-06229-7.
 
 ## Directory structure
 
